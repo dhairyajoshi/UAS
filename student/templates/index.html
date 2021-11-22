@@ -1,0 +1,2436 @@
+<!-- <!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Index</title>  
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>  
+</head>  
+<body>  
+<form method="POST" class="post-form" action="/emp">  
+        {% csrf_token %}  
+    <div class="container">  
+<br>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <h3>Enter Details</h3>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Employee Id:</label>  
+    <div class="col-sm-4">  
+      {{ form.eid }}  
+    </div>  
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Employee Name:</label>  
+    <div class="col-sm-4">  
+      {{ form.ename }}  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Employee Email:</label>  
+    <div class="col-sm-4">  
+      {{ form.eemail }}  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">Employee Contact:</label>  
+    <div class="col-sm-4">  
+      {{ form.econtact }}  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Submit</button>  
+    </div>  
+  </div>  
+    </div>  
+</form>  
+</body>  
+</html>   -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veer Surendra Sai University of Technology</title>
+    <link rel="stylesheet"
+        href="http://web.archive.org/web/20180922062340cs_/http://admission.vssut.ac.in/css/admission.css"
+        type="text/css" />
+    <link rel="stylesheet"
+        href="http://web.archive.org/web/20180922062340cs_/http://admission.vssut.ac.in/css/styles.css"
+        type="text/css" />
+    <script type="text/javascript"
+        src="http://web.archive.org/web/20180922062340js_/http://admission.vssut.ac.in/validate/jquery.js"></script>
+    <script type="text/javascript"
+        src="http://web.archive.org/web/20180922062340js_/http://admission.vssut.ac.in/validate/validate.js"></script>
+    <script type="text/javascript"
+        src="http://web.archive.org/web/20180922062340js_/http://admission.vssut.ac.in/validate/jtip.js"></script>
+    <script language="JavaScript" type="text/javascript"></script>
+
+    </script>
+</head>
+
+<body>
+    <style type="text/css">
+        body {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            /*min-width:800px !important;*/
+        }
+
+        /*@import url(http://web.archive.org/web/20181014070153cs_/https://fonts.googleapis.com/css?family=Gabriela&subset=latin,latin-ext);*/
+        @import url(http://web.archive.org/web/20181014070153cs_/https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,700,600italic,800);
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Gabriela', serif;
+            font-size: 22px;
+            color: #333333;
+            letter-spacing: 1px;
+            margin: 0px 0px 13px 0px;
+            padding: 10px 0;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            background: #ccc;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .text_area {
+            width: 100%;
+            height: 90px;
+            padding: 5px 10px;
+            border: 1px solid #66a2c2;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form input[type=file] {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 100%;
+            padding: 3px 5px;
+            float: right;
+            border: 1px solid #66a2c2;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        .button {
+            border: 0;
+            font-weight: bold;
+            background-color: #3b85cc;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #FFF;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 12px;
+            padding: 8px 30px;
+            cursor: pointer;
+            border: 3px solid #1f66a9;
+            transition: all ease-in-out 0.3s;
+            -webkit-transition: all ease-in-out 0.3s;
+            -moz-transition: all ease-in-out 0.3s;
+        }
+
+        .button:hover {
+            border: 3px solid #0b4277;
+            background: #2771b8;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .tb1 {
+            border: 1px solid #CCCCCC;
+            border-collapse: collapse;
+        }
+
+        .tb1 td {
+            border-top: 1px solid #CCCCCC;
+            border-collapse: collapse;
+        }
+
+        .tb1 tr:nth-child(even) {
+            background-color: #ddeffd;
+        }
+
+        .tb1 tr:nth-child(odd) {
+            background-color: #FFFFFF;
+        }
+
+        #msg {
+            display: none;
+            position: absolute;
+            z-index: 200;
+            background: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/msg_arrow.gif) left center no-repeat;
+            padding-left: 7px
+        }
+
+        #msgcontent {
+            display: block;
+            background: #f3e6e6;
+            border: 2px solid #924949;
+            border-left: none;
+            padding: 5px;
+            min-width: 150px;
+            max-width: 250px
+        }
+
+        .succ {
+            border-top: 2px solid #090;
+            border-bottom: 2px solid #090;
+            color: #090;
+            padding: 5px 0;
+            width: 100%;
+            display: inline-block;
+            font-weight: bold;
+            text-align: center;
+            background: #E0F9DF;
+            margin: 5px 0;
+            -webkit-animation: shake .5s ease-in-out;
+            -moz-animation: shake .5s ease-in-out;
+            -ms-animation: shake .5s ease-in-out;
+            -o-animation: shake .5s ease-in-out;
+            animation: shake .5s ease-in-out;
+        }
+
+        .err {
+            border-top: 2px solid #C30;
+            border-bottom: 2px solid #C30;
+            color: #C30;
+            padding: 5px 0;
+            width: 100%;
+            display: inline-block;
+            font-weight: bold;
+            text-align: center;
+            background: #FDE9E8;
+            margin: 5px 0;
+            -webkit-animation: shake .5s ease-in-out;
+            -moz-animation: shake .5s ease-in-out;
+            -ms-animation: shake .5s ease-in-out;
+            -o-animation: shake .5s ease-in-out;
+            animation: shake .5s ease-in-out;
+        }
+
+        .crttbl {
+            border-left: 1px solid #CCC;
+            border-top: 1px solid #CCC;
+            font-weight: normal;
+        }
+
+        .crttbl td,
+        .crttbl th {
+            border-right: 1px solid #CCC;
+            border-bottom: 1px solid #CCC;
+            padding: 5px;
+        }
+
+        .crttbl th {
+            font-weight: 600;
+        }
+
+        #signup-form {
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        #signup-form .row {
+            width: 100%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        #signup-form .row .label {
+            float: left;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #signup-form .row .label a,
+        #signup-form .row .label a:visited,
+        #signup-form .row .label a:link {
+            color: #0066FF;
+        }
+
+        #signup-form .row .label span {
+            font-size: 11px;
+            font-weight: normal;
+        }
+
+        #signup-form .row .labelphoto {
+            width: 50%;
+        }
+
+        #signup-form .row .labelcaptcha {
+            width: 50%;
+        }
+
+        #signup-form .row .sbdetails {
+            width: 65%;
+        }
+
+        #signup-form .row .sbattach {
+            width: 35%;
+        }
+
+        #signup-form .row .col {
+            float: left;
+            width: 50%;
+            font-weight: normal;
+            padding-right: 15px;
+        }
+
+        #signup-form input[type=text],
+        #signup-form input[type=password] {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 100%;
+            padding: 7px 10px;
+            float: left;
+            border: 1px solid #4dd0b9;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form input[type=file] {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 96%;
+            padding: 3px 5px;
+            float: left;
+            border: 1px solid #4dd0b9;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form select {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 100%;
+            padding: 6px 10px;
+            float: left;
+            border: 1px solid #4dd0b9;
+            border-radius: 0;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #captchaimg {
+            border: 1px solid #4dd0b9;
+            padding: 2px 0;
+            margin-right: 15px;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form .row .fname {
+            width: 40%;
+        }
+
+        #signup-form .row .gender {
+            width: 25%;
+        }
+
+        #signup-form .row .mname {
+            width: 30%;
+        }
+
+        #signup-form .row .lname {
+            width: 30%;
+        }
+
+        #signup-form .row .zip {
+            width: 15%;
+        }
+
+        /*#signup-form .row .gender {
+	width:15%;
+}*/
+        #signup-form .row .degree {
+            width: 33%;
+        }
+
+        #signup-form .row .dept {
+            width: 60%;
+        }
+
+        #signup-form .row .course {
+            width: 35%;
+        }
+
+        #signup-form .row .captcha {
+            width: 14%;
+        }
+
+        #signup-form .row .captchaimg {
+            width: 36%;
+            font-size: 11px;
+        }
+
+        #signup-form .row .amount {
+            width: 15%;
+        }
+
+        #signup-form .row .sbdate {
+            width: 20%;
+        }
+
+        #signup-form .row .refno {
+            width: 30%;
+        }
+
+        #signup-form .row .sbattach {
+            width: 35%;
+        }
+
+        #signup-form .row .adds {
+            width: 100%;
+        }
+
+        .day {
+            width: 30% !important;
+        }
+
+        .month {
+            width: 40% !important;
+        }
+
+        .year {
+            width: 30% !important;
+        }
+
+        #signup-form .row .rollno {
+            width: 20%;
+        }
+
+        #signup-form .row .entrance {
+            width: 20%;
+        }
+
+        #signup-form .row .dob {
+            width: 30%;
+        }
+
+        #signup-form .row .gender {
+            width: 25%;
+        }
+
+        #signup-form .row .cat {
+            width: 25%;
+        }
+
+        #signup-form input[type=submit] {
+            background: #0e0e66;
+            color: #fff;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all ease-in-out 0.3s;
+            -webkit-transition: all ease-in-out 0.3s;
+            -moz-transition: all ease-in-out 0.3s;
+            margin: 0 auto;
+        }
+
+        #signup-form input[type=submit]:hover {
+            background: #4dd0b9;
+            border: 2px solid #16937d;
+        }
+
+        #signup-form p {
+            color: #C00;
+            text-align: right;
+            font-style: italic;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .photo {
+            width: 15% !important;
+            float: right;
+            border: 1px solid #CCC;
+            min-height: 180px;
+            overflow: hidden;
+            background: #e4e6e7 url(/web/20181014070153im_/http://admission.vssut.ac.in/images/blank-profile.jpg) center no-repeat;
+            margin-top: 30px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        #ProfilePhoto {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        #welcomeimg {
+            width: 100%;
+            display: none;
+        }
+
+        #changephoto {
+            background: #666666;
+            color: #FFF;
+            padding: 5px 0;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+
+        #sign {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        #signimg {
+            height: 100%;
+            display: none;
+            margin: 0 5px;
+            max-width: 300px;
+        }
+
+        #changesign {
+            background: #666666;
+            color: #FFF;
+            padding: 0;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+
+        .sign {
+            border: 1px solid #666666;
+            padding: 0 !important;
+            margin-right: 10%;
+            width: 40% !important;
+            position: relative;
+        }
+
+        /* ---------->>> jtip <<<---------------------------------------------------------------*/
+        #JT_arrow_left {
+            background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/arrow_left.gif);
+            background-repeat: no-repeat;
+            background-position: left top;
+            position: absolute;
+            z-index: 101;
+            left: -12px;
+            height: 23px;
+            width: 10px;
+            top: -3px;
+        }
+
+        #JT_arrow_right {
+            background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/arrow_right.gif);
+            background-repeat: no-repeat;
+            background-position: left top;
+            position: absolute;
+            z-index: 101;
+            height: 23px;
+            width: 11px;
+            top: -2px;
+        }
+
+        #JT {
+            position: absolute;
+            z-index: 100;
+            border: 2px solid #CCCCCC;
+            background-color: #fff;
+        }
+
+        #JT_copy {
+            padding: 10px 10px 10px 10px;
+            color: #333333;
+        }
+
+        .JT_loader {
+            background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/loader.gif);
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: 100%;
+            height: 12px;
+        }
+
+        #JT_close_left {
+            background-color: #CCCCCC;
+            text-align: left;
+            padding-left: 8px;
+            padding-bottom: 5px;
+            padding-top: 2px;
+            font-weight: bold;
+        }
+
+        #JT_close_right {
+            background-color: #CCCCCC;
+            text-align: left;
+            padding-left: 8px;
+            padding-bottom: 5px;
+            padding-top: 2px;
+            font-weight: bold;
+        }
+
+        #JT_copy p {
+            margin: 3px 0;
+        }
+
+        #JT_copy img {
+            padding: 1px;
+            border: 1px solid #CCCCCC;
+        }
+
+        .jTip {
+            cursor: help;
+        }
+
+        .congrat {
+            font-weight: 600;
+            font-size: 30px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .succes {
+            font-weight: 600;
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        input[type=checkbox].css-checkbox {
+            position: absolute;
+            z-index: -1000;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+        }
+
+        input[type=checkbox].css-checkbox+label.css-label {
+            padding-left: 24px;
+            height: 17px;
+            display: inline-block;
+            line-height: 17px;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        input[type=checkbox].css-checkbox:checked+label.css-label {
+            background-position: 0 -17px;
+        }
+
+        label.css-label {
+            /* background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/checkbox.png); */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-position: 0 17px;
+        }
+
+        #splt,
+        #spld {
+            display: none;
+        }
+
+        .btn {
+            border: 0;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #FFF;
+        }
+
+        .editapp {
+            background: #F60;
+        }
+
+        .finalsubmit {
+            background: #336600;
+        }
+
+        a,
+        a:visited,
+        a:link {
+            text-decoration: none;
+        }
+
+        /*------------------POPUPS------------------------*/
+        #fade {
+            display: none;
+            background: #000;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            opacity: .80;
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .popup_block {
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border: 10px solid transparent;
+            -webkit-border-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/border.png) 30% round;
+            -moz-border-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/border.png) 30% round;
+            border-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/border.png) 30% round;
+            float: left;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            z-index: 99999;
+            line-height: 30px;
+        }
+
+        img.btn_close {
+            float: right;
+            right: -35px;
+            top: -35px;
+            position: absolute;
+        }
+
+        .popup p {
+            padding: 5px 10px;
+            margin: 5px 0;
+        }
+
+        /*--Making IE6 Understand Fixed Positioning--*/
+        *html #fade {
+            position: absolute;
+        }
+
+        *html .popup_block {
+            position: absolute;
+        }
+
+        .txt {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+
+        .mand {
+            color: #F00;
+        }
+
+        /*
+     FILE ARCHIVED ON 07:01:53 Oct 14, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:16:00 Oct 28, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+        /*
+playback timings (ms):
+  captures_list: 400.51
+  exclusion.robots: 0.185
+  exclusion.robots.policy: 0.178
+  RedisCDXSource: 9.386
+  esindex: 0.008
+  LoadShardBlock: 373.69 (3)
+  PetaboxLoader3.resolve: 342.834 (4)
+  PetaboxLoader3.datanode: 154.937 (5)
+  CDXLines.iter: 14.625 (3)
+  load_resource: 207.458 (2)
+*/
+        /*@import url(http://web.archive.org/web/20181014070153cs_/https://fonts.googleapis.com/css?family=Gabriela&subset=latin,latin-ext);*/
+        @import url(http://web.archive.org/web/20181014070153cs_/https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,700,600italic,800);
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Gabriela', serif;
+            font-size: 22px;
+            color: #333333;
+            letter-spacing: 1px;
+            margin: 0px 0px 13px 0px;
+            padding: 10px 0;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            background: #ccc;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        /*img{background:#fff; padding:5px; border:1px solid #ccc;}*/
+        /*
+#signup-form{width:1000px; margin:0 auto; padding:15px; background:#fff; border: 1px solid #3a84cb;}
+#signup-form input[type=text], #signup-form input[type=password] {
+    box-shadow: none;
+    border: none;
+    color: #000;
+    background: none;
+    width: 100%;
+    padding: 7px 10px;
+    margin-right: 15px;
+    float: left;
+    border: 1px solid #3a84cb;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(126,239,219,1);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(126,239,219,1);
+    box-shadow: 0px 0px 1px 0px rgba(126,239,219,1);
+}
+#signup-form select {
+    box-shadow: none;
+    border: none;
+    color: #000;
+    background: none;
+    width: 100%;
+    padding: 6px 10px;
+    margin-right: 15px;
+    float: left;
+    border: 1px solid #3a84cb;
+    border-radius: 0;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(126,239,219,1);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(126,239,219,1);
+    box-shadow: 0px 0px 1px 0px rgba(126,239,219,1);
+}
+.day {
+	width:30% !important;	
+}
+.month {
+	width:30% !important;	
+}
+.year {
+	width:30% !important;	
+}*/
+        .text_area {
+            width: 100%;
+            height: 90px;
+            padding: 5px 10px;
+            border: 1px solid #66a2c2;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form input[type=file] {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 100%;
+            padding: 3px 5px;
+            float: right;
+            border: 1px solid #66a2c2;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        .button {
+            border: 0;
+            font-weight: bold;
+            background-color: #3b85cc;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #FFF;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 12px;
+            padding: 8px 30px;
+            cursor: pointer;
+            border: 3px solid #1f66a9;
+            transition: all ease-in-out 0.3s;
+            -webkit-transition: all ease-in-out 0.3s;
+            -moz-transition: all ease-in-out 0.3s;
+        }
+
+        .button:hover {
+            border: 3px solid #0b4277;
+            background: #2771b8;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .tb1 {
+            border: 1px solid #CCCCCC;
+            border-collapse: collapse;
+        }
+
+        .tb1 td {
+            border-top: 1px solid #CCCCCC;
+            border-collapse: collapse;
+        }
+
+        .tb1 tr:nth-child(even) {
+            background-color: #ddeffd;
+        }
+
+        .tb1 tr:nth-child(odd) {
+            background-color: #FFFFFF;
+        }
+
+        #msg {
+            display: none;
+            position: absolute;
+            z-index: 200;
+            background: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/msg_arrow.gif) left center no-repeat;
+            padding-left: 7px
+        }
+
+        #msgcontent {
+            display: block;
+            background: #f3e6e6;
+            border: 2px solid #924949;
+            border-left: none;
+            padding: 5px;
+            min-width: 150px;
+            max-width: 250px
+        }
+
+        .succ {
+            border-top: 2px solid #090;
+            border-bottom: 2px solid #090;
+            color: #090;
+            padding: 5px 0;
+            width: 100%;
+            display: inline-block;
+            font-weight: bold;
+            text-align: center;
+            background: #E0F9DF;
+            margin: 5px 0;
+            -webkit-animation: shake .5s ease-in-out;
+            -moz-animation: shake .5s ease-in-out;
+            -ms-animation: shake .5s ease-in-out;
+            -o-animation: shake .5s ease-in-out;
+            animation: shake .5s ease-in-out;
+        }
+
+        .err {
+            border-top: 2px solid #C30;
+            border-bottom: 2px solid #C30;
+            color: #C30;
+            padding: 5px 0;
+            width: 100%;
+            display: inline-block;
+            font-weight: bold;
+            text-align: center;
+            background: #FDE9E8;
+            margin: 5px 0;
+            -webkit-animation: shake .5s ease-in-out;
+            -moz-animation: shake .5s ease-in-out;
+            -ms-animation: shake .5s ease-in-out;
+            -o-animation: shake .5s ease-in-out;
+            animation: shake .5s ease-in-out;
+        }
+
+        .crttbl {
+            border-left: 1px solid #CCC;
+            border-top: 1px solid #CCC;
+            font-weight: normal;
+        }
+
+        .crttbl td,
+        .crttbl th {
+            border-right: 1px solid #CCC;
+            border-bottom: 1px solid #CCC;
+            padding: 5px;
+        }
+
+        .crttbl th {
+            font-weight: 600;
+        }
+
+        #signup-form {
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        #signup-form .row {
+            width: 100%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        #signup-form .row .label {
+            float: left;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #signup-form .row .label a,
+        #signup-form .row .label a:visited,
+        #signup-form .row .label a:link {
+            color: #0066FF;
+        }
+
+        #signup-form .row .label span {
+            font-size: 11px;
+            font-weight: normal;
+        }
+
+        #signup-form .row .labelphoto {
+            width: 50%;
+        }
+
+        #signup-form .row .labelcaptcha {
+            width: 50%;
+        }
+
+        #signup-form .row .sbdetails {
+            width: 65%;
+        }
+
+        #signup-form .row .sbattach {
+            width: 35%;
+        }
+
+        #signup-form .row .col {
+            float: left;
+            width: 50%;
+            font-weight: normal;
+            padding-right: 15px;
+        }
+
+        #signup-form input[type=text],
+        #signup-form input[type=password] {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 100%;
+            padding: 7px 10px;
+            float: left;
+            border: 1px solid #4dd0b9;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form input[type=file] {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 96%;
+            padding: 3px 5px;
+            float: left;
+            border: 1px solid #4dd0b9;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form select {
+            box-shadow: none;
+            border: none;
+            color: #000;
+            background: none;
+            width: 100%;
+            padding: 6px 10px;
+            float: left;
+            border: 1px solid #4dd0b9;
+            border-radius: 0;
+            background: #fff;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #captchaimg {
+            border: 1px solid #4dd0b9;
+            padding: 2px 0;
+            margin-right: 15px;
+            -webkit-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            -moz-box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+            box-shadow: 0px 0px 1px 0px rgba(126, 239, 219, 1);
+        }
+
+        #signup-form .row .fname {
+            width: 40%;
+        }
+
+        #signup-form .row .gender {
+            width: 25%;
+        }
+
+        #signup-form .row .mname {
+            width: 30%;
+        }
+
+        #signup-form .row .lname {
+            width: 30%;
+        }
+
+        #signup-form .row .zip {
+            width: 15%;
+        }
+
+        /*#signup-form .row .gender {
+	width:15%;
+}*/
+        #signup-form .row .degree {
+            width: 33%;
+        }
+
+        #signup-form .row .dept {
+            width: 60%;
+        }
+
+        #signup-form .row .course {
+            width: 35%;
+        }
+
+        #signup-form .row .captcha {
+            width: 14%;
+        }
+
+        #signup-form .row .captchaimg {
+            width: 36%;
+            font-size: 11px;
+        }
+
+        #signup-form .row .amount {
+            width: 15%;
+        }
+
+        #signup-form .row .sbdate {
+            width: 20%;
+        }
+
+        #signup-form .row .refno {
+            width: 30%;
+        }
+
+        #signup-form .row .sbattach {
+            width: 35%;
+        }
+
+        #signup-form .row .adds {
+            width: 100%;
+        }
+
+        .day {
+            width: 30% !important;
+        }
+
+        .month {
+            width: 40% !important;
+        }
+
+        .year {
+            width: 30% !important;
+        }
+
+        #signup-form .row .rollno {
+            width: 20%;
+        }
+
+        #signup-form .row .entrance {
+            width: 20%;
+        }
+
+        #signup-form .row .dob {
+            width: 30%;
+        }
+
+        #signup-form .row .gender {
+            width: 25%;
+        }
+
+        #signup-form .row .cat {
+            width: 25%;
+        }
+
+        #signup-form input[type=submit] {
+            background: #0e0e66;
+            color: #fff;
+            text-transform: uppercase;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all ease-in-out 0.3s;
+            -webkit-transition: all ease-in-out 0.3s;
+            -moz-transition: all ease-in-out 0.3s;
+            margin: 0 auto;
+        }
+
+        #signup-form input[type=submit]:hover {
+            background: #4dd0b9;
+            border: 2px solid #16937d;
+        }
+
+        #signup-form p {
+            color: #C00;
+            text-align: right;
+            font-style: italic;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .photo {
+            width: 15% !important;
+            float: right;
+            border: 1px solid #CCC;
+            min-height: 180px;
+            overflow: hidden;
+            background: #e4e6e7 url(/web/20181014070153im_/http://admission.vssut.ac.in/images/blank-profile.jpg) center no-repeat;
+            margin-top: 30px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        #ProfilePhoto {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        #welcomeimg {
+            width: 100%;
+            display: none;
+        }
+
+        #changephoto {
+            background: #666666;
+            color: #FFF;
+            padding: 5px 0;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+
+        #sign {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        #signimg {
+            height: 100%;
+            display: none;
+            margin: 0 5px;
+            max-width: 300px;
+        }
+
+        #changesign {
+            background: #666666;
+            color: #FFF;
+            padding: 0;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+
+        .sign {
+            border: 1px solid #666666;
+            padding: 0 !important;
+            margin-right: 10%;
+            width: 40% !important;
+            position: relative;
+        }
+
+        /* ---------->>> jtip <<<---------------------------------------------------------------*/
+        #JT_arrow_left {
+            background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/arrow_left.gif);
+            background-repeat: no-repeat;
+            background-position: left top;
+            position: absolute;
+            z-index: 101;
+            left: -12px;
+            height: 23px;
+            width: 10px;
+            top: -3px;
+        }
+
+        #JT_arrow_right {
+            background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/arrow_right.gif);
+            background-repeat: no-repeat;
+            background-position: left top;
+            position: absolute;
+            z-index: 101;
+            height: 23px;
+            width: 11px;
+            top: -2px;
+        }
+
+        #JT {
+            position: absolute;
+            z-index: 100;
+            border: 2px solid #CCCCCC;
+            background-color: #fff;
+        }
+
+        #JT_copy {
+            padding: 10px 10px 10px 10px;
+            color: #333333;
+        }
+
+        .JT_loader {
+            background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/loader.gif);
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: 100%;
+            height: 12px;
+        }
+
+        #JT_close_left {
+            background-color: #CCCCCC;
+            text-align: left;
+            padding-left: 8px;
+            padding-bottom: 5px;
+            padding-top: 2px;
+            font-weight: bold;
+        }
+
+        #JT_close_right {
+            background-color: #CCCCCC;
+            text-align: left;
+            padding-left: 8px;
+            padding-bottom: 5px;
+            padding-top: 2px;
+            font-weight: bold;
+        }
+
+        #JT_copy p {
+            margin: 3px 0;
+        }
+
+        #JT_copy img {
+            padding: 1px;
+            border: 1px solid #CCCCCC;
+        }
+
+        .jTip {
+            cursor: help;
+        }
+
+        .congrat {
+            font-weight: 600;
+            font-size: 30px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .succes {
+            font-weight: 600;
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        input[type=checkbox].css-checkbox {
+            position: absolute;
+            z-index: -1000;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+        }
+
+        input[type=checkbox].css-checkbox+label.css-label {
+            padding-left: 24px;
+            height: 17px;
+            display: inline-block;
+            line-height: 17px;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        input[type=checkbox].css-checkbox:checked+label.css-label {
+            background-position: 0 -17px;
+        }
+
+        label.css-label {
+            /* background-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/checkbox.png); */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-position: 0 17px;
+        }
+
+        #splt,
+        #spld {
+            display: none;
+        }
+
+        .btn {
+            border: 0;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #FFF;
+        }
+
+        .editapp {
+            background: #F60;
+        }
+
+        .finalsubmit {
+            background: #336600;
+        }
+
+        a,
+        a:visited,
+        a:link {
+            text-decoration: none;
+        }
+
+        /*------------------POPUPS------------------------*/
+        #fade {
+            display: none;
+            background: #000;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            opacity: .80;
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .popup_block {
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border: 10px solid transparent;
+            -webkit-border-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/border.png) 30% round;
+            -moz-border-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/border.png) 30% round;
+            border-image: url(/web/20181014070153im_/http://admission.vssut.ac.in/images/border.png) 30% round;
+            float: left;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            z-index: 99999;
+            line-height: 30px;
+        }
+
+        img.btn_close {
+            float: right;
+            right: -35px;
+            top: -35px;
+            position: absolute;
+        }
+
+        .popup p {
+            padding: 5px 10px;
+            margin: 5px 0;
+        }
+
+        /*--Making IE6 Understand Fixed Positioning--*/
+        *html #fade {
+            position: absolute;
+        }
+
+        *html .popup_block {
+            position: absolute;
+        }
+
+        .txt {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+
+        .mand {
+            color: #F00;
+        }
+
+        /*
+     FILE ARCHIVED ON 07:01:53 Oct 14, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:16:00 Oct 28, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+        /*
+playback timings (ms):
+  captures_list: 400.51
+  exclusion.robots: 0.185
+  exclusion.robots.policy: 0.178
+  RedisCDXSource: 9.386
+  esindex: 0.008
+  LoadShardBlock: 373.69 (3)
+  PetaboxLoader3.resolve: 342.834 (4)
+  PetaboxLoader3.datanode: 154.937 (5)
+  CDXLines.iter: 14.625 (3)
+  load_resource: 207.458 (2)
+*/
+    </style>
+
+    <!--Header Start-->
+    <div id="header">
+        <div class="body_wrapper">
+            <div id="header">
+                <div id="header_left">
+                    <div id="logo"><a
+                            href="http://web.archive.org/web/20180922062340/http://admission.vssut.ac.in/"><img
+                                src="http://web.archive.org/web/20180922062340im_/http://admission.vssut.ac.in/images/logo.png"
+                                border="0" title="Veer Surendra Sai University of Technology"
+                                alt="Veer Surendra Sai University of Technology" /></a></div>
+                    <div id="logo_text">
+                    </div>
+                </div>
+                <div id="header_right"><img
+                        src="http://web.archive.org/web/20180922062340im_/http://admission.vssut.ac.in/images/gate.png"
+                        title="" alt="" /></div>
+                <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+            <div style="height:30px; background:#003; color:#fff; font-size:20px; padding-left:25px; line-height:30px;">
+                Student Registration System for Academic Year 2021-22<div class="prnt"><a
+                        href="http://web.archive.org/web/20180922062340/http://admission.vssut.ac.in/SearchApplication.php">Re-Print
+                        Application</a></div>
+            </div>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <!--Header End-->
+
+    <!--Body Start-->
+    <div id="body">
+        <div class="body_wrapper">
+            <div id="body_content">
+                <div id="signup-form">
+                    <p>* mark fields are mandatory.</p>
+                    <form method="POST" class="post-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="act" value="reg" />
+                        <!-- <div class="row photo"><input type="file" name="ProfilePhoto" id="ProfilePhoto" /><img
+                                id="welcomeimg"
+                                src="/web/20180922062340im_/http://admission.vssut.ac.in/admvssut.php" />
+                            <div id="changephoto"></div>
+                        </div> -->
+                        <div class="row" style="width:85%;">
+                            <div class="label degree" style="margin-top:0;">Programme <span class="mand">*</span></div>
+                            <div class="label degree" style="margin-top:0;">Departments <span class="mand">*</span>
+                            </div>
+                        </div>
+                        <div class="row" style="width:85%;">
+                            <div class="col degree">
+                                {{form.programme}}
+                                <!-- <select name="course_name" id="course_name" onchange="getDept(this.value); checkSPL(this.value); viewCourse(this.value);">
+                <option value="0">Select Degree</option>
+				                <option value="12">B. Arch.</option>
+				                <option value="16">B.Arch.(Lateral Entry)</option>
+				                <option value="4">B.Tech.</option>
+				                <option value="14">B.Tech.(Lateral Entry)</option>
+				                <option value="15">Executive B.Tech.</option>
+				                <option value="7"> Int. B.Tech &amp; M.Tech</option>
+				                <option value="5">M.Tech.</option>
+				                <option value="9">MCA</option>
+				                <option value="17">MCA (Lateral Entry)</option>
+				                <option value="6">M.Sc.</option>
+				                <option value="11">Integrated M.Sc.</option>
+				                <option value="8">M.Phil.</option>
+				                <option value="10">Ph.D.</option>
+				</select> -->
+                            </div>
+                            <div class="col degree">
+                                {{form.branch}}
+                                <!-- <select name="department" id="department">
+                <option value="0">Select Department</option>
+                              	</select> -->
+                            </div>
+                           	</div> 
+                                <div class="row" style="width:85%;">
+                                    <div class="label fname">First Name</div>
+                                    <div class="label mname">Middle Name</div>
+                                    <div class="label lname">Last Name</div>
+                                </div>
+                                <div class="row" style="width:85%;">
+                                    <!-- <div class="col fname"><input type="text" name="first_name" id="first_name" value="" onkeypress="return charsonly(event,'first_name')"/></div> -->
+                                    <div class="col fname">
+                                        {{ form.fname }}
+                                    </div>
+                                    <div class="col mname">
+                                        <div class="col fname">
+                                            {{ form.mname }}
+                                        </div>
+                                    </div>
+                                    <div class="col lname">
+                                        <div class="col lname">
+                                            {{ form.lname }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="width:85%;">
+                                    <div class="label fname">JEE Main/OJEE/Univ. Entrance Roll Number <span
+                                            class="mand">*</span></div>
+                                    <div class="label lname">JEE Main/OJEE/Univ. Merit List Rank <span
+                                            class="mand">*</span></div>
+                                    <div class="label lname">Academic Session <span class="mand">*</span></div>
+                                </div>
+                                <div class="row" style="width:85%;">
+                                    <div class="col fname">
+                                        <div class="col fname">
+                                            {{ form.jeeroll }}
+                                        </div>
+                                    </div>
+                                    <div class="col lname">
+                                        <div class="col lname">
+                                            {{ form.jeerank }}
+                                        </div>
+                                    </div>
+                                    <div class="col lname">
+                                        <select name="session" id="session">
+                                            <option value="0">Select </option>
+                                            <option value="2018">2018</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label entrance">Entrance Exam</div>
+                                    <div class="label dob">Date of Birth <span class="mand">*</span></div>
+                                    <div class="label gender">Gender <span class="mand">*</span></div>
+                                    <div class="label cat">Category <span class="mand">*</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col entrance">
+                                        <!-- <select name="EntranceExam" id="EntranceExam">
+                    <option value="0">Select </option>
+                    <option value="GATE">GATE</option>
+                    <option value="Non-GATE">Non-GATE</option>
+                </select> -->
+                                        {{form.egate}}
+                                    </div>
+                                    <div class="col day">
+                                        {{form.days}} {{form.month}} {{form.year}}
+                                        <!-- <select name="day" id="day" class="day">
+                <option value="">Day</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                </select> -->
+                                        
+                                        <!-- <select name="month" id="month" class="month">
+                <option value="">Month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                                </select> -->
+                                        
+                                        <!-- <select name="year" id="year" class="year">
+                <option value="">Year</option>
+                                <option value="1950">1950</option>
+                                <option value="1951">1951</option>
+                                <option value="1952">1952</option>
+                                <option value="1953">1953</option>
+                                <option value="1954">1954</option>
+                                <option value="1955">1955</option>
+                                <option value="1956">1956</option>
+                                <option value="1957">1957</option>
+                                <option value="1958">1958</option>
+                                <option value="1959">1959</option>
+                                <option value="1960">1960</option>
+                                <option value="1961">1961</option>
+                                <option value="1962">1962</option>
+                                <option value="1963">1963</option>
+                                <option value="1964">1964</option>
+                                <option value="1965">1965</option>
+                                <option value="1966">1966</option>
+                                <option value="1967">1967</option>
+                                <option value="1968">1968</option>
+                                <option value="1969">1969</option>
+                                <option value="1970">1970</option>
+                                <option value="1971">1971</option>
+                                <option value="1972">1972</option>
+                                <option value="1973">1973</option>
+                                <option value="1974">1974</option>
+                                <option value="1975">1975</option>
+                                <option value="1976">1976</option>
+                                <option value="1977">1977</option>
+                                <option value="1978">1978</option>
+                                <option value="1979">1979</option>
+                                <option value="1980">1980</option>
+                                <option value="1981">1981</option>
+                                <option value="1982">1982</option>
+                                <option value="1983">1983</option>
+                                <option value="1984">1984</option>
+                                <option value="1985">1985</option>
+                                <option value="1986">1986</option>
+                                <option value="1987">1987</option>
+                                <option value="1988">1988</option>
+                                <option value="1989">1989</option>
+                                <option value="1990">1990</option>
+                                <option value="1991">1991</option>
+                                <option value="1992">1992</option>
+                                <option value="1993">1993</option>
+                                <option value="1994">1994</option>
+                                <option value="1995">1995</option>
+                                <option value="1996">1996</option>
+                                <option value="1997">1997</option>
+                                <option value="1998">1998</option>
+                                <option value="1999">1999</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                </select> -->
+                                    </div>
+                                    <div class="col gender">
+                                        <select name="gender" id="gender">
+                                            <option value="0">Select </option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col cat">
+                                        <select name="category" id="category">
+                                            <option value="0">Select</option>
+                                            <option value="GEN">General</option>
+                                            <option value="SC">SC</option>
+                                            <option value="ST">ST</option>
+                                            <option value="OBC">OBC</option>
+                                            <option value="SEBC">SEBC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label gender">Nationality <span class="mand">*</span></div>
+                                    <div class="label gender">Religion <span class="mand">*</span></div>
+                                    <div class="label gender">Blood Group <span class="mand">*</span></div>
+                                    <div class="label gender">TFW <span class="mand">*</span>
+                                        <a name="TFW Meaning" id="two" class="jTip"
+                                            href="sample-tfw.html?width=400">[?]</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col gender">
+                                        {{form.country}}
+                                        <!-- <select name="nationality" id="nationality">
+                                            <option value="">Select</option>
+                                            <option value="Afghan">Afghan</option>
+                                            <option value="Albanian">Albanian</option>
+                                            <option value="Algerian">Algerian</option>
+                                            <option value="American">American</option>
+                                            <option value="Andorran">Andorran</option>
+                                            <option value="Angolan">Angolan</option>
+                                            <option value="Antiguans">Antiguans</option>
+                                            <option value="Argentinean">Argentinean</option>
+                                            <option value="Armenian">Armenian</option>
+                                            <option value="Australian">Australian</option>
+                                            <option value="Austrian">Austrian</option>
+                                            <option value="Azerbaijani">Azerbaijani</option>
+                                            <option value="Bahamian">Bahamian</option>
+                                            <option value="Bahraini">Bahraini</option>
+                                            <option value="Bangladeshi">Bangladeshi</option>
+                                            <option value="Barbadian">Barbadian</option>
+                                            <option value="Barbudans">Barbudans</option>
+                                            <option value="Batswana">Batswana</option>
+                                            <option value="Belarusian">Belarusian</option>
+                                            <option value="Belgian">Belgian</option>
+                                            <option value="Belizean">Belizean</option>
+                                            <option value="Beninese">Beninese</option>
+                                            <option value="Bhutanese">Bhutanese</option>
+                                            <option value="Bolivian">Bolivian</option>
+                                            <option value="Bosnian">Bosnian</option>
+                                            <option value="Brazilian">Brazilian</option>
+                                            <option value="British">British</option>
+                                            <option value="Bruneian">Bruneian</option>
+                                            <option value="Bulgarian">Bulgarian</option>
+                                            <option value="Burkinabe">Burkinabe</option>
+                                            <option value="Burmese">Burmese</option>
+                                            <option value="Burundian">Burundian</option>
+                                            <option value="Cambodian">Cambodian</option>
+                                            <option value="Cameroonian">Cameroonian</option>
+                                            <option value="Canadian">Canadian</option>
+                                            <option value="Cape Verdean">Cape Verdean</option>
+                                            <option value="Central African">Central African</option>
+                                            <option value="Chadian">Chadian</option>
+                                            <option value="Chilean">Chilean</option>
+                                            <option value="Chinese">Chinese</option>
+                                            <option value="Colombian">Colombian</option>
+                                            <option value="Comoran">Comoran</option>
+                                            <option value="Congolese">Congolese</option>
+                                            <option value="Congolese">Congolese</option>
+                                            <option value="Costa Rican">Costa Rican</option>
+                                            <option value="Croatian">Croatian</option>
+                                            <option value="Cuban">Cuban</option>
+                                            <option value="Cypriot">Cypriot</option>
+                                            <option value="Czech">Czech</option>
+                                            <option value="Danish">Danish</option>
+                                            <option value="Djibouti">Djibouti</option>
+                                            <option value="Dominican">Dominican</option>
+                                            <option value="Dominican">Dominican</option>
+                                            <option value="Dutch">Dutch</option>
+                                            <option value="Dutchman">Dutchman</option>
+                                            <option value="Dutchwoman">Dutchwoman</option>
+                                            <option value="East Timorese">East Timorese</option>
+                                            <option value="Ecuadorean">Ecuadorean</option>
+                                            <option value="Egyptian">Egyptian</option>
+                                            <option value="Emirian">Emirian</option>
+                                            <option value="Equatorial Guinean">Equatorial Guinean</option>
+                                            <option value="Eritrean">Eritrean</option>
+                                            <option value="Estonian">Estonian</option>
+                                            <option value="Ethiopian">Ethiopian</option>
+                                            <option value="Fijian">Fijian</option>
+                                            <option value="Filipino">Filipino</option>
+                                            <option value="Finnish">Finnish</option>
+                                            <option value="French">French</option>
+                                            <option value="Gabonese">Gabonese</option>
+                                            <option value="Gambian">Gambian</option>
+                                            <option value="Georgian">Georgian</option>
+                                            <option value="German">German</option>
+                                            <option value="Ghanaian">Ghanaian</option>
+                                            <option value="Greek">Greek</option>
+                                            <option value="Grenadian">Grenadian</option>
+                                            <option value="Guatemalan">Guatemalan</option>
+                                            <option value="Guinea-Bissauan">Guinea-Bissauan</option>
+                                            <option value="Guinean">Guinean</option>
+                                            <option value="Guyanese">Guyanese</option>
+                                            <option value="Haitian">Haitian</option>
+                                            <option value="Herzegovinian">Herzegovinian</option>
+                                            <option value="Honduran">Honduran</option>
+                                            <option value="Hungarian">Hungarian</option>
+                                            <option value="I-Kiribati">I-Kiribati</option>
+                                            <option value="Icelander">Icelander</option>
+                                            <option value="Indian">Indian</option>
+                                            <option value="Indonesian">Indonesian</option>
+                                            <option value="Iranian">Iranian</option>
+                                            <option value="Iraqi">Iraqi</option>
+                                            <option value="Irish">Irish</option>
+                                            <option value="Irish">Irish</option>
+                                            <option value="Israeli">Israeli</option>
+                                            <option value="Italian">Italian</option>
+                                            <option value="Ivorian">Ivorian</option>
+                                            <option value="Jamaican">Jamaican</option>
+                                            <option value="Japanese">Japanese</option>
+                                            <option value="Jordanian">Jordanian</option>
+                                            <option value="Kazakhstani">Kazakhstani</option>
+                                            <option value="Kenyan">Kenyan</option>
+                                            <option value="Kittian and Nevisian">Kittian and Nevisian</option>
+                                            <option value="Kuwaiti">Kuwaiti</option>
+                                            <option value="Kyrgyz">Kyrgyz</option>
+                                            <option value="Laotian">Laotian</option>
+                                            <option value="Latvian">Latvian</option>
+                                            <option value="Lebanese">Lebanese</option>
+                                            <option value="Liberian">Liberian</option>
+                                            <option value="Libyan">Libyan</option>
+                                            <option value="Liechtensteiner">Liechtensteiner</option>
+                                            <option value="Lithuanian">Lithuanian</option>
+                                            <option value="Luxembourger">Luxembourger</option>
+                                            <option value="Macedonian">Macedonian</option>
+                                            <option value="Malagasy">Malagasy</option>
+                                            <option value="Malawian">Malawian</option>
+                                            <option value="Malaysian">Malaysian</option>
+                                            <option value="Maldivan">Maldivan</option>
+                                            <option value="Malian">Malian</option>
+                                            <option value="Maltese">Maltese</option>
+                                            <option value="Marshallese">Marshallese</option>
+                                            <option value="Mauritanian">Mauritanian</option>
+                                            <option value="Mauritian">Mauritian</option>
+                                            <option value="Mexican">Mexican</option>
+                                            <option value="Micronesian">Micronesian</option>
+                                            <option value="Moldovan">Moldovan</option>
+                                            <option value="Monacan">Monacan</option>
+                                            <option value="Mongolian">Mongolian</option>
+                                            <option value="Moroccan">Moroccan</option>
+                                            <option value="Mosotho">Mosotho</option>
+                                            <option value="Motswana">Motswana</option>
+                                            <option value="Mozambican">Mozambican</option>
+                                            <option value="Namibian">Namibian</option>
+                                            <option value="Nauruan">Nauruan</option>
+                                            <option value="Nepalese">Nepalese</option>
+                                            <option value="Netherlander">Netherlander</option>
+                                            <option value="New Zealander">New Zealander</option>
+                                            <option value="Ni-Vanuatu">Ni-Vanuatu</option>
+                                            <option value="Nicaraguan">Nicaraguan</option>
+                                            <option value="Nigerian">Nigerian</option>
+                                            <option value="Nigerien">Nigerien</option>
+                                            <option value="North Korean">North Korean</option>
+                                            <option value="Northern Irish">Northern Irish</option>
+                                            <option value="Norwegian">Norwegian</option>
+                                            <option value="Omani">Omani</option>
+                                            <option value="Pakistani">Pakistani</option>
+                                            <option value="Palauan">Palauan</option>
+                                            <option value="Panamanian">Panamanian</option>
+                                            <option value="Papua New Guinean">Papua New Guinean</option>
+                                            <option value="Paraguayan">Paraguayan</option>
+                                            <option value="Peruvian">Peruvian</option>
+                                            <option value="Polish">Polish</option>
+                                            <option value="Portuguese">Portuguese</option>
+                                            <option value="Qatari">Qatari</option>
+                                            <option value="Romanian">Romanian</option>
+                                            <option value="Russian">Russian</option>
+                                            <option value="Rwandan">Rwandan</option>
+                                            <option value="Saint Lucian">Saint Lucian</option>
+                                            <option value="Salvadoran">Salvadoran</option>
+                                            <option value="Samoan">Samoan</option>
+                                            <option value="San Marinese">San Marinese</option>
+                                            <option value="Sao Tomean">Sao Tomean</option>
+                                            <option value="Saudi">Saudi</option>
+                                            <option value="Scottish">Scottish</option>
+                                            <option value="Senegalese">Senegalese</option>
+                                            <option value="Serbian">Serbian</option>
+                                            <option value="Seychellois">Seychellois</option>
+                                            <option value="Sierra Leonean">Sierra Leonean</option>
+                                            <option value="Singaporean">Singaporean</option>
+                                            <option value="Slovakian">Slovakian</option>
+                                            <option value="Slovenian">Slovenian</option>
+                                            <option value="Solomon Islander">Solomon Islander</option>
+                                            <option value="Somali">Somali</option>
+                                            <option value="South African">South African</option>
+                                            <option value="South Korean">South Korean</option>
+                                            <option value="Spanish">Spanish</option>
+                                            <option value="Sri Lankan">Sri Lankan</option>
+                                            <option value="Sudanese">Sudanese</option>
+                                            <option value="Surinamer">Surinamer</option>
+                                            <option value="Swazi">Swazi</option>
+                                            <option value="Swedish">Swedish</option>
+                                            <option value="Swiss">Swiss</option>
+                                            <option value="Syrian">Syrian</option>
+                                            <option value="Taiwanese">Taiwanese</option>
+                                            <option value="Tajik">Tajik</option>
+                                            <option value="Tanzanian">Tanzanian</option>
+                                            <option value="Thai">Thai</option>
+                                            <option value="Togolese">Togolese</option>
+                                            <option value="Tongan">Tongan</option>
+                                            <option value="Trinidadian or Tobagonian">Trinidadian or Tobagonian</option>
+                                            <option value="Tunisian">Tunisian</option>
+                                            <option value="Turkish">Turkish</option>
+                                            <option value="Tuvaluan">Tuvaluan</option>
+                                            <option value="Ugandan">Ugandan</option>
+                                            <option value="Ukrainian">Ukrainian</option>
+                                            <option value="Uruguayan">Uruguayan</option>
+                                            <option value="Uzbekistani">Uzbekistani</option>
+                                            <option value="Venezuelan">Venezuelan</option>
+                                            <option value="Vietnamese">Vietnamese</option>
+                                            <option value="Welsh">Welsh</option>
+                                            <option value="Welsh">Welsh</option>
+                                            <option value="Yemenite">Yemenite</option>
+                                            <option value="Zambian">Zambian</option>
+                                            <option value="Zimbabwean">Zimbabwean</option>
+                                        </select> -->
+                                    </div>
+                                    <div class="col gender">
+                                        {{form.religion}}
+                                        <!-- <select name="religion" id="religion">
+                                            <option value="">Select</option>
+                                            <option value="Hindu">Hindu</option>
+                                            <option value="Muslim - Shia">Muslim - Shia</option>
+                                            <option value="Muslim - Sunni">Muslim - Sunni</option>
+                                            <option value="Muslim - Others">Muslim - Others</option>
+                                            <option value="Christian - Catholic">Christian - Catholic</option>
+                                            <option value="Christian - Orthodox">Christian - Orthodox</option>
+                                            <option value="Christian - Protestant">Christian - Protestant</option>
+                                            <option value="Christian - Others">Christian - Others</option>
+                                            <option value="Sikh">Sikh</option>
+                                            <option value="Jain - Digambar">Jain - Digambar</option>
+                                            <option value="Jain - Shwetambar">Jain - Shwetambar</option>
+                                            <option value="Jain - Others">Jain - Others</option>
+                                            <option value="Parsi">Parsi</option>
+                                            <option value="Buddhist">Buddhist</option>
+                                            <option value="Jewish">Jewish</option>
+                                            <option value="Inter-Religion">Inter-Religion</option>
+                                        </select> -->
+                                    </div>
+                                    <div class="col gender">
+                                        {{form.blood}}
+                                        <!-- <select name="blood_group" id="blood_group">
+                                            <option value="">Select</option>
+                                            <option value="A+">A+</option>
+                                            <option value="B+">B+</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="O+">O+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O-">O-</option>
+                                        </select> -->
+                                    </div>
+                                    <div class="col gender">
+                                        {{form.tfw}}
+                                        <!-- <select name="tfw" id="tfw">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label gender">Mode <span class="mand">*</span></div>
+                                    <div class="label gender">PWD <span class="mand">*</span></div>
+                                    <div class="label gender">Defence <span class="mand">*</span></div>
+                                    <div class="label gender">Green Card <span class="mand">*</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col gender">
+                                        {{form.mode}}
+                                        <!-- <select name="mode" id="mode">
+                                            <option value="">Select</option>
+                                            <option value="0">Regular</option>
+                                            <option value="4">Self Sustaining</option>
+                                        </select> -->
+                                    </div>
+                                    <div class="col gender">
+                                        {{form.pwd}}
+                                        <!-- <select name="PWD" id="PWD">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select> -->
+                                    </div>
+                                    <div class="col gender">
+                                        {{form.defence}}
+                                        <!-- <select name="Defence" id="Defence">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select> -->
+                                    </div>
+                                    <div class="col gender">
+                                        {{form.greencard}}
+                                        <!-- <select name="GreenCard" id="GreenCard">
+                                            <option value="">Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label labelphoto">Father's Name <span class="mand">*</span></div>
+                                    <div class="label labelphoto">Mother's Name <span class="mand">*</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        {{form.fathername}}
+                                        <!-- <input type="text" name="father_name" id="father_name" value=""
+                                            onkeypress="return charonly(event,'father_name')" /> -->
+                                        </div>
+                                    <div class="col">
+                                        {{form.mothername}}
+                                        <!-- <input type="text" name="mother_name" id="mother_name" value=""
+                                            onkeypress="return charonly(event,'mother_name')" /> -->
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label gender">Candidate’s Mobile No. <span class="mand">*</span></div>
+                                    <div class="label gender">Email ID <span class="mand">*</span></div>
+                                    <div class="label gender">Parent’s / Guardian’s Mobile No. <span
+                                            class="mand">*</span></div>
+                                    <div class="label gender">Parent’s / Guardian’s Email ID</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col gender">
+
+                                        {{ form.econtact }}
+
+                                        <!-- <input type="text" name="contact_num" id="contact_num" maxlength="10" value="" onkeypress="return integersonly(event,'contact_num')"/> -->
+                                    </div>
+                                    <div class="col gender">
+                                        <!-- <input type="text" name="email" id="email" value="" onkeypress="return charonly(event,'email')"/> -->
+                                        {{ form.eemail }}
+                                    </div>
+                                    <div class="col gender">
+                                        {{form.gcontact}}
+                                        <!-- <input type="text" name="parent_contact_num"
+                                            id="parent_contact_num" maxlength="10" value=""
+                                            onkeypress="return integersonly(event,'parent_contact_num')" /> -->
+                                        </div>
+                                    <div class="col gender">
+                                        {{form.gemail}}
+                                        <!-- <input type="text" name="guardian_email" id="guardian_email"
+                                            value="" /> -->
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="label labelphoto">Present Address <span class="mand">*</span></div>
+                                    <div class="label labelphoto">Permanent Address <span class="mand">*</span> <span
+                                            style="font-weight: normal; font-size:12px;">
+                                            <input type="checkbox" onclick="sameAsMailAddress(this)" id="sameaddr" />
+                                            <i>Same as Address for Correspondance</i></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input type="text" name="address" id="address"
+                                            placeholder="Address" value="" /></div>
+                                    <div class="col"><input type="text" name="paddress" id="paddress"
+                                            placeholder="Address" value="" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><select name="state" id="state"
+                                            onchange="getDistrict(this.value,'city')">
+                                            <option value="">Select State</option>
+                                            <option value="1">Andaman and Nicobar Island</option>
+                                            <option value="2">Andhra Pradesh</option>
+                                            <option value="3">Arunachal Pradesh</option>
+                                            <option value="4">Assam</option>
+                                            <option value="5">Bihar</option>
+                                            <option value="6">Chandigarh</option>
+                                            <option value="7">Chhattisgarh</option>
+                                            <option value="8">Dadra and Nagar Haveli</option>
+                                            <option value="9">Daman and Diu</option>
+                                            <option value="10">Delhi</option>
+                                            <option value="11">Goa</option>
+                                            <option value="12">Gujarat</option>
+                                            <option value="13">Haryana</option>
+                                            <option value="14">Himachal Pradesh</option>
+                                            <option value="15">Jammu and Kashmir</option>
+                                            <option value="16">Jharkhand</option>
+                                            <option value="17">Karnataka</option>
+                                            <option value="18">Kerala</option>
+                                            <option value="19">Lakshadweep</option>
+                                            <option value="20">Madhya Pradesh</option>
+                                            <option value="21">Maharashtra</option>
+                                            <option value="22">Manipur</option>
+                                            <option value="23">Meghalaya</option>
+                                            <option value="24">Mizoram</option>
+                                            <option value="25">Nagaland</option>
+                                            <option value="26">Odisha</option>
+                                            <option value="27">Puducherry</option>
+                                            <option value="28">Punjab</option>
+                                            <option value="29">Rajasthan</option>
+                                            <option value="30">Sikkim</option>
+                                            <option value="31">Tamil Nadu</option>
+                                            <option value="32">Telangana</option>
+                                            <option value="33">Tripura</option>
+                                            <option value="34">Uttar Pradesh</option>
+                                            <option value="35">Uttarakhand</option>
+                                            <option value="36">West Bengal</option>
+                                        </select></div>
+                                    <div class="col"><select name="pstate" id="pstate"
+                                            onchange="getDistrict(this.value,'pcity')">
+                                            <option value="">Select State</option>
+                                            <option value="1">Andaman and Nicobar Island</option>
+                                            <option value="2">Andhra Pradesh</option>
+                                            <option value="3">Arunachal Pradesh</option>
+                                            <option value="4">Assam</option>
+                                            <option value="5">Bihar</option>
+                                            <option value="6">Chandigarh</option>
+                                            <option value="7">Chhattisgarh</option>
+                                            <option value="8">Dadra and Nagar Haveli</option>
+                                            <option value="9">Daman and Diu</option>
+                                            <option value="10">Delhi</option>
+                                            <option value="11">Goa</option>
+                                            <option value="12">Gujarat</option>
+                                            <option value="13">Haryana</option>
+                                            <option value="14">Himachal Pradesh</option>
+                                            <option value="15">Jammu and Kashmir</option>
+                                            <option value="16">Jharkhand</option>
+                                            <option value="17">Karnataka</option>
+                                            <option value="18">Kerala</option>
+                                            <option value="19">Lakshadweep</option>
+                                            <option value="20">Madhya Pradesh</option>
+                                            <option value="21">Maharashtra</option>
+                                            <option value="22">Manipur</option>
+                                            <option value="23">Meghalaya</option>
+                                            <option value="24">Mizoram</option>
+                                            <option value="25">Nagaland</option>
+                                            <option value="26">Odisha</option>
+                                            <option value="27">Puducherry</option>
+                                            <option value="28">Punjab</option>
+                                            <option value="29">Rajasthan</option>
+                                            <option value="30">Sikkim</option>
+                                            <option value="31">Tamil Nadu</option>
+                                            <option value="32">Telangana</option>
+                                            <option value="33">Tripura</option>
+                                            <option value="34">Uttar Pradesh</option>
+                                            <option value="35">Uttarakhand</option>
+                                            <option value="36">West Bengal</option>
+                                        </select></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><select name="city" id="city">
+                                            <option value="">Select District/City</option>
+                                        </select></div>
+                                    <div class="col"><select name="pcity" id="pcity">
+                                            <option value="">Select District/City</option>
+                                        </select></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input type="text" name="postoffice" id="postoffice"
+                                            placeholder="Post Office" value="" /></div>
+                                    <div class="col"><input type="text" name="ppostoffice" id="ppostoffice"
+                                            placeholder="Post Office" value="" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input type="text" name="policestation" id="policestation"
+                                            placeholder="Police Station" value="" /></div>
+                                    <div class="col"><input type="text" name="ppolicestation" id="ppolicestation"
+                                            placeholder="Police Station" value="" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input type="text" name="pincode" id="pincode"
+                                            placeholder="Pin Code" maxlength="6" value=""
+                                            onkeypress="return integersonly(event,'pincode')" /></div>
+                                    <div class="col"><input type="text" name="ppincode" id="ppincode"
+                                            placeholder="Pin Code" maxlength="6" value=""
+                                            onkeypress="return integersonly(event,'ppincode')" /></div>
+                                </div>
+                                <div class="row">
+                                    <div class="label labelcaptcha" style="width:100%;">Qualification <span
+                                            style="font-style:italic;font-size:14px;color:#F00;">(Applicant should
+                                            manually fill up his/her percentage of mark if marks awarded in
+                                            CGPA.)</span></div>
+                                </div>
+                                <div class="row" id="EDUC">
+                                    <table border="0" cellspacing="0" cellpadding="0" class="crttbl" id="eduinfo">
+                                        <tr>
+                                            <th width="30%" height="30" align="center">Name of Examination</th>
+                                            <th width="35%" align="center">Name of School/College</th>
+                                            <th width="35%" align="center">Name of Board</th>
+                                            <th width="10%" align="center">Total Marks/CGPA</th>
+                                            <th width="10%" align="center">Marks Secured/CGPA</th>
+                                            <th width="10%" align="center">Percentage</th>
+                                            <th width="10%" align="center">Year of Passing</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="edu_exam[]" id="edu_exam[0]"
+                                                    value="10th" />10th <span class="mand">*</span>
+                                                </td>
+                                            <td>
+                                                <!-- <input type="text" name="edu_school[]" id="edu_school[0]" value="" /> -->
+                                                {{form.tenclg}}
+                                            </td>
+                                            <td>
+                                                {{form.tenboard}}
+                                                <!-- <input type="text" name="edu_board[]" id="edu_board[0]" value="" /> -->
+                                            </td>
+                                            <td>
+                                                {{form.tentotalcgpa}}
+                                                <!-- <input type="text" name="edu_marks_tot[]" id="edu_marks_tot[0]"
+                                                    onblur="getPercentage('0');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_tot[0]')" /> -->
+                                                </td>
+                                            <td>
+                                                {{form.tenseccgpa}}
+                                                <!-- <input type="text" name="edu_marks_secured[]" id="edu_marks_secured[0]"
+                                                    onblur="getPercentage('0');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_secured[0]')" /> -->
+                                            </td>
+                                            <td>
+                                                {{form.tenpercentage}}
+                                                <!-- <input type="text" name="edu_percentage[]" id="edu_percentage[0]"
+                                                    value=""
+                                                    onkeypress="return integersonly(event,'edu_percentage[0]')" /> -->
+                                                </td>
+                                            <td>
+                                                {{form.tenyop}}
+                                                <!-- <input type="text" name="edu_year[]" id="edu_year[0]" value="" /> -->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="hidden" name="edu_exam[]" id="edu_exam[1]"
+                                                    value="12th / Diploma" />12th / Diploma <span class="mand">*</span>
+                                            </td>
+                                            <td>
+                                                {{form.twelveclg}}
+                                                <!-- <input type="text" name="edu_school[]" id="edu_school[1]" value="" /> -->
+                                            </td>
+                                            <td>
+                                                <!-- <input type="text" name="edu_board[]" id="edu_board[1]" value="" /> -->
+                                                {{form.twelveboard}}
+                                            </td>
+                                            <td>
+                                                <!-- <input type="text" name="edu_marks_tot[]" id="edu_marks_tot[1]"
+                                                    onblur="getPercentage('1');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_tot[1]')" /> -->
+                                                    {{form.twelvetotalcgpa}}
+                                            </td>
+                                            <td>
+                                                {{form.twelveseccgpa}}
+                                                <!-- <input type="text" name="edu_marks_secured[]" id="edu_marks_secured[1]"
+                                                    onblur="getPercentage('1');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_secured[1]')" /> -->
+                                            </td>
+                                            <td>
+                                                {{form.twelvepercentage}}
+                                                <!-- <input type="text" name="edu_percentage[]" id="edu_percentage[1]"
+                                                    value=""
+                                                    onkeypress="return integersonly(event,'edu_percentage[1]')" /> -->
+                                                </td>
+                                            <td>
+                                                {{form.twelveyop}}
+                                                <!-- <input type="text" name="edu_year[]" id="edu_year[1]" value="" /> -->
+                                            </td>
+                                        </tr>
+                                        <!-- <tr>
+                                            <td><input type="hidden" name="edu_exam[]" id="edu_exam[2]"
+                                                    value="B. Tech. / B. Arch. / B. Sc." />B. Tech. / B. Arch. / B. Sc.
+                                            </td>
+                                            <td><input type="text" name="edu_school[]" id="edu_school[2]" value="" />
+                                            </td>
+                                            <td><input type="text" name="edu_board[]" id="edu_board[2]" value="" /></td>
+                                            <td><input type="text" name="edu_marks_tot[]" id="edu_marks_tot[2]"
+                                                    onblur="getPercentage('2');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_tot[2]')" /></td>
+                                            <td><input type="text" name="edu_marks_secured[]" id="edu_marks_secured[2]"
+                                                    onblur="getPercentage('2');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_secured[2]')" />
+                                            </td>
+                                            <td><input type="text" name="edu_percentage[]" id="edu_percentage[2]"
+                                                    value=""
+                                                    onkeypress="return integersonly(event,'edu_percentage[2]')" /></td>
+                                            <td><input type="text" name="edu_year[]" id="edu_year[2]" value="" /></td>
+                                        </tr> -->
+                                        <!-- <tr>
+                                            <td><input type="hidden" name="edu_exam[]" id="edu_exam[3]"
+                                                    value="M. Tech. / M. Sc. / MCA / M. Phil." />M. Tech. / M. Sc. / MCA
+                                                / M. Phil.</td>
+                                            <td><input type="text" name="edu_school[]" id="edu_school[3]" value="" />
+                                            </td>
+                                            <td><input type="text" name="edu_board[]" id="edu_board[3]" value="" /></td>
+                                            <td><input type="text" name="edu_marks_tot[]" id="edu_marks_tot[3]"
+                                                    onblur="getPercentage('3');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_tot[3]')" /></td>
+                                            <td><input type="text" name="edu_marks_secured[]" id="edu_marks_secured[3]"
+                                                    onblur="getPercentage('3');" value=""
+                                                    onkeypress="return integersonly(event,'edu_marks_secured[3]')" />
+                                            </td>
+                                            <td><input type="text" name="edu_percentage[]" id="edu_percentage[3]"
+                                                    value=""
+                                                    onkeypress="return integersonly(event,'edu_percentage[3]')" /></td>
+                                            <td><input type="text" name="edu_year[]" id="edu_year[3]" value="" /></td>
+                                        </tr> -->
+                                    </table>
+                                    <!-- <div><a href="javascript:void(0)" onclick="addAcRow('eduinfo')"> <b>+</b> Add
+                                            Another Row</a><span id="delrow"> |
+                                            <a href="javascript:void(0)"
+                                                onclick="deleteAcRows('eduinfo')"><b>-</b>Delete Last Row</a></span>
+                                    </div> -->
+                                </div>
+                                <div class="row" align="left"
+                                    style="margin:10px 0 30px 0; font-weight:normal; position:relative;">
+                                    <input type="checkbox" name="term" id="term" value="1" style="float:left;"
+                                        class="css-checkbox" />
+                                    <label class="css-label" for="term">I hereby declare that the above furnished
+                                        details are true and correct to the best of my knowledge. In case any of the
+                                        above information is found to be false or untrue or misleading or
+                                        misrepresenting, I am aware that I may be held responsible for it.</label>
+                                </div>
+                                <div class="row">
+                                    <div class="label labelcaptcha">Signature <span class="mand">*</span> <a
+                                            name="Sample Signature" id="two" class="jTip"
+                                            href="sample-sign.html?width=400">[?]</a></div>
+                                    <div class="label labelcaptcha">Security Text <span class="mand">*</span></div>
+                                </div>
+                                <div class="row">
+                <div class="col"><input type="file" name="signature" id="signature"/></div>
+                <div class="col captcha"><input type="text" name="captcha" id="captcha" placeholder="Enter Text" maxlength="6" autocomplete="off"/></div>
+                <div class="col captchaimg">
+                <img src="http://web.archive.org/web/20180922062340im_/http://admission.vssut.ac.in/CaptchaSecurityImages.php?rand=603055489" align="absmiddle" id="captchaimg" name="captchaimg"/>
+                <a href="javascript:void(0);" class="ChangeCaptcha" onclick="refreshCaptcha();">Not Readable? Change Image.</a></div>
+            </div>
+                                <div class="row" align="center"><input type="submit" name="submit" id="submit" value="Submit"/></div>
+                                <button type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+    </div>
+
+</body>
+
+</html>

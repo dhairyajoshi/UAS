@@ -1,26 +1,38 @@
 
 import os
 from pathlib import Path
+import json
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+with open(os.path.join(BASE_DIR,'credentials.json')) as credentials_file:
+    credentials=json.load(credentials_file)
+
+def get_secret(setting,secrets=credentials):
+    """Get secret settings or fail with Improperly configured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r!q5y3w+47m8wr&rwx01hdte^3itjq1)vc($n(6)=z9e&onucx'
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'student',
     'staff',
     'faculty',
     'core',
@@ -54,7 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'fsm_api.urls'
+ROOT_URLCONF = 'vssut_api.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'fsm_api.wsgi.application'
+WSGI_APPLICATION = 'vssut_api.wsgi.application'
 
 
 # Database
