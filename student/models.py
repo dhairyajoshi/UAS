@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from core.models import Branch
+from autoslug import AutoSlugField
+from django.template.defaultfilters import slugify
 
 EGATE_CHOICES = (
     ('JEE-MAIN', 'JEE-MAIN'),
@@ -152,6 +154,15 @@ class Student(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=15)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.first_name + '-' + self.last_name)
+        slug_eixts = Student.objects.filter(slug=self.slug).exists()
+        if slug_eixts:
+            self.slug += '-' + str(self.user.id)
+        
+        super(Student, self).save(*args, **kwargs)
