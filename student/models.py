@@ -1,6 +1,6 @@
 from django.db import models 
-
-from django.contrib.auth.models import User
+from django.conf import settings
+from core.models import User
 from django_countries.fields import CountryField
 from core.models import Branch
 from autoslug import AutoSlugField
@@ -151,7 +151,7 @@ GREENCARD_CHOICES = (
 
 
 class Student(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=15)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, blank=True)
