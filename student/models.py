@@ -1,12 +1,14 @@
 from django.db import models 
 from django.conf import settings
+from django.db.models.deletion import SET_DEFAULT
 from core.models import User
 from django_countries.fields import CountryField
 from core.models import Branch
 from autoslug import AutoSlugField
 from django.template.defaultfilters import slugify
+from core.models import Branch
 
-EGATE_CHOICES = (
+ENTRANCE_CHOICES = (
     ('JEE-MAIN', 'JEE-MAIN'),
     ('OJEE', 'OJEE')
 )
@@ -80,7 +82,7 @@ TFW_CHOICES = (
     ("NO","NO")
 )
 
-MODE_CHOCES = (
+MODE_CHOICES = (
     ("REGULAR","REGULAR"),
     ("SELF-SUSTAINING","SELF-SUSTAINING")
 )
@@ -150,14 +152,41 @@ GREENCARD_CHOICES = (
 
 
 
-class Student(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=15)
-    jeeroll=models.CharField(max_length=100)
-    jeerank=models.CharField(max_length=100)
-    egate=models.CharField(max_length=15, choices=EGATE_CHOICES)
-    programme=models.CharField(max_length=50,choices=PROGRAMME_CHOICES)
+class Student_Application(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    jee_roll = models.CharField(max_length=100, null=True)
+    jee_rank = models.CharField(max_length=100, null=True)
+    programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    #academic_session = models.CharField(max_length=50,choices=(2021,)),
+    entrance_exam = models.CharField(max_length=50,choices=ENTRANCE_CHOICES),
+    is_Tfw = models.BooleanField(default=False),
+    mode = models.CharField(max_length=50,choices=MODE_CHOICES),
+    is_pwd = models.BooleanField(default=False),
+    is_defence = models.BooleanField(default=False),
+    is_green_card = models.BooleanField(default=False),
+    parents_mobile = models.CharField(max_length=11),
+    parents_email = models.CharField(max_length=100),
+    application_time = models.DateTimeField(),
+    status = models.BooleanField(),
+
+
+class Student(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE),
+    application = models.OneToOneField('Student_Application', on_delete=models.CASCADE),
+    verification_time = models.DateTimeField()
+
+
+    #verify this
+    verified_by = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=SET_DEFAULT,default='Admin')
+
+
+
+
+
+
+
+
     slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):

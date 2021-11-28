@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'student',
     'staff',
     'faculty',
+    'employee',
     'core',
     'baton',
     'django.contrib.admin',
