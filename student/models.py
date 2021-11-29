@@ -17,42 +17,6 @@ PROGRAMME_CHOICES = (
     ('B.Tech.','B.Tech.'),
 )
 
-BRANCH_CHOICES = (
-    ('Chemical Engineering','Chemical Engineering'),
-    ('Civil Engineering','Civil Engineering'),
-    ('Computer Science & Engineering','Computer Science & Engineering'),
-    ('Electrical Engineering','Electrical Engineering'),
-    ('Electrical & Electronics Engineering','Electrical & Electronics Engineering'),
-    ('Electronics & Telecomm. Engineering','Electronics & Telecomm. Engineering'),
-    ('Information Technology','Information Technology'),
-    ('Mechanical Engineering','Mechanical Engineering'),
-    ('Metallurgical & Materials Engineering','Metallurgical & Materials Engineering'),
-    ('Production Engineering','Production Engineering')
-)
-DAY_CHOICES=()
-for i in range(1,32):
-    y=(str(i),str(i)),
-    DAY_CHOICES+=y
-
-MONTH_CHOICES=(
-    ('JAN','JAN'),
-    ('FEB','FEB'),
-    ('MAR','MAR'),
-    ('APR','APR'),
-    ('MAY','MAY'),
-    ('JUN','JUN'),
-    ('JULY','JULY'),
-    ('AUG','AUG'),
-    ('SEP','SEP'),
-    ('OCT','OCT'),
-    ('NOV','NOV'),
-    ('DEC','DEC')
-)
-YEAR_CHOICES=()
-for i in range(1950,2011):
-    y=(str(i),str(i)),
-    YEAR_CHOICES+=y
-
 RELIGION_CHOICES = (
     ("HINDU","HINDU"),
     ("CHRISTIAN","CHRISTIAN"),
