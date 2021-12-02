@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect  
 from student.forms import EmployeeForm
 from student.models import Student
+from employee.models import Employee
 import random
 import os
 import datetime
