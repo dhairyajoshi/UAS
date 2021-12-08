@@ -34,7 +34,7 @@ class BranchList(generics.ListCreateAPIView):
 
 
 
-class CorouselDetail(generics.RetrieveDestroyAPIView):
+class BranchlDetail(generics.RetrieveDestroyAPIView):
     queryset = core_models.Branch.objects.all()
     serializer_class = core_serializers.BranchSerializer
 

@@ -66,56 +66,6 @@ GREENCARD_CHOICES = (
     ("NO","NO")
 )
 
-# class Employee(models.Model):
-#     #eid=models.CharField(max_length=20)
-#     fname=models.CharField(max_length=100)
-#     mname=models.CharField(max_length=100)
-#     lname=models.CharField(max_length=100)
-#     jeeroll=models.CharField(max_length=100)
-#     jeerank=models.CharField(max_length=100)
-#     egate=models.CharField(max_length=15, choices=EGATE_CHOICES)
-#     programme=models.CharField(max_length=50,choices=PROGRAMME_CHOICES)
-#     branch=models.CharField(max_length=50,choices=BRANCH_CHOICES)
-#     days=models.CharField(max_length=50,choices=DAY_CHOICES)
-#     month=models.CharField(max_length=50,choices=MONTH_CHOICES)
-#     year=models.CharField(max_length=50,choices=YEAR_CHOICES)
-#     country= CountryField()
-#     religion = models.CharField(max_length=50,choices=RELIGION_CHOICES)
-#     blood = models.CharField(max_length=5,choices=BLOOD_CHOICES)
-#     tfw = models.CharField(max_length=5,choices=TFW_CHOICES)
-#     mode = models.CharField(max_length=20,choices=MODE_CHOCES)
-#     pwd = models.CharField(max_length=5,choices=PWD_CHOICES)
-#     defence = models.CharField(max_length=3,choices=DEFENCE_CHOICES)
-#     greencard = models.CharField(max_length=5,choices=GREENCARD_CHOICES)
-#     fathername=models.CharField(max_length=100)
-#     mothername=models.CharField(max_length=100)
-#     eemail=models.EmailField()
-#     econtact=models.CharField(max_length=15)
-#     gemail=models.EmailField()
-#     gcontact=models.CharField(max_length=15)
-#     tenclg=models.CharField(max_length=15)
-#     tenboard=models.CharField(max_length=15)
-#     tentotalcgpa=models.CharField(max_length=15)
-#     tenseccgpa=models.CharField(max_length=15)
-#     tenpercentage=models.CharField(max_length=15)
-#     tenyop=models.CharField(max_length=15)
-#     twelveclg=models.CharField(max_length=15)
-#     twelveboard=models.CharField(max_length=15)
-#     twelvetotalcgpa=models.CharField(max_length=15)
-#     twelveseccgpa=models.CharField(max_length=15)
-#     twelvepercentage=models.CharField(max_length=15)
-#     twelveyop=models.CharField(max_length=15)
-#     is_valid = models.BooleanField(default=False)
-
-
-#     class Meta:
-#         db_table="employee"
-
-#     def __str__(self):
-#         return self.fname + ' ' + self.mname + ' ' + self.lname
-
-
-
 class Student_Application(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     jee_roll = models.CharField(max_length=100, null=True)
@@ -142,7 +92,7 @@ class Student(models.Model):
 
 
     #verify this
-    verified_by = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=SET_DEFAULT,default='Admin')
+    verified_by = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
 
 
 
