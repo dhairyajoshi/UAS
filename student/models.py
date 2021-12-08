@@ -68,10 +68,10 @@ GREENCARD_CHOICES = (
 
 class Student_Application(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     jee_roll = models.CharField(max_length=100, null=True)
     jee_rank = models.CharField(max_length=100, null=True)
     programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     #academic_session = models.CharField(max_length=50,choices=(2021,)),
     entrance_exam = models.CharField(max_length=50,choices=ENTRANCE_CHOICES),
     is_Tfw = models.BooleanField(default=False),

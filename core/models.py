@@ -37,9 +37,9 @@ BLOOD_GROUPS = (
 )
 class User(AbstractUser):
     middle_name = models.CharField(max_length=50,null=True,blank=True),
-    group_id = models.ForeignKey('Group', on_delete=models.SET_NULL, null=True),
+    group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True),
     education_details_id = models.ForeignKey('EducationDetail', on_delete=models.SET_NULL, null=True),
-    address = models.ForeignKey('Address', related_name='user_address', on_delete=models.SET_NULL, null=True),
+    address = models.ForeignKey('AddressDetail', related_name='user_address', on_delete=models.SET_NULL, null=True),
     date_of_birth = models.DateField(null=True)
 
     #Verify this
@@ -54,6 +54,7 @@ class User(AbstractUser):
     mother_name = models.CharField(max_length=100,null=True,blank=True),
     email = models.CharField(max_length=100, null=True),
     phone_number = models.CharField(max_length=15,blank=True, null=True),
+    image = models.ImageField(upload_to='StudentPics', default='student_default.jpg')
 
     #verify this
     is_superuser=models.BooleanField()
@@ -112,7 +113,7 @@ class EducationLevel(models.Model):
     class Meta:
         verbose_name_plural="EducationLevels"
 
-class Address_Detail(models.Model):
+class AddressDetail(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True),
     street_address = models.CharField(max_length = 100,blank = True, null = True),
     state = models.CharField(max_length = 100,blank = True, null = True),
