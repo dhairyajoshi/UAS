@@ -37,22 +37,21 @@ BLOOD_GROUPS = (
 )
 class User(AbstractUser):
     middle_name = models.CharField(max_length=50,null=True,blank=True),
-    group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True),
-    education_details_id = models.ForeignKey('EducationDetail', on_delete=models.SET_NULL, null=True),
-    address = models.ForeignKey('AddressDetail', related_name='user_address', on_delete=models.SET_NULL, null=True),
+    group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True)
+    education_details = models.ManyToManyField('EducationDetail', related_name='user_addresses')
+    addresses = models.ManyToManyField('AddressDetail', related_name='user_address')
     date_of_birth = models.DateField(null=True)
 
     #Verify this
-    user_group = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True),
-    
-    gender = models.CharField(choices=GENDER_CHOICES,max_length=10, null=True),
-    category = models.CharField(max_length=50,choices=CATEGORY_CHOICES, null=True),
-    nationality = CountryField(null=True),
-    religion = models.CharField(max_length=100,choices=RELIGION_CHOICES, null=True),
-    blood_groups = models.CharField(max_length=10,choices=BLOOD_GROUPS, null=True),
-    father_name = models.CharField(max_length=100,null=True,blank=True),
-    mother_name = models.CharField(max_length=100,null=True,blank=True),
-    phone_number = models.CharField(max_length=15,blank=True, null=True),
+    user_group = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    gender = models.CharField(choices=GENDER_CHOICES,max_length=10, null=True)
+    category = models.CharField(max_length=50,choices=CATEGORY_CHOICES, null=True)
+    nationality = CountryField(null=True)
+    religion = models.CharField(max_length=100,choices=RELIGION_CHOICES, null=True)
+    blood_groups = models.CharField(max_length=10,choices=BLOOD_GROUPS, null=True)
+    father_name = models.CharField(max_length=100,null=True,blank=True)
+    mother_name = models.CharField(max_length=100,null=True,blank=True)
+    phone_number = models.CharField(max_length=15,blank=True, null=True)
     image = models.ImageField(upload_to='StudentPics', default='student_default.jpg')
 
 
@@ -84,16 +83,16 @@ class UserGroup(models.Model):
 
 
 class EducationDetail(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True),
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True)
 
     ####verify......####
-    education_level = models.ForeignKey('EducationLevel', on_delete=models.SET_NULL, null=True),
-    college = models.CharField(max_length = 200, null = True, blank = True),
-    board = models.CharField(max_length = 100, null = True, blank = True),
-    total_cgpa = models.CharField(max_length = 10, null = True, blank = True),
-    secured_cgpa = models.CharField(max_length = 10, null = True, blank = True),
-    percentage = models.CharField(max_length = 10, null = True, blank = True),
-    year_of_passing = models.CharField(max_length = 5, null = True, blank = True),
+    education_level = models.ForeignKey('EducationLevel', on_delete=models.SET_NULL, null=True)
+    college = models.CharField(max_length = 200, null = True, blank = True)
+    board = models.CharField(max_length = 100, null = True, blank = True)
+    total_cgpa = models.CharField(max_length = 10, null = True, blank = True)
+    secured_cgpa = models.CharField(max_length = 10, null = True, blank = True)
+    percentage = models.CharField(max_length = 10, null = True, blank = True)
+    year_of_passing = models.CharField(max_length = 5, null = True, blank = True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -102,13 +101,14 @@ class EducationDetail(models.Model):
 
 
 class EducationLevel(models.Model):
-    name = models.CharField(max_length=100,null=True,blank=True),
+    name = models.CharField(max_length=100,null=True,blank=True)
     description = models.CharField(max_length=100,null=True,blank=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
     class Meta:
         verbose_name_plural="EducationLevels"
+
 
 class AddressDetail(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True),
@@ -123,8 +123,8 @@ class AddressDetail(models.Model):
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
     
-    class Meta:
-        verbose_name_plural = 'Address_Details'
+    # class Meta:
+    #     verbose_name_plural = 'Address_Details'
 
 
 
