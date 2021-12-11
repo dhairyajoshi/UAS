@@ -52,15 +52,12 @@ class User(AbstractUser):
     blood_groups = models.CharField(max_length=10,choices=BLOOD_GROUPS, null=True),
     father_name = models.CharField(max_length=100,null=True,blank=True),
     mother_name = models.CharField(max_length=100,null=True,blank=True),
-    email = models.CharField(max_length=100, null=True),
     phone_number = models.CharField(max_length=15,blank=True, null=True),
     image = models.ImageField(upload_to='StudentPics', default='student_default.jpg')
 
-    #verify this
-    is_superuser=models.BooleanField()
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.first_name + " " + self.last_name
     class Meta:
         verbose_name_plural = "Users"
 

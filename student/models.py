@@ -1,7 +1,6 @@
 from django.db import models 
 from django.conf import settings
 from django.db.models.deletion import SET_DEFAULT
-from core.models import User
 from django_countries.fields import CountryField
 from core.models import Branch
 from autoslug import AutoSlugField
