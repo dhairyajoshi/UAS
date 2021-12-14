@@ -2,10 +2,25 @@ from django.db import models
 from core.models import Branch
 from django.template.defaultfilters import slugify
 from django.conf import settings
+from core.models import Branch
+
 # Create your models here.
 
+class Designation(models.Model):
+    name = models.CharField(max_length=50,null=True)
+    pay = models.IntegerField(null=True)
+    def __str__(self):
+        return self.desg_name + '_' + str(self.basic_pay)
+    
+    class Meta:
+        verbose_name_plural = "Designations"
+
+    
+    def __str__(self):
+        return self.name
 class Employee(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
+    desg =models.OneToOneField(Designation,on_delete=models.CASCADE,null=True)
     post = models.CharField(max_length = 20,null= True)
     date_of_joining = models.DateField(null=True, blank=True)
     date_of_leaving = models.DateField(null=True,blank = True)
@@ -28,7 +43,7 @@ class Employee(models.Model):
         super(Employee,self).save(*args,**kwargs)
 
 class Promotion(models.Model):
-    emp = models.OneToOneField(Employee,on_delete = models.CASCADE)
+    emp = models.OneToOneField(Employee,on_delete = models.CASCADE,null =True)
     date = models.DateTimeField(null=True)
     previous_posn = models.CharField(max_length=50,null=True)
     current_posn = models.CharField(max_length=50,null = True)
@@ -40,7 +55,6 @@ class Promotion(models.Model):
 
 class Leave(models.Model):
     emp = models.OneToOneField(Employee,on_delete=models.CASCADE)
-    leave_type= models.ForeignKey('LeaveType',on_delete=models.SET_NULL,null= True)
     start_date = models.DateField(null= True)
     end_date = models.DateField(null=True)
     is_granted = models.BooleanField(default=False)
@@ -55,9 +69,16 @@ class Leave(models.Model):
         verbose_name_plural ="Leaves"
 
 class LeaveType(models.Model):
+    leave = models.ForeignKey(Leave,on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=50,null=True)
     
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
     class Meta:
         verbose_name_plural="LeaveTypes"
+
+
+
+
+
+

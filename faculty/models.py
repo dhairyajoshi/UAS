@@ -7,12 +7,6 @@ from employee.models import Employee
 
 
 
-class Designation(models.Model):
-    name = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return self.name
-
 
 
 class Faculty(models.Model):
@@ -20,7 +14,6 @@ class Faculty(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
-    designation = models.CharField(max_length=50, null=True)
     qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
     teach_experience = models.CharField(max_length=50, null=True)
