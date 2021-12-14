@@ -60,4 +60,4 @@ class LeaveType(models.Model):
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
     class Meta:
-        verbose_name_plural="Leave Types"
+        verbose_name_plural="LeaveTypes"
