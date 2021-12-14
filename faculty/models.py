@@ -21,7 +21,7 @@ class Faculty(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
     designation = models.CharField(max_length=50, null=True)
-    quaification = models.CharField(max_length=50, null=True)
+    qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
     teach_experience = models.CharField(max_length=50, null=True)
     publications = models.ManyToManyField('Publication',related_name = 'faculty_publications')
