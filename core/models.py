@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
+from django.db.models.fields import related
 from django_countries.fields import CountryField
 from django.conf import settings
 # Create your models here.
@@ -64,9 +65,12 @@ class User(AbstractUser):
 
 
 class Branch(models.Model):
-    name = models.CharField(max_length=100)
-    code = models.CharField(max_length=10)
-
+    name = models.CharField(max_length=100,null = True)
+    code = models.CharField(max_length=10,null = True)
+    year_of_esht = models.CharField(max_length = 4,null =True)
+    is_academic = models.CharField(max_length=10,null= True)
+    programme = models.ManyToManyField('Program',related_name='branch_programme')
+    courses = models.CharField(max_length=100,null = True)
     def __str__(self):
         return self.name
 
@@ -126,6 +130,19 @@ class AddressDetail(models.Model):
     # class Meta:
     #     verbose_name_plural = 'Address_Details'
 
+class Program(models.Model):
+    full_name = models.CharField(max_length= 100)
+    short_name = models.CharField(max_length =10)
+    year_of_esht = models.CharField(max_length =4)
+    num_of_seats = models.IntegerField()
+    is_ugc_accre = models.BooleanField(default= False)
+    is_nb_accre = models.BooleanField(default= False)
+    departments = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.full_name
+
+    class Meta:
+        verbose_name_plural = "Programs"
 
 

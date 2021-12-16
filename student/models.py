@@ -7,6 +7,12 @@ from autoslug import AutoSlugField
 from django.template.defaultfilters import slugify
 from core.models import Branch
 
+STATUS_CHOICES =(
+    ('Accept','Accepted'),
+    ('Reject','Not Accepted')
+
+)
+
 ENTRANCE_CHOICES = (
     ('JEE-MAIN', 'JEE-MAIN'),
     ('OJEE', 'OJEE')
@@ -72,16 +78,16 @@ class Student_Application(models.Model):
     jee_rank = models.CharField(max_length=100, null=True)
     programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)
     #academic_session = models.CharField(max_length=50,choices=(2021,)),
-    entrance_exam = models.CharField(max_length=50,choices=ENTRANCE_CHOICES),
-    is_Tfw = models.BooleanField(default=False),
-    mode = models.CharField(max_length=50,choices=MODE_CHOICES),
-    is_pwd = models.BooleanField(default=False),
-    is_defence = models.BooleanField(default=False),
-    is_green_card = models.BooleanField(default=False),
-    parents_mobile = models.CharField(max_length=11),
-    parents_email = models.CharField(max_length=100),
-    application_time = models.DateTimeField(),
-    status = models.BooleanField(),
+    entrance_exam = models.CharField(max_length=50,choices=ENTRANCE_CHOICES,default = "JEE-MAIN")
+    is_Tfw = models.CharField(max_length=5,choices = TFW_CHOICES,default = "NO")
+    mode = models.CharField(max_length=50,choices=MODE_CHOICES,default= "REGULAR")
+    is_pwd = models.CharField(max_length = 5,choices = PWD_CHOICES,default="NO")
+    is_defence = models.CharField(max_length = 5,choices=DEFENCE_CHOICES,default="NO")
+    is_green_card = models.CharField(max_length = 5,choices = GREENCARD_CHOICES,default="NO")
+    parents_mobile = models.CharField(max_length=12,null = True)
+    parents_email = models.EmailField(null= True)
+    application_time = models.DateTimeField(null = True)
+    status = models.CharField(max_length =10,choices=STATUS_CHOICES,default = 'Reject')
 
 
 class Student(models.Model):

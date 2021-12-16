@@ -77,8 +77,18 @@ class LeaveType(models.Model):
     class Meta:
         verbose_name_plural="LeaveTypes"
 
+class Account_Detail(models.Model):
+    emp =models.ForeignKey(Employee,on_delete =models.CASCADE,null=True)
+    account_no = models.BigIntegerField(null = True)
+    bank_name = models.CharField(max_length=50,null =True)
+    branch_name = models.CharField(max_length=50,null =True)
+    ifsc = models.CharField(max_length = 50,null =True)
+    cif = models.CharField(max_length = 50,null =True)
 
-
-
+    def __str__(self):
+        return self.user.first_name + self.user.last_name
+    
+    class Meta:
+        verbose_name_plural = "Account_Details"
 
 
