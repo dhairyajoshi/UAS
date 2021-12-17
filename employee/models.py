@@ -36,7 +36,7 @@ class Employee(models.Model):
     def __str__(self):
         return self.user.first_name + ' '+ self.user.last_name
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.first_name+ '_-' +self.last_name)
+        self.slug = slugify(self.first_name+ '-' +self.last_name)
         slug_exists = Employee.objects.filter(slug=self.slug).exists()
         if slug_exists:
             self.slug +='-' +str(self.user.id)
