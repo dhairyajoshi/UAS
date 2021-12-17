@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.base import Model
 from django.template.defaultfilters import slugify
-from core.models import Branch
+from core.models import Department
 from django.conf import settings
 from employee.models import Employee
 
@@ -17,7 +17,7 @@ class Faculty(models.Model):
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE, null=True)
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
+    branch = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
     teach_experience = models.CharField(max_length=50, null=True)
@@ -35,7 +35,7 @@ class Faculty(models.Model):
         super(Faculty,self).save(*args,**kwargs)    
 class hod_tenure(models.Model):
     emp = models.OneToOneField(Employee, on_delete=models.CASCADE)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
+    dept = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     is_active = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)

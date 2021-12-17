@@ -28,15 +28,15 @@ from django.utils import timezone
 from . import models as core_models
 from . import serializers as core_serializers
 
-class BranchList(generics.ListCreateAPIView):
-    queryset = core_models.Branch.objects.all()
-    serializer_class = core_serializers.BranchSerializer
+class DepartmentList(generics.ListCreateAPIView):
+    queryset = core_models.Department.objects.all()
+    serializer_class = core_serializers.DepartmentSerializer
 
 
 
-class BranchlDetail(generics.RetrieveDestroyAPIView):
-    queryset = core_models.Branch.objects.all()
-    serializer_class = core_serializers.BranchSerializer
+class DepartmentDetail(generics.RetrieveDestroyAPIView):
+    queryset = core_models.Department.objects.all()
+    serializer_class = core_serializers.DepartmentSerializer
 
 
 

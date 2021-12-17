@@ -2,10 +2,10 @@ from django.db import models
 from django.conf import settings
 from django.db.models.deletion import SET_DEFAULT
 from django_countries.fields import CountryField
-from core.models import Branch
+from core.models import Department
 from autoslug import AutoSlugField
 from django.template.defaultfilters import slugify
-from core.models import Branch
+
 
 STATUS_CHOICES =(
     ('Accept','Accepted'),
@@ -73,7 +73,7 @@ GREENCARD_CHOICES = (
 
 class Student_Application(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    dept = models.ForeignKey(Department, on_delete=models.CASCADE,null= True)
     jee_roll = models.CharField(max_length=100, null=True)
     jee_rank = models.CharField(max_length=100, null=True)
     programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)

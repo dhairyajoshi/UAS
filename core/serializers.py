@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 
 import core
 
-class BranchSerializer(serializers.ModelSerializer):
+class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
-        model = core_models.Branch
+        model = core_models.Department
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

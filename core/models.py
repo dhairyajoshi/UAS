@@ -64,11 +64,11 @@ class User(AbstractUser):
 
 
 
-class Branch(models.Model):
+class Department(models.Model):
     name = models.CharField(max_length=100,null = True)
     code = models.CharField(max_length=10,null = True)
     year_of_esht = models.CharField(max_length = 4,null =True)
-    is_academic = models.CharField(max_length=10,null= True)
+    is_academic = models.BooleanField(default= False)
     programme = models.ManyToManyField('Program',related_name='branch_programme')
     courses = models.CharField(max_length=100,null = True)
     def __str__(self):

@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Branch, EducationDetail, EducationLevel, User, UserGroup
+from .models import Department, EducationDetail, EducationLevel, User, UserGroup
 
-admin.site.register(Branch)
+admin.site.register(Department)
 admin.site.register(User)
 admin.site.register(EducationDetail)
 # admin.site.register(AddressDetail)
