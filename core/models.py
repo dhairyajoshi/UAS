@@ -39,8 +39,8 @@ BLOOD_GROUPS = (
 class User(AbstractUser):
     middle_name = models.CharField(max_length=50,null=True,blank=True),
     group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True)
-    education_details = models.ManyToManyField('EducationDetail', related_name='user_addresses')
-    addresses = models.ManyToManyField('AddressDetail', related_name='user_address')
+    education_details = models.ManyToManyField('EducationDetail', related_name='user_educationdetails')
+    addresses = models.ManyToManyField('AddressDetail', related_name='user_addressdetails')
     date_of_birth = models.DateField(null=True)
 
     #Verify this
@@ -87,7 +87,7 @@ class UserGroup(models.Model):
 
 
 class EducationDetail(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_eucationdetails', on_delete=models.SET_NULL, null=True)
 
     ####verify......####
     education_level = models.ForeignKey('EducationLevel', on_delete=models.SET_NULL, null=True)
@@ -115,14 +115,14 @@ class EducationLevel(models.Model):
 
 
 class AddressDetail(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True),
-    street_address = models.CharField(max_length = 100,blank = True, null = True),
-    state = models.CharField(max_length = 100,blank = True, null = True),
-    district = models.CharField(max_length = 100,blank = True, null = True),
-    city = models.CharField(max_length = 100,blank = True, null = True),
-    police_station = models.CharField(max_length = 100,blank = True, null = True),
-    pin_code = models.CharField(max_length = 100,blank = True, null = True),
-    address_type =  models.CharField(max_length = 100,blank = True, null = True),
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True)
+    street_address = models.CharField(max_length = 100,blank = True, null = True)
+    state = models.CharField(max_length = 100,blank = True, null = True)
+    district = models.CharField(max_length = 100,blank = True, null = True)
+    city = models.CharField(max_length = 100,blank = True, null = True)
+    police_station = models.CharField(max_length = 100,blank = True, null = True)
+    pin_code = models.CharField(max_length = 100,blank = True, null = True)
+    address_type =  models.CharField(max_length = 100,blank = True, null = True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
