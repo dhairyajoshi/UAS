@@ -97,7 +97,7 @@ class Student(models.Model):
     dept = models.ForeignKey(Department,on_delete = models.CASCADE,null= True)
     course = models.ForeignKey(Program,on_delete = models.CASCADE,null=True)
     entrance_exam = models.CharField(max_length = 50,choices=ENTRANCE_CHOICES,default= "JEE-MAIN")
-    academic_session= models.CharField(max_length=50,null=True)
+    academic_session= models.CharField(max_length=5,null=True)
     is_tfw = models.BooleanField(default=False)
     mode = models.CharField(max_length=50,choices=MODE_CHOICES,default="REGULAR")
     is_pwd = models.BooleanField(default=False)
