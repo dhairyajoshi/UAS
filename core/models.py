@@ -75,7 +75,7 @@ class Department(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Branchs"
+        verbose_name_plural = "Branches"
 
 class UserGroup(models.Model):
     name=models.CharField(max_length=100)
