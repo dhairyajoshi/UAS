@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import render, redirect  
 from student.forms import EmployeeForm
 from student.models import Student
@@ -9,8 +10,6 @@ import qrcode
 from rest_framework import generics, serializers
 from rest_framework import response
 from rest_framework import status
-from . import models as core_models
-from . import serializers as employee_serializers
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import UpdateModelMixin
 from django.views.generic import View
@@ -31,6 +30,9 @@ from rest_framework.permissions import (
     )
 
 from PIL import Image, ImageDraw, ImageFont
+
+from . import models as student_models
+from . import serializers as student_serializers
 
 
 # Create your views here.  
@@ -173,5 +175,10 @@ def generate_id(request,id):
     return redirect("/employee/show")
   
 class StudentlList(generics.ListCreateAPIView):
-    queryset = Student.objects.all()
-    serializer_class = employee_serializers.StudentSerializer
+    queryset = student_models.Student.objects.all()
+    serializer_class = student_serializers.StudentSerializer
+
+class StudentApplicationView(generics.ListCreateAPIView):
+    queryset = student_models.Student_Application.objects.all()
+    serializer_class = student_serializers.StudentApplicationSerializer
+

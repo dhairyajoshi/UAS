@@ -1,7 +1,7 @@
 from django.db.models import fields
 from rest_framework import serializers
 from . import models as core_models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 import core
 
@@ -14,4 +14,4 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         # fields = '__all__'
         exclude = ('password',)
-        model = User
+        model = settings.AUTH_USER_MODEL

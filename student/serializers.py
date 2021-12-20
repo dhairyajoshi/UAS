@@ -9,6 +9,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username', 'email', 'first_name', 'last_name')
         model = User
 
+class StudentApplicationSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    class Meta:
+        fields = '__all__'
+        model = student_models.Student_Application
 
 class StudentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
