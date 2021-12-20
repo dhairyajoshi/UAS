@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
 
 class StudentApplicationSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    # user = UserSerializer(read_only=False)
     class Meta:
         fields = '__all__'
         model = student_models.Student_Application

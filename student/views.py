@@ -1,8 +1,5 @@
 from django.db.models import query
 from django.shortcuts import render, redirect  
-from student.forms import EmployeeForm
-from student.models import Student
-from employee.models import Employee
 import random
 import os
 import datetime
@@ -31,8 +28,13 @@ from rest_framework.permissions import (
 
 from PIL import Image, ImageDraw, ImageFont
 
+from student.forms import EmployeeForm
+from student.models import Student
+from employee.models import Employee
 from . import models as student_models
 from . import serializers as student_serializers
+from core import serializers as core_serializers
+from core import models as core_models
 
 
 # Create your views here.  
@@ -181,4 +183,15 @@ class StudentlList(generics.ListCreateAPIView):
 class StudentApplicationView(generics.ListCreateAPIView):
     queryset = student_models.Student_Application.objects.all()
     serializer_class = student_serializers.StudentApplicationSerializer
+
+    def post(self, request, *args, **kwargs):
+        user_serializer = core_serializers.UserSerializer(request.POST)
+        new_user = core_models.User()
+        new_user = user_serializer
+
+        
+        context = {
+            "new_student": new_student
+        }
+        return Response(context, status=HTTP_200_OK)
 
