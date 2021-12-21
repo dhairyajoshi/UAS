@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'faculty',
     'employee',
     'core',
+    'academics',
     'baton',
     'django.contrib.admin',
     'django.contrib.auth',

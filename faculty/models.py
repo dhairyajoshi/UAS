@@ -14,7 +14,7 @@ class Publication(models.Model):
         verbose_name_plural = "Publications"
 
 class Faculty(models.Model):
-    employee = models.OneToOneField(Employee, on_delete=models.CASCADE, null=True)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     branch = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
