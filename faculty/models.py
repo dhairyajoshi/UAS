@@ -16,7 +16,7 @@ class Publication(models.Model):
 class Faculty(models.Model):
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE, null=True)
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     branch = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
@@ -32,7 +32,8 @@ class Faculty(models.Model):
         if slug_exists:
             self.slug += '_' + str(self.user.id)
 
-        super(Faculty,self).save(*args,**kwargs)    
+        super(Faculty,self).save(*args,**kwargs)  
+
 class hod_tenure(models.Model):
     emp = models.OneToOneField(Employee, on_delete=models.CASCADE)
     dept = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
