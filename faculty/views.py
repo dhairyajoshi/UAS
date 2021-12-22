@@ -86,7 +86,6 @@ class FacultyRegistrationView(generics.RetrieveDestroyAPIView):
 
         new_employee = employee_models.Employee()
         new_employee.user = new_user
-        new_employee.first_password = new_employee
         new_employee.desg = request.data.get('desg')
         new_employee.post = request.data.get('post')
         new_employee.date_of_joining = request.data.get('date_of_joining')
@@ -103,7 +102,6 @@ class FacultyRegistrationView(generics.RetrieveDestroyAPIView):
 
         new_faculty = faculty_models.Faculty()
         new_faculty.user = new_employee
-        new_faculty.first_password = new_password
         new_faculty.branch = request.data.get('branch')
         new_faculty.qualification = request.data.get('qualification')
         new_faculty.specialization = request.data.get('specialization')
