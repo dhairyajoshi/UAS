@@ -34,9 +34,9 @@ user_model = settings.AUTH_USER_MODEL
 
 # Create your views here.
 
-class FacultyRegistrationView(generics.ListCreateAPIView):
-    queryset = faculty_models.Faculty.objects.all()
-    serializer_class = faculty_seralizers.FacultySerializer
+class FacultyRegistrationView(GenericAPIView):
+    # queryset = faculty_models.Faculty.objects.all()
+    # serializer_class = faculty_seralizers.FacultySerializer
 
     def post(self, request, *args, **kwargs):
         new_password = 'VSSUT'
@@ -110,7 +110,7 @@ class FacultyRegistrationView(generics.ListCreateAPIView):
         new_faculty.save()
         context = {
             "message": "new faculty created",
-            "faculty": faculty_seralizers.FacultySerializer(new_faculty),
+            # "faculty": faculty_seralizers.FacultySerializer(new_faculty),
             "new_password": new_password
         }
 
