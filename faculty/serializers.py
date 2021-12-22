@@ -4,7 +4,7 @@ from core import serializers as core_serializers
 
 
 class FacultySerializer(serializers.ModelSerializer):
-    faculty = core_serializers.UserSerializer(read_only=False)
+    user = core_serializers.UserSerializer(read_only=False)
     class Meta:
         fields = '__all__'
         model = faculty_models.Faculty
