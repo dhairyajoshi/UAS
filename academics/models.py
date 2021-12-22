@@ -60,7 +60,7 @@ class SemesterCourse(models.Model):
 class SemesterRecord(models.Model):
     start_date = models.DateField(null = True)
     end_date = models.DateField(null = True)
-    student = models.ManyToManyField(Student,related_name="sem_rec_studentdetail")
+    student = models.ManyToManyField(to='student.Student',related_name="sem_rec_studentdetail")
     sem_course = models.ManyToManyField(SemesterCourse,related_name="sem_rec_sem_coursedetail")
     sem_type = models.CharField(max_length=10,choices=SEMESTER_CHOICES,null =True)
     dept = models.ForeignKey(Department,on_delete=models.CASCADE,null = True)
@@ -85,7 +85,7 @@ class DailyClassReport(models.Model):
     class_date = models.DateField(null=True)
     class_time = models.TimeField(null= True)
     fclt = models.ForeignKey(Faculty,related_name='clsrpt_fcltydetails',on_delete=models.CASCADE,null = True)
-    student_prsnt = models.ManyToManyField(Student,related_name="clsrpt_Studentdetail")
+    student_prsnt = models.ManyToManyField(to= 'student.Student',related_name="clsrpt_Studentdetail")
     topics_cover = models.IntegerField()
 
     def __str__(self):

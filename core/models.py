@@ -69,8 +69,8 @@ class Department(models.Model):
     code = models.CharField(max_length=10,null = True)
     year_of_esht = models.CharField(max_length = 4,null =True)
     is_academic = models.BooleanField(default= False)
-    programme = models.ManyToManyField('Program',related_name='branch_programme')
-    courses = models.CharField(max_length=100,null = True)
+    programme = models.ManyToManyField(to = 'academics.Program',related_name='branch_programme')
+    courses = models.ManyToManyField(to = 'academics.Course',related_name = 'Dept_courses')
     def __str__(self):
         return self.name
 
@@ -130,19 +130,5 @@ class AddressDetail(models.Model):
     # class Meta:
     #     verbose_name_plural = 'Address_Details'
 
-class Program(models.Model):
-    full_name = models.CharField(max_length= 100)
-    short_name = models.CharField(max_length =10)
-    year_of_esht = models.CharField(max_length =4)
-    num_of_seats = models.IntegerField()
-    is_ugc_accre = models.BooleanField(default= False)
-    is_nb_accre = models.BooleanField(default= False)
-    departments = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.full_name
-
-    class Meta:
-        verbose_name_plural = "Programs"
 
 

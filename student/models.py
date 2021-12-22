@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.deletion import SET_DEFAULT
 from django_countries.fields import CountryField
-from core.models import Department,Program
+from core.models import Department
 from autoslug import AutoSlugField
 from django.template.defaultfilters import slugify
 
@@ -59,7 +59,7 @@ MODE_CHOICES = (
 class Student_Application(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     dept = models.ForeignKey(Department, on_delete=models.CASCADE,null= True)
-    course = models.ManyToManyField(Program,related_name='student_applicant_courses')
+    course = models.ManyToManyField(to='academics.Program',related_name='student_applicant_courses')
     jee_roll = models.CharField(max_length=100, null=True)
     jee_rank = models.CharField(max_length=100, null=True)
     programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)
@@ -95,7 +95,7 @@ class Student(models.Model):
     verification_time = models.DateTimeField(null =True)
     verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
     dept = models.ForeignKey(Department,on_delete = models.CASCADE,null= True)
-    course = models.ForeignKey(Program,on_delete = models.CASCADE,null=True)
+    course = models.ForeignKey(to='academics.Course',on_delete = models.CASCADE,null=True)
     entrance_exam = models.CharField(max_length = 50,choices=ENTRANCE_CHOICES,default= "JEE-MAIN")
     academic_session= models.CharField(max_length=5,null=True)
     is_tfw = models.BooleanField(default=False)
