@@ -11,7 +11,8 @@ GENDER_CHOICES=(
 )
 CATEGORY_CHOICES=(
     ('General','General'),
-    ('SC','ST'),
+    ('SC','SC'),
+    ('ST','ST'),
     ('OBC','OBC'),
     ('SEBC','SEBC'),
 )
