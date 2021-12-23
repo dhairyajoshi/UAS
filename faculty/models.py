@@ -35,8 +35,8 @@ class Faculty(models.Model):
         super(Faculty,self).save(*args,**kwargs)  
 
 class hod_tenure(models.Model):
-    emp = models.OneToOneField(Employee, on_delete=models.CASCADE)
-    dept = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     is_active = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)

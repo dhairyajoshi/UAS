@@ -20,7 +20,7 @@ class Designation(models.Model):
         return self.name
 class Employee(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
-    desg =models.ForeignKey(Designation,related_name='employee_designation',on_delete=models.CASCADE,null=True)
+    designation =models.ForeignKey(Designation,related_name='employee_designation',on_delete=models.CASCADE,null=True)
     post = models.CharField(max_length = 20,null= True)
     date_of_joining = models.DateField(null=True, blank=True)
     date_of_leaving = models.DateField(null=True,blank = True)
@@ -45,16 +45,16 @@ class Employee(models.Model):
 class Promotion(models.Model):
     emp = models.ForeignKey(Employee,related_name='emp_prmtion',on_delete = models.CASCADE,null =True)
     date = models.DateTimeField(null=True)
-    previous_posn = models.CharField(max_length=50,null=True)
-    current_posn = models.CharField(max_length=50,null = True)
-    prev_salary=  models.IntegerField(null =True)
-    curr_salary = models.IntegerField(null=True)
+    previous_position = models.CharField(max_length=50,null=True)
+    current_position = models.CharField(max_length=50,null = True)
+    previous_salary=  models.IntegerField(null =True)
+    current_salary = models.IntegerField(null=True)
 
     class Meta:
         verbose_name_plural = "Promotions"
 
 class Leave(models.Model):
-    emp = models.ForeignKey(Employee,related_name='Emp_leave',on_delete=models.CASCADE,null=True)
+    employee = models.ForeignKey(Employee,related_name='Emp_leave',on_delete=models.CASCADE,null=True)
     start_date = models.DateField(null= True)
     end_date = models.DateField(null=True)
     is_granted = models.BooleanField(default=False)
@@ -78,7 +78,7 @@ class LeaveType(models.Model):
         verbose_name_plural="LeaveTypes"
 
 class Account_Detail(models.Model):
-    emp =models.ForeignKey(Employee,related_name='Emp_account',on_delete =models.CASCADE,null=True)
+    employee =models.ForeignKey(Employee,related_name='Emp_account',on_delete =models.CASCADE,null=True)
     account_no = models.BigIntegerField(null = True)
     bank_name = models.CharField(max_length=50,null =True)
     branch_name = models.CharField(max_length=50,null =True)
@@ -92,7 +92,7 @@ class Account_Detail(models.Model):
         verbose_name_plural = "Account_Details"
 
 class Experience(models.Model):
-    emp = models.ForeignKey(Employee,related_name = 'employee_detail',on_delete=models.CASCADE, null=True)
+    employee = models.ForeignKey(Employee,related_name = 'employee_detail',on_delete=models.CASCADE, null=True)
     start_date = models.DateField(null = True)
     end_date = models.DateField(null = True)
     organisation_name =models.CharField(max_length=200,null=True)
@@ -102,7 +102,7 @@ class Experience(models.Model):
         return self.user.first_name + "_" + self.user.last_name
 
 class role(models.Model):
-    emp = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="employee_role",null=True)
+    employee = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="employee_role",null=True)
     name = models.CharField(max_length=50,null =True)
     start_date = models.DateField(null =True)
     end_date = models.DateField(null =True)

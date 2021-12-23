@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
 from django.db.models.fields import related
-from django_countries.fields import CountryField
+from django_countries.fields import CountryField  
 from django.conf import settings
 # Create your models here.
 GENDER_CHOICES=(
