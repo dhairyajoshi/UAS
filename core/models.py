@@ -37,17 +37,14 @@ BLOOD_GROUPS = (
     ("O-","O-")
 )
 class User(AbstractUser):
-    middle_name = models.CharField(max_length=50,null=True,blank=True),
-    group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True)
-    education_details = models.ManyToManyField('EducationDetail', related_name='user_educationdetails')
-    addresses = models.ManyToManyField('AddressDetail', related_name='user_addressdetails')
+    middle_name = models.CharField(max_length=50,null=True,blank=True)
+    group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True, blank=True)
+    education_details = models.ManyToManyField('EducationDetail', related_name='user_educationdetails', blank=True)
+    addresses = models.ManyToManyField('AddressDetail', related_name='user_addressdetails', blank=True)
     date_of_birth = models.DateField(null=True)
-
-    #Verify this
-    user_group = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     gender = models.CharField(choices=GENDER_CHOICES,max_length=10, null=True)
     category = models.CharField(max_length=50,choices=CATEGORY_CHOICES, null=True)
-    nationality = CountryField(null=True)
+    # nationality = CountryField(null=True)
     religion = models.CharField(max_length=100,choices=RELIGION_CHOICES, null=True)
     blood_groups = models.CharField(max_length=10,choices=BLOOD_GROUPS, null=True)
     father_name = models.CharField(max_length=100,null=True,blank=True)
@@ -58,8 +55,7 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-    class Meta:
-        verbose_name_plural = "Users"
+
 
 
 
@@ -81,7 +77,7 @@ class UserGroup(models.Model):
     name=models.CharField(max_length=100)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.name
     class Meta:
         verbose_name_plural = "UserGroups"
 
