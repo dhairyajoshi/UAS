@@ -19,7 +19,7 @@ class Designation(models.Model):
     def __str__(self):
         return self.name
 class Employee(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     designation =models.ForeignKey(Designation,related_name='employee_designation',on_delete=models.CASCADE,null=True)
     post = models.CharField(max_length = 20,null= True)
     date_of_joining = models.DateField(null=True, blank=True)
@@ -31,6 +31,7 @@ class Employee(models.Model):
     job_type = models.CharField(max_length=50,null= True)
     promotions = models.ManyToManyField('Promotion',related_name = 'employee_promotion')
     leaves = models.ManyToManyField('Leave',related_name = 'employee_leave')
+    
     
     slug = models.SlugField(unique=True,blank=True)
     def __str__(self):
