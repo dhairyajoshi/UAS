@@ -86,7 +86,7 @@ class FacultyRegistrationView(GenericAPIView):
 
         new_employee = employee_models.Employee()
         new_employee.user = new_user
-        new_employee.desg = request.data.get('desg')
+        new_employee.designation = request.data.get('desg')
         new_employee.post = request.data.get('post')
         new_employee.date_of_joining = request.data.get('date_of_joining')
         new_employee.date_of_leaving = request.data.get('date_of_leaving')
