@@ -33,6 +33,11 @@ class DepartmentList(generics.ListCreateAPIView):
     serializer_class = core_serializers.DepartmentSerializer
 
 
+class UsersList(generics.ListCreateAPIView):
+    queryset = core_models.User.objects.all()
+    serializer_class = core_serializers.UserSerializer
+
+
 
 class DepartmentDetail(generics.RetrieveDestroyAPIView):
     queryset = core_models.Department.objects.all()
