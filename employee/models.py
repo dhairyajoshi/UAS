@@ -8,6 +8,7 @@ from core.models import Department
 
 class Designation(models.Model):
     name = models.CharField(max_length=50,null=True)
+    short_name = models.CharField(max_length=10,null=True)
     pay = models.IntegerField(null=True)
     def __str__(self):
         return self.desg_name + '_' + str(self.pay)

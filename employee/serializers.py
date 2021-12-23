@@ -8,3 +8,8 @@ class EmployeeSerializer(serializers.ModelSerializer):
         # fields = '__all__'
         exclude = ('experiences', 'promotions', 'leaves')
         model = employee_models.Employee
+
+class DesignationSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = employee_models.Designation
