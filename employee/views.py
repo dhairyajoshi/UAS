@@ -40,6 +40,6 @@ class DesignationList(generics.ListCreateAPIView):
     queryset = employee_models.Designation.objects.all()
     serializer_class = employee_serializers.DesignationSerializer
 
-class DesignationDetail(generics.RetrieveUpdateDestroyAPIView):
+class DesignationDetail(generics.RetrieveDestroyAPIView):
     queryset = employee_models.Designation.objects.all()
     serializer_class = employee_serializers.DesignationSerializer
