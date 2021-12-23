@@ -22,10 +22,12 @@ class Faculty(models.Model):
     specialization = models.CharField(max_length=50, null=True)
     teach_experience = models.CharField(max_length=50, null=True)
     publications = models.ManyToManyField(Publication,related_name = 'faculty_publications')
-
     slug= models.SlugField(unique=True,blank=True)
+
+
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
+        
     def save(self,*args,**kwargs):
         self.slug = slugify(self.first_name + '_' + self.last_name)
         slug_exists  = Faculty.objects.filter(slug = self.slug).exists()

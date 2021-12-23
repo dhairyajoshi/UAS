@@ -4,14 +4,13 @@ from django.template.defaultfilters import slugify
 from django.conf import settings
 from core.models import Department
 
-# Create your models here.
 
 class Designation(models.Model):
     name = models.CharField(max_length=50,null=True)
     short_name = models.CharField(max_length=10,null=True)
     pay = models.IntegerField(null=True)
     def __str__(self):
-        return self.desg_name + '_' + str(self.pay)
+        return self.name
     
     class Meta:
         verbose_name_plural = "Designations"
@@ -19,6 +18,7 @@ class Designation(models.Model):
     
     def __str__(self):
         return self.name
+
 class Employee(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     designation =models.ForeignKey(Designation,related_name='employee_designation',on_delete=models.CASCADE,null=True)
@@ -35,8 +35,12 @@ class Employee(models.Model):
     
     
     slug = models.SlugField(unique=True,blank=True)
+
+
     def __str__(self):
-        return self.user.first_name + ' '+ self.user.last_name
+        return self.user.first_name + ' ' + self.user.last_name
+
+
     def save(self,*args,**kwargs):
         self.slug = slugify(self.first_name+ '-' +self.last_name)
         slug_exists = Employee.objects.filter(slug=self.slug).exists()
