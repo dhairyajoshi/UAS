@@ -48,10 +48,10 @@ class UserDetail(generics.RetrieveDestroyAPIView):
 
 
 
-'''class UserProfileView(APIView):
+class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request, *args, **kwargs):
-        site = request.META['HTTP_ORIGIN']
+        # site = request.META['HTTP_ORIGIN']
         context = {}
         curr_user = request.user
         context['curr_user'] = core_serializers.UserSerializer(curr_user).data
@@ -105,17 +105,17 @@ class UserDetail(generics.RetrieveDestroyAPIView):
         #         context['curr_author'] = serializer.data
         #         return Response(context, status=HTTP_200_OK)
         #     else:
-        #         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)'''
+        #         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
         #return Response(context, status=HTTP_200_OK)
 
-class UserProfileView(APIView):
-    permission_classes = [IsAuthenticated]
-    def get(self,request,*args,**kwargs):
-        site = request.META['HTTP_ORIGIN']
-        context = {}
-        curr_user = request.user_id
-        context['curr_user'] = core_serializers.UserProfileSerializer(curr_user).data
-        return Response(context,status=HTTP_200_OK)       
+# class UserProfileView(APIView):
+#     permission_classes = [IsAuthenticated]
+#     def get(self,request,*args,**kwargs):
+#         site = request.META['HTTP_ORIGIN']
+#         context = {}
+#         curr_user = request.user
+#         context['curr_user'] = core_serializers.UserProfileSerializer(curr_user).data
+#         return Response(context,status=HTTP_200_OK)       
 
