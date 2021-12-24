@@ -15,8 +15,3 @@ class UserSerializer(serializers.ModelSerializer):
         # fields = '__all__'
         exclude = ('user_permissions', 'password', 'groups', 'education_details', 'addresses')
         model = core_models.User
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = '__all__'
-        model = core_models.User
