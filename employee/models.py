@@ -4,6 +4,10 @@ from django.template.defaultfilters import slugify
 from django.conf import settings
 from core.models import Department
 
+JOB_TYPE_CHOICE = {
+    ('Temporary', 'Temporary'),
+    ('Permanent', 'Permanent')
+}
 
 class Designation(models.Model):
     name = models.CharField(max_length=50,null=True)
@@ -21,15 +25,15 @@ class Designation(models.Model):
 
 class Employee(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
-    designation =models.ForeignKey(Designation,related_name='employee_designation',on_delete=models.CASCADE,null=True)
+    designation =models.ForeignKey(Designation,related_name='employee_designation',on_delete=models.SET_NULL, null=True)
     post = models.CharField(max_length = 20,null= True)
     date_of_joining = models.DateField(null=True, blank=True)
     date_of_leaving = models.DateField(null=True,blank = True)
     experiences = models.ManyToManyField('Experience',related_name = 'employe_experience')
-    work_phone_number = models.CharField(max_length=12, null=True)
-    work_email_id =models.EmailField(max_length=20,null=True)
-    pan_number = models.CharField(max_length= 10,null=True)
-    job_type = models.CharField(max_length=50,null= True)
+    work_phone_number = models.CharField(max_length=14, null=True)
+    work_email_id =models.EmailField(max_length=100,null=True)
+    pan_number = models.CharField(max_length= 15,null=True)
+    job_type = models.CharField(choices=JOB_TYPE_CHOICE, max_length=50,null= True)
     promotions = models.ManyToManyField('Promotion',related_name = 'employee_promotion')
     leaves = models.ManyToManyField('Leave',related_name = 'employee_leave')
     
@@ -42,7 +46,7 @@ class Employee(models.Model):
 
 
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.first_name+ '-' +self.last_name)
+        self.slug = slugify(self.user.first_name+ '-' +self.user.last_name)
         slug_exists = Employee.objects.filter(slug=self.slug).exists()
         if slug_exists:
             self.slug +='-' +str(self.user.id)

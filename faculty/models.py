@@ -21,7 +21,7 @@ class Faculty(models.Model):
     qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
     teach_experience = models.CharField(max_length=50, null=True)
-    publications = models.ManyToManyField(Publication,related_name = 'faculty_publications')
+    publications = models.ManyToManyField(Publication,related_name = 'faculty_publications', blank=True)
     slug= models.SlugField(unique=True,blank=True)
 
 
@@ -29,7 +29,7 @@ class Faculty(models.Model):
         return self.user.first_name + ' ' + self.user.last_name
         
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.first_name + '_' + self.last_name)
+        self.slug = slugify(self.user.first_name + '_' + self.user.last_name)
         slug_exists  = Faculty.objects.filter(slug = self.slug).exists()
         if slug_exists:
             self.slug += '_' + str(self.user.id)
