@@ -20,7 +20,7 @@ class Faculty(models.Model):
     branch = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     highest_qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
-    teach_experience = models.CharField(max_length=50, null=True)
+    teach_experience = models.IntegerField()
     publications = models.ManyToManyField(Publication,related_name = 'faculty_publications', blank=True)
     slug= models.SlugField(unique=True,blank=True)
 
