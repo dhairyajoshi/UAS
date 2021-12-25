@@ -1,19 +1,20 @@
-User registration:
-/rest-auth/registration/ [POST]
--password1 (char)
--password2 (char)
--username (char)
--"first_name": "test",
--"last_name": "user",
--"email": "testuser@gmail.com",
--"middle_name": "only",
--"date_of_birth": null,
--"gender": null,
--"category": "General",
--"religion": "Hindu",
--"blood_groups": "O+",
--"father_name": "",
--"mother_name": "",
--"phone_number": "8619048168",
--"image": null,
--"group_id": 2
+### 1. User registration
+#### /rest-auth/registration/ [POST]
+
+- password1 (string)
+- password2 (string)
+- username (string)
+- email (string)
+- first_name (string)
+- middle_name (char)
+- last_name (string)
+- date_of_birth (dd/mm/yyyy)
+- gender (string)
+- category (string)
+- religion (string)
+- blood_groups (string)
+- father_name (string)
+- mother_name (string)
+- phone_number (string)
+- image (blob)
+- group_id (int)
