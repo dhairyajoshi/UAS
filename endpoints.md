@@ -18,3 +18,16 @@
 - phone_number (string)
 - image (blob)
 - group_id (int)
+
+### 2. Designation list
+#### /employee/designation-list/ [GET,POST]
+ - name (string)
+ - short_name (string)
+ - pay (int)
+
+ ### 3. Designation detail
+ #### /employee/designation-detail/<int:pk> [GET]
+  - id (int)
+  - name (string)
+  - short_name (string)
+  -pay (int)
