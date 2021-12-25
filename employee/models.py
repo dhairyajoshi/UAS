@@ -26,7 +26,6 @@ class Designation(models.Model):
 class Employee(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     designation =models.ForeignKey(Designation,related_name='employee_designation',on_delete=models.SET_NULL, null=True)
-    post = models.CharField(max_length = 20,null= True)
     date_of_joining = models.DateField(null=True, blank=True)
     date_of_leaving = models.DateField(null=True,blank = True)
     experiences = models.ManyToManyField('Experience',related_name = 'employe_experience')
