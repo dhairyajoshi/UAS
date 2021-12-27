@@ -23,12 +23,11 @@ class AddressSerializer(serializers.ModelSerializer):
         model = core_models.AddressDetail
     
     def save(self,*args,**kwargs):
-        try:
             user = self.user
             super(core_models.AddressDetail,self).save(*args,**kwargs)
             user.addresses.add(self)
-        except:
-            super(AddressDetail,self).save(*args,**kwargs)
+        
+
 
         
         
