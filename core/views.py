@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import UpdateModelMixin
 from django.views.generic import View
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, request
 from django.conf import settings
 from django.core.mail import EmailMessage, send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -119,3 +119,17 @@ class UserProfileView(APIView):
 #         context['curr_user'] = core_serializers.UserProfileSerializer(curr_user).data
 #         return Response(context,status=HTTP_200_OK)       
 
+class AddressCreate(APIView):
+    permission_classess = [IsAuthenticated]
+    serializer_class = core_serializers.AddressSerializer
+    
+    def post(self,request,*args,**kwargs):
+        
+        context = {}
+        serializer = core_serializers.AddressSerializer(data = request.data)
+        if serializer.is_valid():
+            new_address = serializer.save(request)
+            context[request.user] = serializer.data
+            return Response(context,status=HTTP_200_OK)
+        else:
+            return Response(serializer.errors,status=HTTP_400_BAD_REQUEST)

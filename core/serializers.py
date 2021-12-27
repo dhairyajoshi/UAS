@@ -15,3 +15,20 @@ class UserSerializer(serializers.ModelSerializer):
         # fields = '__all__'
         exclude = ('user_permissions', 'password', 'groups', 'education_details', 'addresses')
         model = core_models.User
+
+class AddressSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    class Meta:
+        fields = '__all__'
+        model = core_models.AddressDetail
+    
+    def save(self,*args,**kwargs):
+        try:
+            user = self.user
+            super(core_models.AddressDetail,self).save(*args,**kwargs)
+            user.addresses.add(self)
+        except:
+            super(AddressDetail,self).save(*args,**kwargs)
+
+        
+        

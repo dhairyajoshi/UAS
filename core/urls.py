@@ -7,4 +7,5 @@ urlpatterns = [
     path('user-list/', core_views.UserList.as_view(), name="users-list"),
     path('user-detail/<int:pk>/', core_views.UserDetail.as_view(), name="user-detail"),
     path('user-profile/', core_views.UserProfileView.as_view(), name="user-profile"),
+    path('create-address/',core_views.AddressCreate.as_view(),name="create-address")
 ]

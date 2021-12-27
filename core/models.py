@@ -123,7 +123,6 @@ class AddressDetail(models.Model):
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
-    
     # class Meta:
     #     verbose_name_plural = 'Address_Details'
 
