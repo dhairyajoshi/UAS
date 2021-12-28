@@ -4,6 +4,6 @@ from . import models as faculty_models
 
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
-        fields = '__all__'
+        exclude = ('user', 'slug', 'publications')
         model = faculty_models.Faculty
 

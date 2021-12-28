@@ -41,11 +41,19 @@ class Employee(models.Model):
 
 
     def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
+        if self.user.first_name:
+            return self.user.first_name + ' ' + self.user.last_name
+        elif self.user.username:
+            return self.user.username
+        else:
+            return self.user.email
 
 
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.user.first_name+ '-' +self.user.last_name)
+        if self.user.first_name:
+            self.slug = slugify(self.user.first_name+ '-' +self.user.last_name)
+        else:
+            self.slug = slugify(self.user.email.split('@')[0])
         slug_exists = Employee.objects.filter(slug=self.slug).exists()
         if slug_exists:
             self.slug +='-' +str(self.user.id)

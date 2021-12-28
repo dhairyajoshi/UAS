@@ -29,6 +29,8 @@ class Faculty(models.Model):
         return self.user.first_name + ' ' + self.user.last_name
         
     def save(self,*args,**kwargs):
+        this_user = self.employee.user
+        self.user = this_user
         self.slug = slugify(self.user.first_name + '_' + self.user.last_name)
         slug_exists  = Faculty.objects.filter(slug = self.slug).exists()
         if slug_exists:
