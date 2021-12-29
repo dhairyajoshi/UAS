@@ -5,6 +5,8 @@ from django_countries.fields import CountryField
 from core.models import Department
 from autoslug import AutoSlugField
 from django.template.defaultfilters import slugify
+from core import models as core_models
+from academics import models as academic_models
 
 
 
@@ -59,7 +61,7 @@ MODE_CHOICES = (
 class Student_Application(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE,null= True)
-    course = models.ManyToManyField(to='academics.Program',related_name='student_applicant_courses')
+    course = models.ForeignKey(academic_models.Program,related_name='student_applicant_courses', on_delete=models.SET_NULL, null=True, blank=True)
     jee_roll = models.CharField(max_length=100, null=True)
     jee_rank = models.CharField(max_length=100, null=True)
     programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)
@@ -72,7 +74,7 @@ class Student_Application(models.Model):
     is_green_card = models.BooleanField(default=False)
     parents_mobile = models.CharField(max_length=12,null = True)
     parents_email = models.EmailField(null= True)
-    application_time = models.DateTimeField(null = True)
+    application_time = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
     slug = models.SlugField(unique= True,blank=True)
@@ -109,7 +111,7 @@ class Student(models.Model):
     jee_rank = models.CharField(max_length=50,null=True)
     entry_gate = models.CharField(max_length= 50,null=True)
     program = models.CharField(max_length=50,choices = PROGRAMME_CHOICES,null= True)
-    application_time = models.DateTimeField(null= True)
+    application_time = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default = False)
 
     slug = models.SlugField(unique=True, blank=True)

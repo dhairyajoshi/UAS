@@ -87,7 +87,7 @@ class DailyClassReport(models.Model):
     class_date = models.DateField(null=True)
     class_time = models.TimeField(null= True)
     faculty = models.ForeignKey(faculty_models.Faculty,related_name='classreport_facultydetails',on_delete=models.CASCADE,null = True)
-    student_present = models.ManyToManyField(student_models.Student,related_name="classreport_Studentdetail")
+    # student_present = models.ManyToManyField(student_models.Student)
     topics_cover = models.IntegerField()
 
     def __str__(self):
@@ -97,7 +97,7 @@ class DailyClassReport(models.Model):
         verbose_name_plural = 'DailyClassReports'
 
 class SemesterMarks(models.Model):
-    student = models.OneToOneField(student_models.Student,on_delete=models.SET_NULL,null=True)
+    # student = models.OneToOneField(student_models.Student,on_delete=models.SET_NULL,null=True)
     sem_course = models.ForeignKey(SemesterCourse,on_delete=models.CASCADE,related_name='semmark_coursedetails',null = True)
     total_marks = models.IntegerField()
     marks_obtained = models.IntegerField()

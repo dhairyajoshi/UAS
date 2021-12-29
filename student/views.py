@@ -176,22 +176,21 @@ def generate_id(request,id):
     
     return redirect("/employee/show")
   
-class StudentlList(generics.ListCreateAPIView):
+class StudentlListView(generics.ListCreateAPIView):
     queryset = student_models.Student.objects.all()
     serializer_class = student_serializers.StudentSerializer
 
-class StudentApplicationView(generics.ListCreateAPIView):
+class StudentDetailView(generics.RetrieveDestroyAPIView):
+    queryset = student_models.Student.objects.all()
+    serializer_class = student_serializers.StudentApplicationSerializer
+
+class StudentApplicationListView(generics.ListCreateAPIView):
     queryset = student_models.Student_Application.objects.all()
     serializer_class = student_serializers.StudentApplicationSerializer
 
-    def post(self, request, *args, **kwargs):
-        user_serializer = core_serializers.UserSerializer(request.POST)
-        new_user = core_models.User()
-        new_user = user_serializer
+class StudentApplicationDetailView(generics.RetrieveDestroyAPIView):
+    queryset = student_models.Student_Application.objects.all()
+    serializer_class = student_serializers.StudentApplicationSerializer
 
-        
-        context = {
-            "new_student": new_student
-        }
-        return Response(context, status=HTTP_200_OK)
+
 
