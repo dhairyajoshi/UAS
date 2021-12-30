@@ -27,6 +27,8 @@ from django.utils import timezone
 
 from . import models as core_models
 from . import serializers as core_serializers
+from student import models as student_models
+from student import serializers as student_serializers
 
 class DepartmentList(generics.ListCreateAPIView):
     queryset = core_models.Department.objects.all()

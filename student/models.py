@@ -80,7 +80,7 @@ class Student_Application(models.Model):
     parents_mobile = models.CharField(max_length=12,null = True)
     parents_email = models.EmailField(null= True)
     application_time = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50,choices = STATUS_CHOICES,default = "UNDER VERIFICATION")
+    status_application = models.CharField(max_length=50,choices = STATUS_CHOICES,default = "UNDER VERIFICATION")
     verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
 
 
