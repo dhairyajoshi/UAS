@@ -4,7 +4,7 @@ from django.db.models.deletion import SET_DEFAULT
 from django_countries.fields import CountryField
 from core.models import Department
 from autoslug import AutoSlugField
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import default, slugify
 from core import models as core_models
 from academics import models as academic_models
 
@@ -57,6 +57,11 @@ MODE_CHOICES = (
     ("SELF-SUSTAINING","SELF-SUSTAINING")
 )
 
+STATUS_CHOICES = (
+    ("UNDER VERIFICATION","UNDER VERIFICATION"),
+    ("ACCEPTED","ACCEPTED"),
+    ("REJECTED","REJECTED")
+)
 
 class Student_Application(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
@@ -75,7 +80,9 @@ class Student_Application(models.Model):
     parents_mobile = models.CharField(max_length=12,null = True)
     parents_email = models.EmailField(null= True)
     application_time = models.DateTimeField(auto_now_add=True)
-    status = models.BooleanField(default=False)
+    status = models.CharField(max_length=50,choices = STATUS_CHOICES,default = "UNDER VERIFICATION")
+    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
+
 
     slug = models.SlugField(unique= True,blank=True)
     def __str__(self):
@@ -95,7 +102,7 @@ class Student(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     application = models.OneToOneField(Student_Application, on_delete=models.CASCADE,null =True)
     verification_time = models.DateTimeField(null =True)
-    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
+    #verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
     department = models.ForeignKey(Department,on_delete = models.CASCADE,null= True)
     course = models.ForeignKey(to='academics.Course',on_delete = models.CASCADE,null=True)
     entrance_exam = models.CharField(max_length = 50,choices=ENTRANCE_CHOICES,default= "JEE-MAIN")
