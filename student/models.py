@@ -86,13 +86,13 @@ class Student_Application(models.Model):
 
     slug = models.SlugField(unique= True,blank=True)
     def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
+        return self.jee_roll + ' ' + self.jee_rank
 
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.first_name + '-' + self.last_name)
+        self.slug = slugify(self.jee_roll + '-' + self.jee_rank)
         slug_eixts = Student_Application.objects.filter(slug=self.slug).exists()
         if slug_eixts:
-            self.slug += '-' + str(self.user.id)
+            self.slug += '-' + str(self.status_application)
         
         super(Student_Application, self).save(*args, **kwargs)
 

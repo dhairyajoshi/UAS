@@ -1,8 +1,10 @@
+from django.db.models import query
 from django.shortcuts import render
 from rest_framework import generics, serializers
 from rest_framework import response
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
+from rest_framework import permissions
+from rest_framework.generics import GenericAPIView, RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.mixins import UpdateModelMixin
 from django.views.generic import View
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, request
@@ -135,3 +137,30 @@ class AddressCreate(APIView):
             return Response(context,status=HTTP_200_OK)
         else:
             return Response(serializer.errors,status=HTTP_400_BAD_REQUEST)
+            
+class StudentPendingApplicationListView(generics.ListAPIView):
+    queryset = student_models.Student_Application.objects.filter(status_application = "UNDER VERIFICATION")
+    serializer_class = student_serializers.StudentApplicationSerializer
+
+class StudentAcceptedApplicationListView(generics.ListAPIView):
+    queryset = student_models.Student_Application.objects.filter(status_application = "ACCEPTED")
+    serializer_class = student_serializers.StudentApplicationSerializer
+
+class StudentRejectedApplicationListView(generics.ListAPIView):
+    queryset = student_models.Student_Application.objects.filter(status_application = "REJECTED")
+    serializer_class = student_serializers.StudentApplicationSerializer
+
+class UpdateStatusView(RetrieveUpdateAPIView):
+    queryset = student_models.Student_Application.objects.all()
+    serializer_class = student_serializers.StudentApplicationSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        instance = student_models.Student_Application.objects.get(id=id)
+        data = request.data
+        instance.status_application = data["status_application"]
+        instance.verified_by = request.user
+        instance.save()
+
+        serializer = student_serializers.StudentApplicationSerializer(instance)
+        return Response(serializer.data)
