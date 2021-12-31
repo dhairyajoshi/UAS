@@ -137,7 +137,19 @@ class AddressCreate(APIView):
             return Response(context,status=HTTP_200_OK)
         else:
             return Response(serializer.errors,status=HTTP_400_BAD_REQUEST)
-            
+
+class StudentApplicationListView(generics.ListAPIView):
+    queryset = student_models.Student_Application.objects.all()
+    serializer_class = student_serializers.StudentApplicationSerializer
+
+    def get_queryset(self):
+        queryset = student_models.Student_Application.objects.all()
+        application_status = self.request.query_params.get('status')
+        if application_status:
+            return queryset.filter(status_application=application_status)
+        else:
+            return queryset
+
 class StudentPendingApplicationListView(generics.ListAPIView):
     queryset = student_models.Student_Application.objects.filter(status_application = "UNDER VERIFICATION")
     serializer_class = student_serializers.StudentApplicationSerializer

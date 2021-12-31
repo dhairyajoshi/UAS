@@ -58,9 +58,9 @@ MODE_CHOICES = (
 )
 
 STATUS_CHOICES = (
-    ("UNDER VERIFICATION","UNDER VERIFICATION"),
-    ("ACCEPTED","ACCEPTED"),
-    ("REJECTED","REJECTED")
+    ("Pending","Pending"),
+    ("Accepted","Accepted"),
+    ("Rejected","Rejected")
 )
 
 class Student_Application(models.Model):
@@ -80,7 +80,7 @@ class Student_Application(models.Model):
     parents_mobile = models.CharField(max_length=12,null = True)
     parents_email = models.EmailField(null= True)
     application_time = models.DateTimeField(auto_now_add=True)
-    status_application = models.CharField(max_length=50,choices = STATUS_CHOICES,default = "UNDER VERIFICATION")
+    status_application = models.CharField(max_length=50,choices = STATUS_CHOICES,default = "Pending")
     verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
 
 
