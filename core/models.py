@@ -52,7 +52,7 @@ class User(AbstractUser):
     father_name = models.CharField(max_length=100,null=True,blank=True)
     mother_name = models.CharField(max_length=100,null=True,blank=True)
     phone_number = models.CharField(max_length=15,blank=True, null=True)
-    image = models.ImageField(upload_to='StudentPics', default='student_default.jpg')
+    image = models.ImageField(upload_to='StudentPics', default='student_default.jpg',null = True)
 
 
     def __str__(self):

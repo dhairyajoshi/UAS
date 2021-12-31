@@ -150,18 +150,6 @@ class StudentApplicationListView(generics.ListAPIView):
         else:
             return queryset
 
-class StudentPendingApplicationListView(generics.ListAPIView):
-    queryset = student_models.Student_Application.objects.filter(status_application = "UNDER VERIFICATION")
-    serializer_class = student_serializers.StudentApplicationSerializer
-
-class StudentAcceptedApplicationListView(generics.ListAPIView):
-    queryset = student_models.Student_Application.objects.filter(status_application = "ACCEPTED")
-    serializer_class = student_serializers.StudentApplicationSerializer
-
-class StudentRejectedApplicationListView(generics.ListAPIView):
-    queryset = student_models.Student_Application.objects.filter(status_application = "REJECTED")
-    serializer_class = student_serializers.StudentApplicationSerializer
-
 class UpdateStatusView(RetrieveUpdateAPIView):
     queryset = student_models.Student_Application.objects.all()
     serializer_class = student_serializers.StudentApplicationSerializer
