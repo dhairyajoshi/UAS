@@ -41,7 +41,13 @@ class DepartmentDetail(generics.RetrieveDestroyAPIView):
     queryset = core_models.Department.objects.all()
     serializer_class = core_serializers.DepartmentSerializer
 
-class UserList(generics.ListCreateAPIView):
+class ListUserView(generics.ListAPIView):
+    queryset = core_models.User.objects.all()
+    serializer_class = core_serializers.UserListSerializer
+
+
+
+class CreateUserView(generics.CreateAPIView):
     queryset = core_models.User.objects.all()
     serializer_class = core_serializers.UserSerializer
 
@@ -144,11 +150,19 @@ class AddressCreate(APIView):
         context = {}
         serializer = core_serializers.AddressSerializer(data = request.data)
         if serializer.is_valid():
-            new_address = serializer.save(request)
+            new_address = serializer
+            new_address.user = request.user
+            print(request.user)
+            new_address.save()
             context[request.user] = serializer.data
             return Response(context,status=HTTP_200_OK)
         else:
             return Response(serializer.errors,status=HTTP_400_BAD_REQUEST)
+
+# class AddressCreate(generics.ListCreateAPIView):
+#     permission_classess = [IsAuthenticated]
+#     queryset = core_models.AddressDetail.objects.all()
+#     serializer_class = core_serializers.AddressSerializer
 
 class StudentApplicationListView(generics.ListAPIView):
     queryset = student_models.Student_Application.objects.all()
