@@ -113,7 +113,7 @@ class EducationLevel(models.Model):
 
 
 class AddressDetail(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_details', on_delete=models.CASCADE, blank=True)
     street_address = models.CharField(max_length = 100,blank = True, null = True)
     state = models.CharField(max_length = 100,blank = True, null = True)
     district = models.CharField(max_length = 100,blank = True, null = True)
@@ -123,9 +123,17 @@ class AddressDetail(models.Model):
     address_type =  models.CharField(max_length = 100,blank = True, null = True)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
-    # class Meta:
-    #     verbose_name_plural = 'Address_Details'
+        if self.user.first_name:
+            return self.user.first_name + " " + self.user.middle_name + " " + self.user.last_name + " (" + self.user.email + ")"
+        else:
+            return self.user.username
+    
+    def save(self, *args, **kwargs):
+        
+        super(AddressDetail, self).save(*args, **kwargs)
+        curr_user = self.user
+        curr_user.addresses.add(self)
+
 
 
 

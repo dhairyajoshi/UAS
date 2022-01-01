@@ -41,7 +41,13 @@ class DepartmentDetail(generics.RetrieveDestroyAPIView):
     queryset = core_models.Department.objects.all()
     serializer_class = core_serializers.DepartmentSerializer
 
-class UserList(generics.ListCreateAPIView):
+class ListUserView(generics.ListAPIView):
+    queryset = core_models.User.objects.all()
+    serializer_class = core_serializers.UserListSerializer
+
+
+
+class CreateUserView(generics.CreateAPIView):
     queryset = core_models.User.objects.all()
     serializer_class = core_serializers.UserSerializer
 
@@ -142,13 +148,27 @@ class AddressCreate(APIView):
     def post(self,request,*args,**kwargs):
         
         context = {}
-        serializer = core_serializers.AddressSerializer(data = request.data)
-        if serializer.is_valid():
-            new_address = serializer.save(request)
-            context[request.user] = serializer.data
-            return Response(context,status=HTTP_200_OK)
-        else:
-            return Response(serializer.errors,status=HTTP_400_BAD_REQUEST)
+        new_address = core_models.AddressDetail()
+        new_address.street_address = request.data.get("street_address")
+        new_address.state = request.data.get("state")
+        new_address.district = request.data.get("district")
+        new_address.city = request.data.get("city")
+        new_address.police_station = request.data.get("police_station")
+        new_address.pin_code = request.data.get("pin_code")
+        new_address.address_type = request.data.get("address_type")
+        new_address.user = request.user
+        new_address.save()
+
+        context["new_address"] = core_serializers.AddressSerializer(new_address).data
+        context["message"] = "New address added successfully"
+        return Response(context,status=HTTP_200_OK)
+
+
+
+# class AddressCreate(generics.ListCreateAPIView):
+#     permission_classess = [IsAuthenticated]
+#     queryset = core_models.AddressDetail.objects.all()
+#     serializer_class = core_serializers.AddressSerializer
 
 class StudentApplicationListView(generics.ListAPIView):
     queryset = student_models.Student_Application.objects.all()
