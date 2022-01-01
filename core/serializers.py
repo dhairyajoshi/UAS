@@ -13,7 +13,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         # fields = '__all__'
-        exclude = ('user_permissions', 'groups', 'education_details', 'addresses')
+        exclude = ('user_permissions', 'groups', 'education_details')
         model = core_models.User
 
 

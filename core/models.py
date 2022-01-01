@@ -37,6 +37,10 @@ BLOOD_GROUPS = (
     ("AB-","AB-"),
     ("O-","O-")
 )
+ADDRESS_TYPE_CHOICES = (
+    ('Present', 'Present'),
+    ('Permanent', 'Permanent')
+)
 class User(AbstractUser):
     middle_name = models.CharField(max_length=50,null=True,blank=True)
     group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True, blank=True)
@@ -120,7 +124,7 @@ class AddressDetail(models.Model):
     city = models.CharField(max_length = 100,blank = True, null = True)
     police_station = models.CharField(max_length = 100,blank = True, null = True)
     pin_code = models.CharField(max_length = 100,blank = True, null = True)
-    address_type =  models.CharField(max_length = 100,blank = True, null = True)
+    address_type =  models.CharField(max_length = 100,choices =ADDRESS_TYPE_CHOICES,blank = True, null = True)
 
     def __str__(self):
         if self.user.first_name:
