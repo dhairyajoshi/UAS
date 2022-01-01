@@ -45,6 +45,18 @@ class UserList(generics.ListCreateAPIView):
     queryset = core_models.User.objects.all()
     serializer_class = core_serializers.UserSerializer
 
+    def post(self,request,*args,**kwargs):
+        
+        context = {}
+        serializer = core_serializers.UserSerializer(data = request.data)
+        if serializer.is_valid():
+            new_user = serializer.save(request)
+            context[request.user] = serializer.data
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context["errors"] = serializer.errors
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+
 class UserDetail(generics.RetrieveDestroyAPIView):
     queryset = core_models.User.objects.all()
     serializer_class = core_serializers.UserSerializer
