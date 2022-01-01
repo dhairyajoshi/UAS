@@ -102,6 +102,12 @@ class EducationDetail(models.Model):
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
+    
+    def save(self,*args,**kwargs):
+        super(EducationDetail,self).save(*args,**kwargs)
+        curr_user = self.user
+        curr_user.education_details.add(self)
+        
     class Meta:
         verbose_name_plural = "EducationDetails"
 
@@ -109,9 +115,9 @@ class EducationDetail(models.Model):
 class EducationLevel(models.Model):
     name = models.CharField(max_length=100,null=True,blank=True)
     description = models.CharField(max_length=100,null=True,blank=True)
-
-    def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+    
+    def save(self,*args,**kwargs):
+        super(EducationLevel,self).save(*args,**kwargs)
     class Meta:
         verbose_name_plural="EducationLevels"
 

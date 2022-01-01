@@ -65,7 +65,7 @@ class CreateUserView(generics.CreateAPIView):
 
 class UserDetail(generics.RetrieveDestroyAPIView):
     queryset = core_models.User.objects.all()
-    serializer_class = core_serializers.UserSerializer
+    serializer_class = core_serializers.UserDetailSerializer
 
 
 
@@ -220,3 +220,27 @@ class ListAcademic(generics.ListAPIView):
 class ListNonAcademic(generics.ListAPIView):
     queryset = core_models.Department.objects.all().filter(is_academic=False)
     serializer_class = core_serializers.DepartmentSerializer
+
+class EducationDetailCreate(APIView):
+    permission_classess = [IsAuthenticated]
+    serializer_class = core_serializers.EducationSerializer
+    def post(self,request,*args,**kwargs):
+        context = {}
+        new_education_level = core_models.EducationLevel()
+        new_education_level.name = request.data.get("name")
+        new_education_level.description = request.data.get("description")
+        new_education_level.save()
+        new_education = core_models.EducationDetail()
+        new_education.college = request.data.get("college")
+        new_education.board = request.data.get("board")
+        new_education.total_cgpa = request.data.get("total_cgpa")
+        new_education.secured_cgpa = request.data.get("secured_cgpa")
+        new_education.percentage = request.data.get("percentage")
+        new_education.year_of_passing = request.data.get("year_of_passing")
+        new_education.user = request.user
+        new_education.education_level = new_education_level
+        new_education.save()
+        context["new_education_detail"] = core_serializers.EducationSerializer(new_education).data
+        context["new_eduaction_level"] = core_serializers.EducationLevelSerializer(new_education_level).data
+        context["message"] = "New education detail added successfully"
+        return Response(context,status=HTTP_200_OK)

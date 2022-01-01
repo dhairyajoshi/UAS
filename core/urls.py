@@ -13,5 +13,6 @@ urlpatterns = [
     path('application-status-update/',core_views.ApplicationStatusUpdate.as_view(),name = "application-status-update"),
     path('application-update-view/<int:id>/',core_views.UpdateStatusView.as_view(),name = "application-status-update"),
     path('list-academic/',core_views.ListAcademic.as_view(),name = "list-academic"),
-    path('list-non-academic/',core_views.ListNonAcademic.as_view(),name = "list-non-academic")
+    path('list-non-academic/',core_views.ListNonAcademic.as_view(),name = "list-non-academic"),
+    path('create-education-detail/',core_views.EducationDetailCreate.as_view(),name = "education-detail-create")
 ]
