@@ -176,3 +176,20 @@ class UpdateStatusView(RetrieveUpdateAPIView):
 
         serializer = student_serializers.StudentApplicationSerializer(instance)
         return Response(serializer.data)
+
+class ApplicationStatusUpdate(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, *args, **kwargs):
+        ids = request.data.get('ids', None)
+        status = request.data.get('status', None)
+        if not request.user.is_staff:
+            return Response({"message": "You are not a staff!"}, status=HTTP_400_BAD_REQUEST)
+        
+        for id in ids:
+            if id is None:
+                continue
+            curr_application = student_models.Student_Application.objects.get(id=id)
+            curr_application.status_application = status
+            curr_application.save()
+        return Response({"message": f'The status of applications were changed to {status}!'}, status=HTTP_200_OK)
+
