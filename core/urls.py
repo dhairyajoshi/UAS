@@ -11,5 +11,7 @@ urlpatterns = [
     path('create-address/',core_views.AddressCreate.as_view(),name="create-address"),
     path('student-application-list/',core_views.StudentApplicationListView.as_view(),name = "student-application-list"),
     path('application-status-update/',core_views.ApplicationStatusUpdate.as_view(),name = "application-status-update"),
-    path('application-update-view/<int:id>/',core_views.UpdateStatusView.as_view(),name = "application-status-update")
+    path('application-update-view/<int:id>/',core_views.UpdateStatusView.as_view(),name = "application-status-update"),
+    path('list-academic/',core_views.ListAcademic.as_view(),name = "list-academic"),
+    path('list-non-academic/',core_views.ListNonAcademic.as_view(),name = "list-non-academic")
 ]

@@ -213,3 +213,10 @@ class ApplicationStatusUpdate(APIView):
             curr_application.save()
         return Response({"message": f'The status of applications were changed to {status}!'}, status=HTTP_200_OK)
 
+class ListAcademic(generics.ListAPIView):
+    queryset = core_models.Department.objects.all().filter(is_academic=True)
+    serializer_class = core_serializers.DepartmentSerializer
+
+class ListNonAcademic(generics.ListAPIView):
+    queryset = core_models.Department.objects.all().filter(is_academic=False)
+    serializer_class = core_serializers.DepartmentSerializer
