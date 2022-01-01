@@ -123,12 +123,10 @@ class AddressDetail(models.Model):
     address_type =  models.CharField(max_length = 100,blank = True, null = True)
 
     def __str__(self):
-        try:
-            return self.user.first_name + " " + self.user.last_name
-        except:
+        if self.user.first_name:
+            return self.user.first_name + " " + self.user.middle_name + " " + self.user.last_name + " (" + self.user.email + ")"
+        else:
             return self.user.username
-        finally:
-            return str(self.id)
     
     def save(self, *args, **kwargs):
         
