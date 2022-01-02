@@ -5,8 +5,8 @@ from employee.models import Employee,Designation
 
 # Create your models here.
 class staff(models.Model):
-    employee = models.OneToOneField(Employee,on_delete=models.CASCADE,null=True)
-    designation =models.OneToOneField(Designation,on_delete =models.CASCADE,null = True)
+    employee = models.ForeignKey(Employee,on_delete=models.CASCADE,null=True)
+    designation =models.ForeignKey(Designation,on_delete =models.CASCADE,null = True)
     job_description = models.CharField(max_length=100,null =True)
     current_position = models.CharField(max_length=50,null=True)
     dept = models.ForeignKey(Department,on_delete=models.CASCADE,related_name="Staff_department",null= True)
