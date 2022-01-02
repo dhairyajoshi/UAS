@@ -81,9 +81,10 @@ class Department(models.Model):
 
 class UserGroup(models.Model):
     name=models.CharField(max_length=100)
+    site_url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return self.name + " (" + self.site_url + ")"
     class Meta:
         verbose_name_plural = "UserGroups"
 

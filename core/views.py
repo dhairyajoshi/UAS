@@ -245,3 +245,16 @@ class EducationDetailCreate(APIView):
         context["new_eduaction_level"] = core_serializers.EducationLevelSerializer(new_education_level).data
         context["message"] = "New education detail added successfully"
         return Response(context,status=HTTP_200_OK)
+from rest_auth.views import LoginView
+class CustomLoginView(LoginView):
+    def get_response(self):
+        orginal_response = super().get_response()
+        print(self.request)
+        user_data = {
+            "user_id": self.request.user.id,
+            "user_group_id": self.request.user.group_id.id,
+            "user_group": str(self.request.user.group_id.name),
+            "redirect_url": str(self.request.user.group_id.site_url)
+        }
+        orginal_response.data.update(user_data)
+        return orginal_response
