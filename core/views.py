@@ -56,8 +56,9 @@ class CreateUserView(generics.CreateAPIView):
         context = {}
         serializer = core_serializers.UserSerializer(data = request.data)
         if serializer.is_valid():
-            new_user = serializer.save(request)
-            context[request.user] = serializer.data
+            new_user = serializer.save()
+            curr_user = request.user
+            context['curr_user'] = serializer.data
             return Response(context,status=HTTP_200_OK)
         else:
             context["errors"] = serializer.errors
