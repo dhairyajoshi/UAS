@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.query_utils import select_related_descend
 from django .template.defaultfilters import slugify
 from core.models import Department
 from employee.models import Employee,Designation
@@ -13,13 +14,12 @@ class staff(models.Model):
 
     slug = models.SlugField(unique= True,blank=True)
     def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
+        return self.employee.user.first_name +"_"+ self.designation.name
     
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.first_name + ' '+self.user.last_name)
-        slug_exists = staff.objects.filter(slug = self.slug).exists()
-        if slug_exists:
-            self.slug +='_'+str(self.user.id)
+        curr_designation = self.employee.designation
+        self.designation = curr_designation
+        self.slug = slugify(self.job_description + '_' +self.current_position + '_'+ str(self.employee.id))
         super(staff,self).save(*args,**kwargs)
     class Meta:
         verbose_name_plural = "Staffs"
