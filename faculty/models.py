@@ -14,9 +14,8 @@ class Publication(models.Model):
         verbose_name_plural = "Publications"
 
 class Faculty(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
-
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     branch = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     highest_qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
@@ -29,8 +28,10 @@ class Faculty(models.Model):
         return self.user.first_name + ' ' + self.user.last_name
         
     def save(self,*args,**kwargs):
-        this_user = self.employee.user
-        self.user = this_user
+        print(self.user)
+        this_user = self.user
+        this_employee = Employee.objects.get(user=this_user)
+        self.employee = this_employee
         self.slug = slugify(self.user.first_name + '_' + self.user.last_name)
         slug_exists  = Faculty.objects.filter(slug = self.slug).exists()
         if slug_exists:
