@@ -116,8 +116,15 @@ class Experience(models.Model):
     designation = models.CharField(max_length = 100,null = True)
 
     def __str__(self):
-        return self.user.first_name + "_" + self.user.last_name
+        return str(self.start_date)+'_'+self.organisation_name+'_'+str(self.end_date)
 
+    def save(self,*args,**kwargs):
+        super(Experience,self).save(*args,**kwargs)
+        curr_employee = self.employee
+        curr_employee.experiences.add(self)
+    
+    class Meta:
+        verbose_name_plural = "Experiences"
 class role(models.Model):
     employee = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="employee_role",null=True)
     name = models.CharField(max_length=50,null =True)
