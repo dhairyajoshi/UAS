@@ -6,4 +6,5 @@ urlpatterns = [
     path('employee-detail/<int:pk>/', employee_views.EmployeeDetail.as_view(), name="employee-detail"),
     path('designation-list/',employee_views.DesignationList.as_view(),name="designation-list"),
     path('designation-detail/<int:pk>',employee_views.DesignationDetail.as_view(),name= "designation-detail"),
+    path('experience-create/',employee_views.ExperienceCreate.as_view(),name = "Experience-creation"),
 ]

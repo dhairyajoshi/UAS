@@ -1,3 +1,5 @@
+from multiprocessing import context
+import re
 from django.db.models import query
 from django.shortcuts import render
 from rest_framework import generics, serializers
@@ -43,3 +45,23 @@ class DesignationList(generics.ListCreateAPIView):
 class DesignationDetail(generics.RetrieveDestroyAPIView):
     queryset = employee_models.Designation.objects.all()
     serializer_class = employee_serializers.DesignationSerializer
+
+class ExperienceCreate(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = employee_serializers.ExperienceCreateSerializer
+
+    def post(self,request,*args,**kwargs):
+        context ={}
+        new_experience = employee_models.Experience()
+        new_experience.start_date = request.data.get('start_date')
+        new_experience.end_date = request.data.get("end_date")
+        new_experience.organisation_name = request.data.get("organisation_name")
+        new_experience.designation = request.data.get("designation")
+        curr_user = request.user.id
+        curr_employee = employee_models.Employee.objects.get(user =curr_user)
+        new_experience.employee = curr_employee
+        new_experience.save()
+        
+        context["new_experience"] = employee_serializers.ExperienceCreateSerializer(new_experience).data
+        context["message"] = "New experience created successfully"
+        return Response(context,status=HTTP_200_OK)

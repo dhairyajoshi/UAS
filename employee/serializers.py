@@ -13,3 +13,8 @@ class DesignationSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = employee_models.Designation
+
+class ExperienceCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = employee_models.Experience
