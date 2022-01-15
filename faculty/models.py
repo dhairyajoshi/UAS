@@ -11,8 +11,15 @@ class Publication(models.Model):
     name = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=200,null = True)
 
+    
+    def __str__(self):
+        return self.name + '__' + self.description
+    def save(self,*args,**kwargs):
+        super(Publication,self).save(*args,**kwargs)
+        curr_faculty = self.faculty
+        curr_faculty.publications.add(self)
     class Meta:
-        verbose_name_plural = "Publications"
+        verbose_name_plural = "Publications"    
 
 class Faculty(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, blank=True)

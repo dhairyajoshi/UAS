@@ -122,3 +122,20 @@ class FacultyDetail(generics.RetrieveDestroyAPIView):
 #         }
 
 #         return Response(context, status=HTTP_200_OK)
+class PublicationCreate(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class =faculty_seralizers.PublicationCreationSerializer
+
+    def post(self,request,*args,**kwargs):
+        context = {}
+        new_publication = faculty_models.Publication()
+        new_publication.name = request.data.get("name")
+        new_publication.description = request.data.get("description")
+        curr_user = request.user.id
+        curr_faculty = faculty_models.Faculty.objects.get(user = curr_user)
+        new_publication.faculty = curr_faculty
+        new_publication.save()
+
+        context["new_publication"] = faculty_seralizers.PublicationCreationSerializer(new_publication).data
+        context["message"] = "New publication created successfully"
+        return Response(context,status=HTTP_200_OK)

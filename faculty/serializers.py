@@ -7,3 +7,7 @@ class FacultySerializer(serializers.ModelSerializer):
         exclude = ('slug', 'publications')
         model = faculty_models.Faculty
 
+class PublicationCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = faculty_models.Publication
