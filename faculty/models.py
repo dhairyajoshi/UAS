@@ -7,6 +7,7 @@ from employee.models import Employee
 
 
 class Publication(models.Model):
+    faculty = models.ForeignKey('Faculty',related_name="faculty_publication",on_delete=models.CASCADE,null= True,blank = True)
     name = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=200,null = True)
 
