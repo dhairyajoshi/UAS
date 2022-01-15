@@ -36,6 +36,16 @@ class DepartmentList(generics.ListCreateAPIView):
     queryset = core_models.Department.objects.all()
     serializer_class = core_serializers.DepartmentSerializer
 
+    def get_queryset(self):
+        queryset = core_models.Department.objects.all()
+        type = self.request.query_params.get('type')
+        if type is not None:
+            if type=='academic':
+                queryset = core_models.Department.objects.filter(is_academic=True)
+            elif type=='non-academic':
+                queryset = core_models.Department.objects.filter(is_academic=False)
+        return queryset
+
 
 class DepartmentDetail(generics.RetrieveDestroyAPIView):
     queryset = core_models.Department.objects.all()
@@ -214,13 +224,6 @@ class ApplicationStatusUpdate(APIView):
             curr_application.save()
         return Response({"message": f'The status of applications were changed to {status}!'}, status=HTTP_200_OK)
 
-class ListAcademic(generics.ListAPIView):
-    queryset = core_models.Department.objects.all().filter(is_academic=True)
-    serializer_class = core_serializers.DepartmentSerializer
-
-class ListNonAcademic(generics.ListAPIView):
-    queryset = core_models.Department.objects.all().filter(is_academic=False)
-    serializer_class = core_serializers.DepartmentSerializer
 
 class EducationDetailCreate(APIView):
     permission_classess = [IsAuthenticated]
