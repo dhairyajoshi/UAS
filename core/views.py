@@ -59,12 +59,12 @@ class ListUserView(generics.ListAPIView):
 
 class CreateUserView(generics.CreateAPIView):
     queryset = core_models.User.objects.all()
-    serializer_class = core_serializers.UserSerializer
+    serializer_class = core_serializers.CreateUserSerializer
 
     def post(self,request,*args,**kwargs):
         
         context = {}
-        serializer = core_serializers.UserSerializer(data = request.data)
+        serializer = core_serializers.CreateUserSerializer(data = request.data)
         if serializer.is_valid():
             new_user = serializer.save()
             curr_user = request.user

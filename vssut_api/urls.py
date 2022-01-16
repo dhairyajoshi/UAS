@@ -4,7 +4,7 @@ from core import views as core_views
 #from .router import router
 
 urlpatterns = [
-    path('rest-auth/login/', core_views.CustomLoginView.as_view()),
+    path('rest-auth/login/', core_views.CustomLoginView.as_view(),name = 'custom-login'),
     path('admin/', admin.site.urls),
     path('baton/', include('baton.urls')),
 
