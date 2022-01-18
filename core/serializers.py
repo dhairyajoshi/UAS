@@ -82,8 +82,12 @@ class CreateUserSerializer(serializers.ModelSerializer):
         exclude = ('user_permissions', 'groups', 'education_details','addresses')
         model = core_models.User
     def create(self, validated_data):
+        hash_list = ' xxxx xxxx'
         password = validated_data.pop('password')
+        adhar = validated_data.pop('adhar_no')[0:4]
+        adhar = adhar+ hash_list
         user =  super().create(validated_data)
         user.set_password(password)
+        user.adhar_no = adhar
         user.save()
         return user
