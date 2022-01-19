@@ -70,7 +70,7 @@ class Student_Application(models.Model):
     jee_roll = models.CharField(max_length=100, null=True)
     jee_rank = models.CharField(max_length=100, null=True)
     programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)
-    #academic_session = models.CharField(max_length=50,choices=(2021,)),
+    academic_session = models.CharField(max_length=50,null =True)
     entrance_exam = models.CharField(max_length=50,choices=ENTRANCE_CHOICES,default = "JEE-MAIN")
     is_Tfw = models.BooleanField(default = False)
     mode = models.CharField(max_length=50,choices=MODE_CHOICES,default= "REGULAR")
@@ -79,6 +79,7 @@ class Student_Application(models.Model):
     is_green_card = models.BooleanField(default=False)
     parents_mobile = models.CharField(max_length=12,null = True)
     parents_email = models.EmailField(null= True)
+    entry_gate = models.CharField(max_length = 50,null= True)
     application_time = models.DateTimeField(auto_now_add=True)
     status_application = models.CharField(max_length=50,choices = STATUS_CHOICES,default = "Pending")
     verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
