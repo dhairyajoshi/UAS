@@ -40,8 +40,8 @@ class Program(models.Model):
 class Course(models.Model):
     course_code = models.CharField(max_length = 50,null= True)
     subject = models.CharField(max_length= 100,null =True)
-    credit = models.IntegerField()
-    contact_hours = models.IntegerField()
+    credit = models.IntegerField(null = True)
+    contact_hours = models.IntegerField(null = True)
     course_type = models.CharField(choices = COURSE_TYPE_CHOICES,max_length=50,null = True)
     department = models.ForeignKey(core_models.Department,related_name='course_department',on_delete=models.CASCADE,null = True)
     def __str__(self):

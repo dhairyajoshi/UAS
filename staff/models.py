@@ -17,6 +17,9 @@ class staff(models.Model):
         return self.employee.user.first_name +"_"+ self.designation.name
     
     def save(self,*args,**kwargs):
+        curr_user = self.user
+        curr_employee = Employee.objects.get(user = curr_user)
+        self.employee = curr_employee
         curr_designation = self.employee.designation
         self.designation = curr_designation
         self.slug = slugify(self.job_description + '_' +self.current_position + '_'+ str(self.employee.id))

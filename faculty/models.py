@@ -24,7 +24,7 @@ class Publication(models.Model):
 class Faculty(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    branch = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     highest_qualification = models.CharField(max_length=50, null=True)
     specialization = models.CharField(max_length=50, null=True)
     teach_experience = models.IntegerField()
