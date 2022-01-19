@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
 from django.db.models.fields import related
@@ -73,6 +74,7 @@ class Department(models.Model):
     is_academic = models.BooleanField(default= False)
     programme = models.ManyToManyField(to = 'academics.Program',related_name='branch_programme', blank=True)
     courses = models.ManyToManyField(to = 'academics.Course',related_name = 'Dept_courses', blank=True)
+    image = models.ImageField(upload_to = 'DepartmentPics', default = 'department_default.jpg',null = True)
     def __str__(self):
         return self.name
 

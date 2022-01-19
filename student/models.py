@@ -82,7 +82,8 @@ class Student_Application(models.Model):
     entry_gate = models.CharField(max_length = 50,null= True)
     application_time = models.DateTimeField(auto_now_add=True)
     status_application = models.CharField(max_length=50,choices = STATUS_CHOICES,default = "Pending")
-    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
+    registration = models.BigIntegerField(unique=True,null= True,blank=True)
+    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier_detail', on_delete=models.SET_NULL, null=True)
 
 
     slug = models.SlugField(unique= True,blank=True)
@@ -103,7 +104,7 @@ class Student(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     application = models.OneToOneField(Student_Application, on_delete=models.CASCADE,null =True)
     verification_time = models.DateTimeField(null =True)
-    #verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True)
+    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True,blank=True)
     department = models.ForeignKey(Department,on_delete = models.CASCADE,null= True)
     course = models.ForeignKey(to='academics.Course',on_delete = models.CASCADE,null=True)
     entrance_exam = models.CharField(max_length = 50,choices=ENTRANCE_CHOICES,default= "JEE-MAIN")
