@@ -152,6 +152,30 @@ class UserProfileView(APIView):
 #         context['curr_user'] = core_serializers.UserProfileSerializer(curr_user).data
 #         return Response(context,status=HTTP_200_OK)       
 
+class ApplicationCreateStudent(APIView):
+    serializer_class = student_serializers.StudentSerializer
+    def create(request,*args,**kwargs):
+        new_student = student_models.Student()
+        new_student.registration = request.registration
+        new_student.user = request.user
+        new_student.application = request
+        new_student.verified_by = request.verified_by
+        new_student.department = request.department
+        new_student.course = request.course
+        new_student.entrance_exam = request.entrance_exam
+        new_student.academic_session = request.academic_session
+        new_student.is_tfw = request.is_Tfw
+        new_student.mode = request.mode
+        new_student.is_pwd = request.is_pwd
+        new_student.is_defence = request.is_defence
+        new_student.is_green_card = request.is_green_card
+        new_student.parent_email = request.parents_email
+        new_student.parent_mobile = request.parents_mobile
+        new_student.jee_roll = request.jee_roll
+        new_student.jee_rank = request.jee_rank
+        new_student.entry_gate = request.entry_gate
+        new_student.program = request.programme
+        new_student.save()
 class AddressCreate(APIView):
     permission_classess = [IsAuthenticated]
     serializer_class = core_serializers.AddressSerializer
@@ -203,8 +227,10 @@ class UpdateStatusView(RetrieveUpdateAPIView):
         data = request.data
         instance.status_application = data["status_application"]
         instance.verified_by = request.user
+        instance.registration = data["registration"]
         instance.save()
-
+        if instance.status_application == "Accepted":
+            ApplicationCreateStudent.create(request = instance)
         serializer = student_serializers.StudentApplicationSerializer(instance)
         return Response(serializer.data)
 

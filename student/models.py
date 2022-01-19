@@ -120,7 +120,7 @@ class Student(models.Model):
     jee_rank = models.CharField(max_length=50,null=True)
     entry_gate = models.CharField(max_length= 50,null=True)
     program = models.CharField(max_length=50,choices = PROGRAMME_CHOICES,null= True)
-    application_time = models.DateTimeField(auto_now_add=True)
+    application_time = models.DateTimeField(auto_now_add=True,null=True)
     status = models.BooleanField(default = False)
 
     slug = models.SlugField(unique=True, blank=True)
@@ -132,9 +132,5 @@ class Student(models.Model):
         return self.user.first_name + ' ' + self.user.last_name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.first_name + '-' + self.last_name)
-        slug_eixts = Student.objects.filter(slug=self.slug).exists()
-        if slug_eixts:
-            self.slug += '-' + str(self.user.id)
-        
+        self.slug = slugify(self.jee_roll + '-' + self.parent_email)
         super(Student, self).save(*args, **kwargs)
