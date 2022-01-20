@@ -118,10 +118,10 @@ class Student(models.Model):
     parent_mobile = models.CharField(max_length=12,null=True)
     jee_roll = models.CharField(max_length=50,null=True)
     jee_rank = models.CharField(max_length=50,null=True)
-    entry_gate = models.CharField(max_length= 50,null=True)
+    gate_entry = models.BooleanField(default=False)
     program = models.CharField(max_length=50,choices = PROGRAMME_CHOICES,null= True)
     application_time = models.DateTimeField(auto_now_add=True,null=True)
-    status = models.BooleanField(default = False)
+    
 
     slug = models.SlugField(unique=True, blank=True)
     
@@ -132,5 +132,5 @@ class Student(models.Model):
         return self.user.first_name + ' ' + self.user.last_name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.jee_roll + '-' + self.parent_email)
+        self.slug = slugify(self.jee_roll + '-' + str(self.parent_email))
         super(Student, self).save(*args, **kwargs)
