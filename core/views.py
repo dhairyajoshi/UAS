@@ -161,7 +161,7 @@ class ApplicationCreateStudent(APIView):
         new_student.application = request
         new_student.verified_by = request.verified_by
         new_student.department = request.department
-        new_student.course = request.course
+        new_student.program = request.program
         new_student.entrance_exam = request.entrance_exam
         new_student.academic_session = request.academic_session
         new_student.is_tfw = request.is_Tfw
@@ -174,7 +174,6 @@ class ApplicationCreateStudent(APIView):
         new_student.jee_roll = request.jee_roll
         new_student.jee_rank = request.jee_rank
         new_student.entry_gate = request.entry_gate
-        new_student.program = request.programme
         new_student.save()
 class AddressCreate(APIView):
     permission_classess = [IsAuthenticated]

@@ -66,10 +66,9 @@ STATUS_CHOICES = (
 class Student_Application(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE,null= True)
-    course = models.ForeignKey(academic_models.Program,related_name='student_applicant_courses', on_delete=models.SET_NULL, null=True, blank=True)
+    program = models.ForeignKey(academic_models.Program,related_name='student_applicant_programs', on_delete=models.CASCADE, null=True, blank=True)
     jee_roll = models.CharField(max_length=100, null=True)
     jee_rank = models.CharField(max_length=100, null=True)
-    programme = models.CharField(max_length=50,choices=PROGRAMME_CHOICES, null=True)
     academic_session = models.CharField(max_length=50,null =True)
     entrance_exam = models.CharField(max_length=50,choices=ENTRANCE_CHOICES,default = "JEE-MAIN")
     is_Tfw = models.BooleanField(default = False)
@@ -106,7 +105,7 @@ class Student(models.Model):
     verification_time = models.DateTimeField(null =True)
     verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='student_verifier', on_delete=models.SET_NULL, null=True,blank=True)
     department = models.ForeignKey(Department,on_delete = models.CASCADE,null= True)
-    course = models.ForeignKey(to='academics.Course',on_delete = models.CASCADE,null=True)
+    program = models.ForeignKey(to='academics.Program',on_delete = models.CASCADE,null=True)
     entrance_exam = models.CharField(max_length = 50,choices=ENTRANCE_CHOICES,default= "JEE-MAIN")
     academic_session= models.CharField(max_length=5,null=True)
     is_tfw = models.BooleanField(default=False)
@@ -119,7 +118,6 @@ class Student(models.Model):
     jee_roll = models.CharField(max_length=50,null=True)
     jee_rank = models.CharField(max_length=50,null=True)
     gate_entry = models.BooleanField(default=False)
-    program = models.CharField(max_length=50,choices = PROGRAMME_CHOICES,null= True)
     application_time = models.DateTimeField(auto_now_add=True,null=True)
     
 
