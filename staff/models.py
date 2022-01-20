@@ -2,10 +2,12 @@ from django.db import models
 from django.db.models.query_utils import select_related_descend
 from django .template.defaultfilters import slugify
 from core.models import Department
+from django.conf import settings
 from employee.models import Employee,Designation
 
 # Create your models here.
 class staff(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete = models.CASCADE,null = True,related_name='staff_user_detail')
     employee = models.ForeignKey(Employee,on_delete=models.CASCADE,null=True)
     designation =models.ForeignKey(Designation,on_delete =models.CASCADE,null = True)
     job_description = models.CharField(max_length=100,null =True)
