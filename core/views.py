@@ -1,4 +1,6 @@
+from codecs import lookup_error
 from os import stat
+import re
 from django.db.models import query
 from django.shortcuts import render
 from django.template import context
@@ -35,6 +37,7 @@ from student import models as student_models
 from student import serializers as student_serializers
 
 class DepartmentList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = core_models.Department.objects.all()
     serializer_class = core_serializers.DepartmentSerializer
 
@@ -47,6 +50,49 @@ class DepartmentList(generics.ListCreateAPIView):
             elif type=='non-academic':
                 queryset = core_models.Department.objects.filter(is_academic=False)
         return queryset
+    def post(self,request,*args,**kwargs):
+        if request.user.group_id.id ==5:
+            context = {}
+            serializer = core_serializers.DepartmentSerializer(data = request.data)
+            if serializer.is_valid():
+                new_department = serializer.save()
+                context['curr_department'] = serializer.data
+                return Response(context,status=HTTP_200_OK)
+            else:
+                return Response(serializer.errors,status=HTTP_400_BAD_REQUEST)
+        else:
+            context={}
+            context["errors"] = "You are not an administrator"
+            return Response(context)
+
+class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = core_models.Department.objects.all()
+    serializer_class = core_serializers.DepartmentSerializer
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            instance = core_models.Department.objects.get(id = id)
+            data = request.data
+            instance.name = data["name"]
+            instance.code = data["code"]
+            instance.year_of_esht = data["year_of_esht"]
+            instance.is_academic = data["is_academic"]
+            instance.image = data["image"]
+            instance.save()
+            serializer = core_serializers.DepartmentSerializer(instance)
+            return Response(serializer.data)
+    def delete(self,request,id,*args,**kwargs):
+        if request.user.group_id.id ==5:
+            context={}
+            instance = core_models.Department.objects.get(id=id)
+            instance.delete()
+            context["message"] = "Department record deleted successfully"
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not administrator"
+            return Response(context)
 
 
 class DepartmentDetail(generics.RetrieveDestroyAPIView):
