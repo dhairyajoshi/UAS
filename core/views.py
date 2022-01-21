@@ -1,5 +1,7 @@
+from os import stat
 from django.db.models import query
 from django.shortcuts import render
+from django.template import context
 from rest_framework import generics, serializers
 from rest_framework import response
 from rest_framework import status
@@ -250,16 +252,14 @@ class ApplicationStatusUpdate(APIView):
         return Response({"message": f'The status of applications were changed to {status}!'}, status=HTTP_200_OK)
 
 
-class EducationDetailCreate(APIView):
+class EducationDetailCreate(generics.ListCreateAPIView):
     permission_classess = [IsAuthenticated]
     serializer_class = core_serializers.EducationSerializer
     def post(self,request,*args,**kwargs):
         context = {}
-        new_education_level = core_models.EducationLevel()
-        new_education_level.name = request.data.get("name")
-        new_education_level.description = request.data.get("description")
-        new_education_level.save()
         new_education = core_models.EducationDetail()
+        education_level = request.data.get("education_level")
+        new_education.education_level = core_models.EducationLevel.objects.get(id = education_level)
         new_education.college = request.data.get("college")
         new_education.board = request.data.get("board")
         new_education.total_cgpa = request.data.get("total_cgpa")
@@ -267,12 +267,31 @@ class EducationDetailCreate(APIView):
         new_education.percentage = request.data.get("percentage")
         new_education.year_of_passing = request.data.get("year_of_passing")
         new_education.user = request.user
-        new_education.education_level = new_education_level
         new_education.save()
         context["new_education_detail"] = core_serializers.EducationSerializer(new_education).data
-        context["new_eduaction_level"] = core_serializers.EducationLevelSerializer(new_education_level).data
         context["message"] = "New education detail added successfully"
         return Response(context,status=HTTP_200_OK)
+class EducationDetailUpdate(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = core_models.EducationDetail.objects.all()
+    serializer_class = core_serializers.EducationSerializer
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        context = {}
+        education_detail = core_models.EducationDetail.objects.get(id =id)
+        education_level = request.data.get("education_level")
+        education_detail.education_level = core_models.EducationLevel.objects.get(id = education_level)
+        education_detail.college = request.data.get("college")
+        education_detail.board = request.data.get("board")
+        education_detail.total_cgpa = request.data.get("total_cgpa")
+        education_detail.secured_cgpa = request.data.get("secured_cgpa")
+        education_detail.percentage = request.data.get("percentage")
+        education_detail.year_of_passing = request.data.get("year_of_passing")
+        education_detail.user = request.user
+        education_detail.save()
+        context["updated_education_detail"] = core_serializers.EducationSerializer(education_detail).data
+        return Response(context,status = HTTP_200_OK)
+
 from rest_auth.views import LoginView
 class CustomLoginView(LoginView):
     def get_response(self):
@@ -286,3 +305,54 @@ class CustomLoginView(LoginView):
         }
         orginal_response.data.update(user_data)
         return orginal_response
+class EducationLevelView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = core_models.EducationLevel.objects.all()
+    serializer_class = core_serializers.EducationLevelSerializer
+    def post(self,request,*args,**kwargs):
+        context = {}
+        if request.user.group_id.id == 5:
+            new_education_level = core_models.EducationLevel()
+            new_education_level.name = request.data.get("name")
+            new_education_level.description = request.data.get("description")
+            new_education_level.save()
+            context["new_education_level"] = core_serializers.EducationLevelSerializer(new_education_level).data
+            context["message"] = "New education level created successfully"
+            return Response(context,status= HTTP_200_OK)
+        else:
+            context["errors"] = "You are not an administrator"
+            return Response(context,status = HTTP_400_BAD_REQUEST)
+
+    
+class EducationLevelDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = core_models.EducationLevel.objects.all()
+    serializer_class = core_serializers.EducationLevelSerializer
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            instance = core_models.EducationLevel.objects.get(id=id)
+            data = request.data
+            instance.name = data["name"]
+            instance.description = data["description"]
+            instance.save()
+            serializer = core_serializers.EducationLevelSerializer(instance)
+            return Response(serializer.data)
+        else:
+            context={}
+            context['errors'] = "You are not administrator"
+            return Response(context)
+    
+    def delete(self,request,id,*args,**kwargs):
+        if request.user.group_id.id ==5:
+            context={}
+            instance = core_models.EducationLevel.objects.get(id=id)
+            instance.delete()
+            context["message"] = "Education level record deleted successfully"
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not administrator"
+            return Response(context)
+
+            

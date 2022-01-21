@@ -12,5 +12,8 @@ urlpatterns = [
     path('student-application-list/',core_views.StudentApplicationListView.as_view(),name = "student-application-list"),
     path('application-status-update/',core_views.ApplicationStatusUpdate.as_view(),name = "application-status-update"),
     path('application-update-view/<int:id>/',core_views.UpdateStatusView.as_view(),name = "application-status-update"),
-    path('create-education-detail/',core_views.EducationDetailCreate.as_view(),name = "education-detail-create")
+    path('create-education-detail/',core_views.EducationDetailCreate.as_view(),name = "education-detail-create"),
+    path('education-detail-update/<int:id>/',core_views.EducationDetailUpdate.as_view(),name = "update-get-education-detail"),
+    path('education-level-list/',core_views.EducationLevelView.as_view(),name='create-education-level'),
+    path('education-level-detail/<int:id>/',core_views.EducationLevelDetailView.as_view(),name = 'education-level-detail'),
 ]
