@@ -23,16 +23,19 @@ EXAMINATION_CHOICES=(
 )
 
 class Program(models.Model):
-    full_name = models.CharField(max_length= 100)
-    short_name = models.CharField(max_length =10)
-    year_of_esht = models.CharField(max_length =4)
-    num_of_seats = models.IntegerField()
+    full_name = models.CharField(max_length= 100,null=True,blank=True)
+    short_name = models.CharField(max_length =10,null=True,blank = True)
+    year_of_esht = models.CharField(max_length =4,null=True,blank=True)
+    num_of_seats = models.IntegerField(null = True,blank=True)
     is_ugc_accredeted = models.BooleanField(default= False)
     is_nb_accredeted = models.BooleanField(default= False)
     departments = models.ManyToManyField(core_models.Department,related_name="program_department")
 
     def __str__(self):
         return self.full_name
+    
+    def save(self,*args,**kwargs):
+        program=super(Program,self).save(*args,**kwargs)
 
     class Meta:
         verbose_name_plural = "Programs"
