@@ -1,5 +1,8 @@
+from cgitb import lookup
 from codecs import lookup_error
+from curses.ascii import HT
 from distutils import core
+from lib2to3.pgen2.parse import ParseError
 from os import stat
 import re
 from django.db.models import query
@@ -73,16 +76,27 @@ class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
         if request.user.group_id.id == 5:
+            context ={}
             instance = core_models.Department.objects.get(id = id)
             data = request.data
             instance.name = data["name"]
             instance.code = data["code"]
             instance.year_of_esht = data["year_of_esht"]
             instance.is_academic = data["is_academic"]
+            try:
+                file = request.data['image']
+            except KeyError:
+                raise ParseError('Request has no resource file attached')
             instance.image = data["image"]
             instance.save()
             serializer = core_serializers.DepartmentSerializer(instance)
-            return Response(serializer.data)
+            context["curr_department"] = serializer.data
+            context["message"] = "Department detail updated successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
     def delete(self,request,id,*args,**kwargs):
         if request.user.group_id.id ==5:
             context={}
@@ -94,11 +108,6 @@ class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
             context = {}
             context["errors"] = "You are not administrator"
             return Response(context)
-
-
-class DepartmentDetail(generics.RetrieveDestroyAPIView):
-    queryset = core_models.Department.objects.all()
-    serializer_class = core_serializers.DepartmentSerializer
 
 class ListUserView(generics.ListAPIView):
     queryset = core_models.User.objects.all()
@@ -123,12 +132,28 @@ class CreateUserView(generics.CreateAPIView):
             context["errors"] = serializer.errors
             return Response(context,status=HTTP_400_BAD_REQUEST)
 
-class UserDetail(generics.RetrieveDestroyAPIView):
+class UserDetail(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = core_models.User.objects.all()
     serializer_class = core_serializers.UserDetailSerializer
-
-
-
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        if request.user == core_models.User.objects.get(id = id):
+            context = {}
+            curr_user = core_models.User.objects.get(id = id)
+            try:
+                file = request.data['image']
+            except KeyError:
+                raise ParseError('Request has no resource file attached')
+            curr_user.image = file
+            curr_user.save()
+            context["curr_user"] = core_serializers.UserDetailSerializer(curr_user).data
+            context["message"] = "Profile image updated successfully"
+            return  Response(context,status = HTTP_200_OK)
+        else:
+            context = {}
+            context["message"] = "You are not the authorized user"
+            return Response(context,status = HTTP_400_BAD_REQUEST)
 
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]

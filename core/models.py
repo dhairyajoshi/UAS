@@ -42,6 +42,12 @@ ADDRESS_TYPE_CHOICES = (
     ('Present', 'Present'),
     ('Permanent', 'Permanent')
 )
+
+def userFile(instance,filename):
+    return '/'.join(['user',str(instance.id),filename])
+
+def departmentFile(instance,filename):
+    return '/'.join(['department',str(instance.id),filename])
 class User(AbstractUser):
     middle_name = models.CharField(max_length=50,null=True,blank=True)
     group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True, blank=True)
@@ -57,7 +63,7 @@ class User(AbstractUser):
     father_name = models.CharField(max_length=100,null=True,blank=True)
     mother_name = models.CharField(max_length=100,null=True,blank=True)
     phone_number = models.CharField(max_length=15,blank=True, null=True)
-    image = models.ImageField(upload_to='StudentPics', default='student_default.jpg',null = True)
+    image = models.ImageField(upload_to=userFile, default='student_default.jpg',null = True,blank = True)
 
 
     def __str__(self):
@@ -74,7 +80,7 @@ class Department(models.Model):
     is_academic = models.BooleanField(default= False)
     programme = models.ManyToManyField(to = 'academics.Program',related_name='branch_programme', blank=True,null = True)
     courses = models.ManyToManyField(to = 'academics.Course',related_name = 'Dept_courses', blank=True,null = True)
-    image = models.ImageField(upload_to = 'DepartmentPics', default = 'department_default.jpg',null = True)
+    image = models.ImageField(upload_to = departmentFile, default = 'department_default.jpg',null = True,blank = True)
     def __str__(self):
         return self.name
 
@@ -146,7 +152,3 @@ class AddressDetail(models.Model):
         super(AddressDetail, self).save(*args, **kwargs)
         curr_user = self.user
         curr_user.addresses.add(self)
-
-
-
-
