@@ -9,6 +9,7 @@ urlpatterns = [
     path('user-detail/<int:pk>/', core_views.UserDetail.as_view(), name="user-detail"),
     path('user-profile/', core_views.UserProfileView.as_view(), name="user-profile"),
     path('create-address/',core_views.AddressCreate.as_view(),name="create-address"),
+    path('address-detail/<int:id>/',core_views.AddressDetail.as_view(),name = "address-detail"),
     path('student-application-list/',core_views.StudentApplicationListView.as_view(),name = "student-application-list"),
     path('application-status-update/',core_views.ApplicationStatusUpdate.as_view(),name = "application-status-update"),
     path('application-update-view/<int:id>/',core_views.UpdateStatusView.as_view(),name = "application-status-update"),

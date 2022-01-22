@@ -223,8 +223,9 @@ class ApplicationCreateStudent(APIView):
         new_student.jee_rank = request.jee_rank
         new_student.entry_gate = request.entry_gate
         new_student.save()
-class AddressCreate(APIView):
+class AddressCreate(generics.ListCreateAPIView):
     permission_classess = [IsAuthenticated]
+    queryset = core_models.AddressDetail.objects.all()
     serializer_class = core_serializers.AddressSerializer
     
     def post(self,request,*args,**kwargs):
@@ -244,9 +245,6 @@ class AddressCreate(APIView):
         context["new_address"] = core_serializers.AddressSerializer(new_address).data
         context["message"] = "New address added successfully"
         return Response(context,status=HTTP_200_OK)
-
-
-
 # class AddressCreate(generics.ListCreateAPIView):
 #     permission_classess = [IsAuthenticated]
 #     queryset = core_models.AddressDetail.objects.all()
@@ -401,4 +399,41 @@ class EducationLevelDetailView(generics.RetrieveUpdateDestroyAPIView):
             context["errors"] = "You are not administrator"
             return Response(context)
 
-            
+class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = core_models.AddressDetail.objects.all()
+    serializer_class = core_serializers.AddressSerializer
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        if request.user == core_models.User.objects.get(addresses = id):
+            context ={}
+            curr_address = core_models.AddressDetail.objects.get(id = id)
+            data = request.data
+            curr_address.street_address = data["street_address"]
+            curr_address.state = data["state"]
+            curr_address.district = data["district"]
+            curr_address.city = data["city"]
+            curr_address.police_station = data["police_station"]
+            curr_address.pin_code = data["pin_code"]
+            curr_address.address_type = data["address_type"]
+            curr_address.user = request.user
+            curr_address.save()
+            context["Updated Address"] = core_serializers.AddressSerializer(curr_address).data
+            context["message"] = "Address Updated successfully"
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not authorized to update address detail"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+    
+    def delete(self,request,id,*args,**kwargs):
+        if request.user == core_models.User.objects.get(addresses = id):
+            context ={}
+            curr_address = core_models.AddressDetail.objects.get(id = id)
+            curr_address.delete()
+            context["message"] = "Address Detail record deleted successfully"
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not authorized to delete address detail"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
