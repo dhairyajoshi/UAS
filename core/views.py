@@ -324,6 +324,7 @@ class ApplicationStatusUpdate(APIView):
 
 class EducationDetailCreate(generics.ListCreateAPIView):
     permission_classess = [IsAuthenticated]
+    queryset = core_models.EducationDetail.objects.all()
     serializer_class = core_serializers.EducationSerializer
     def post(self,request,*args,**kwargs):
         context = {}
