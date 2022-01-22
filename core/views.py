@@ -1,4 +1,5 @@
 from codecs import lookup_error
+from distutils import core
 from os import stat
 import re
 from django.db.models import query
@@ -321,20 +322,38 @@ class EducationDetailUpdate(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = core_serializers.EducationSerializer
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
-        context = {}
-        education_detail = core_models.EducationDetail.objects.get(id =id)
-        education_level = request.data.get("education_level")
-        education_detail.education_level = core_models.EducationLevel.objects.get(id = education_level)
-        education_detail.college = request.data.get("college")
-        education_detail.board = request.data.get("board")
-        education_detail.total_cgpa = request.data.get("total_cgpa")
-        education_detail.secured_cgpa = request.data.get("secured_cgpa")
-        education_detail.percentage = request.data.get("percentage")
-        education_detail.year_of_passing = request.data.get("year_of_passing")
-        education_detail.user = request.user
-        education_detail.save()
-        context["updated_education_detail"] = core_serializers.EducationSerializer(education_detail).data
-        return Response(context,status = HTTP_200_OK)
+        if request.user == core_models.User.objects.get(education_details = id):
+            context = {}
+            education_detail = core_models.EducationDetail.objects.get(id =id)
+            education_level = request.data.get("education_level")
+            education_detail.education_level = core_models.EducationLevel.objects.get(id = education_level)
+            education_detail.college = request.data.get("college")
+            education_detail.board = request.data.get("board")
+            education_detail.total_cgpa = request.data.get("total_cgpa")
+            education_detail.secured_cgpa = request.data.get("secured_cgpa")
+            education_detail.percentage = request.data.get("percentage")
+            education_detail.year_of_passing = request.data.get("year_of_passing")
+            education_detail.user = request.user
+            education_detail.save()
+            context["updated_education_detail"] = core_serializers.EducationSerializer(education_detail).data
+            context["message"] = "Education detail updated successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not authorized to update education detail"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+    def delete(self,request,id,*args,**kwargs):
+        if request.user == core_models.User.objects.get(education_details = id):
+            context = {}
+            curr_education_detail = core_models.EducationDetail.objects.get(id=id)
+            curr_education_detail.delete()
+            context["message"] = "Education detail updated successfully"
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not authorized to delete education detail"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+    
 
 from rest_auth.views import LoginView
 class CustomLoginView(LoginView):
