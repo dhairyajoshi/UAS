@@ -41,7 +41,7 @@ from student import models as student_models
 from student import serializers as student_serializers
 
 class DepartmentList(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = core_models.Department.objects.all()
     serializer_class = core_serializers.DepartmentSerializer
 
