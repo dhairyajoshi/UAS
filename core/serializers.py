@@ -79,7 +79,7 @@ class LoginUserSerializer(serializers.Serializer):
         
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        exclude = ('user_permissions', 'groups', 'education_details','addresses')
+        exclude = ('user_permissions', 'groups', 'education_details','addresses','username')
         model = core_models.User
     def create(self, validated_data):
         hash_list = ' xxxx xxxx'

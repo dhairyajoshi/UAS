@@ -1,6 +1,6 @@
 from cgitb import lookup
 from codecs import lookup_error
-from curses.ascii import HT
+
 from distutils import core
 from lib2to3.pgen2.parse import ParseError
 from os import stat
