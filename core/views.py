@@ -39,6 +39,8 @@ from . import models as core_models
 from . import serializers as core_serializers
 from student import models as student_models
 from student import serializers as student_serializers
+from django.template.defaultfilters import slugify
+import random
 
 class DepartmentList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -122,6 +124,7 @@ class CreateUserView(generics.CreateAPIView):
     def post(self,request,*args,**kwargs):
         
         context = {}
+        request.data['username'] = slugify(request.data.get('first_name')+'_'+request.data.get('last_name')+str(request.data.get('email'))+str(random.randrange(1,9182010))+str(request.data.get("phone_number")))
         serializer = core_serializers.CreateUserSerializer(data = request.data)
         if serializer.is_valid():
             new_user = serializer.save()

@@ -1,9 +1,11 @@
 from django.db.models import fields
 from rest_framework import serializers
+import random
 from . import models as core_models
 from django.conf import settings
 from django.contrib.auth import get_user_model,authenticate
 from django.contrib.auth.hashers import make_password
+from django.template.defaultfilters import slugify
 import core
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -79,7 +81,7 @@ class LoginUserSerializer(serializers.Serializer):
         
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        exclude = ('user_permissions', 'groups', 'education_details','addresses','username')
+        exclude = ('user_permissions', 'groups', 'education_details','addresses')
         model = core_models.User
     def create(self, validated_data):
         hash_list = ' xxxx xxxx'

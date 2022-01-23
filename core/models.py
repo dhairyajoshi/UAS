@@ -1,9 +1,14 @@
 from distutils.command.upload import upload
+from enum import unique
+from random import random
+from autoslug import AutoSlugField
+from django.template.defaultfilters import slugify
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
 from django.db.models.fields import related
 from django_countries.fields import CountryField  
 from django.conf import settings
+import random
 # Create your models here.
 GENDER_CHOICES=(
     ('MALE','MALE'),
@@ -62,14 +67,12 @@ class User(AbstractUser):
     blood_groups = models.CharField(max_length=10,choices=BLOOD_GROUPS, null=True)
     father_name = models.CharField(max_length=100,null=True,blank=True)
     mother_name = models.CharField(max_length=100,null=True,blank=True)
-    phone_number = models.CharField(max_length=15,blank=True, null=True)
+    phone_number = models.CharField(max_length=15,blank=True, null=True,unique = True)
     image = models.ImageField(upload_to=userFile, default='student_default.jpg',null = True,blank = True)
-
-
+    slug = AutoSlugField(unique = True,populate_from = 'email',null= True)
     def __str__(self):
-        return self.first_name +'_'+self.last_name
-
-
+        return self.username
+    
 
 
 

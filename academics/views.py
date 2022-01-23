@@ -38,7 +38,7 @@ class CourseList(generics.ListAPIView):
     serializer_class = academics_serializers.CourseSerializer
 
 class ProgramList(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = academics_models.Program.objects.all()
     serializer_class = academics_serializers.ProgramSerializer
     def post(self,request,*args,**kwargs):
