@@ -67,9 +67,9 @@ class User(AbstractUser):
     blood_groups = models.CharField(max_length=10,choices=BLOOD_GROUPS, null=True)
     father_name = models.CharField(max_length=100,null=True,blank=True)
     mother_name = models.CharField(max_length=100,null=True,blank=True)
-    phone_number = models.CharField(max_length=15,blank=True, null=True,unique = True)
+    phone_number = models.CharField(max_length=15,blank=True, null=True)
     image = models.ImageField(upload_to=userFile, default='student_default.jpg',null = True,blank = True)
-    slug = AutoSlugField(unique = True,populate_from = 'email',null= True)
+    slug = AutoSlugField(unique = True,populate_from = 'email')
     def __str__(self):
         return self.username
     
