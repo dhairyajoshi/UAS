@@ -5,14 +5,13 @@ from core.models import Department
 from django.conf import settings
 from employee.models import Employee,Designation
 
-# Create your models here.
 class staff(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete = models.CASCADE,null = True,related_name='staff_user_detail')
-    employee = models.ForeignKey(Employee,on_delete=models.CASCADE,null=True)
-    designation =models.ForeignKey(Designation,on_delete =models.CASCADE,null = True)
-    job_description = models.CharField(max_length=100,null =True)
-    current_position = models.CharField(max_length=50,null=True)
-    dept = models.ForeignKey(Department,on_delete=models.CASCADE,related_name="Staff_department",null= True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete = models.CASCADE,related_name='staff_user_detail')
+    employee = models.ForeignKey(Employee,on_delete=models.CASCADE, blank=True)
+    designation =models.ForeignKey(Designation,on_delete =models.CASCADE)
+    job_description = models.CharField(max_length=100,null =True, blank=True)
+    current_position = models.CharField(max_length=50,null=True, blank=True)
+    department = models.ForeignKey(Department,on_delete=models.CASCADE,related_name="Staff_department",null= True)
 
     slug = models.SlugField(unique= True,blank=True)
     def __str__(self):
