@@ -161,33 +161,34 @@ class UserDetail(generics.RetrieveUpdateAPIView):
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request, *args, **kwargs):
-        # site = request.META['HTTP_ORIGIN']
-        context = {}
-        curr_user = request.user
-        context['curr_user'] = core_serializers.UserSerializer(curr_user).data
-        # # if site == 'https://authors.kanzulhaya.com' or site=='http://localhost:3000':
-        #     # update_subscription()
-        # author_qs = core_models.Writer.objects.filter(user=request.user)
-        # if author_qs.exists():
-        #     context['curr_author'] = core_serializers.WriterSerializer(author_qs[0]).data
-        
-        # all_articles = request.query_params.get('all_author_articles')
-        # if all_articles:
-        #     context['all_articles'] = core_serializers.ArticleSerializer(core_models.Article.objects.filter(writer=author_qs[0]), many=True).data
-        
-        # # elif site == 'https://kanzulhaya.com' or site=='http://localhost:3000':
-        # user_active_plan = core_models.Subscription.objects.filter(user=curr_user, plan_active=True)
-        # user_all_plans = core_models.Subscription.objects.filter(user=curr_user, plan_active=True)
-        # user_free_trail = core_models.Subscription.objects.filter(user=curr_user, plan_id=1)
+        site = request.META['HTTP_ORIGIN']
+        if request.user.group_id.site_url == site:
+            context = {}
+            curr_user = request.user
+            context['curr_user'] = core_serializers.UserSerializer(curr_user).data
+            # # if site == 'https://authors.kanzulhaya.com' or site=='http://localhost:3000':
+            #     # update_subscription()
+            # author_qs = core_models.Writer.objects.filter(user=request.user)
+            # if author_qs.exists():
+            #     context['curr_author'] = core_serializers.WriterSerializer(author_qs[0]).data
+            
+            # all_articles = request.query_params.get('all_author_articles')
+            # if all_articles:
+            #     context['all_articles'] = core_serializers.ArticleSerializer(core_models.Article.objects.filter(writer=author_qs[0]), many=True).data
+            
+            # # elif site == 'https://kanzulhaya.com' or site=='http://localhost:3000':
+            # user_active_plan = core_models.Subscription.objects.filter(user=curr_user, plan_active=True)
+            # user_all_plans = core_models.Subscription.objects.filter(user=curr_user, plan_active=True)
+            # user_free_trail = core_models.Subscription.objects.filter(user=curr_user, plan_id=1)
 
-        # if user_active_plan.exists():
-        #     context['user_active_plan'] = core_serializers.SubscriptionSerializer(user_active_plan[0]).data
+            # if user_active_plan.exists():
+            #     context['user_active_plan'] = core_serializers.SubscriptionSerializer(user_active_plan[0]).data
 
-        # context['user_all_plans'] = core_serializers.SubscriptionSerializer(user_all_plans, many=True).data
-        # if user_free_trail.exists():
-        #     context['user_free_trail'] = core_serializers.SubscriptionSerializer(user_free_trail[0]).data
+            # context['user_all_plans'] = core_serializers.SubscriptionSerializer(user_all_plans, many=True).data
+            # if user_free_trail.exists():
+            #     context['user_free_trail'] = core_serializers.SubscriptionSerializer(user_free_trail[0]).data
 
-        return Response(context, status=HTTP_200_OK)
+            return Response(context, status=HTTP_200_OK)
     
     def post(self, request, *args, **kwargs):
         context = {}
