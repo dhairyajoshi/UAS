@@ -161,11 +161,9 @@ class UserDetail(generics.RetrieveUpdateAPIView):
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request, *args, **kwargs):
-        site = request.META['HTTP_ORIGIN']
-        if request.user.group_id.site_url == site:
-            context = {}
-            curr_user = request.user
-            context['curr_user'] = core_serializers.UserSerializer(curr_user).data
+        context = {}
+        curr_user = request.user
+        context['curr_user'] = core_serializers.UserSerializer(curr_user).data
             # # if site == 'https://authors.kanzulhaya.com' or site=='http://localhost:3000':
             #     # update_subscription()
             # author_qs = core_models.Writer.objects.filter(user=request.user)
@@ -188,7 +186,7 @@ class UserProfileView(APIView):
             # if user_free_trail.exists():
             #     context['user_free_trail'] = core_serializers.SubscriptionSerializer(user_free_trail[0]).data
 
-            return Response(context, status=HTTP_200_OK)
+        return Response(context, status=HTTP_200_OK)
     
     def post(self, request, *args, **kwargs):
         context = {}
