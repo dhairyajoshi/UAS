@@ -1,0 +1,1378 @@
+{
+	"info": {
+		"_postman_id": "020a575d-6b98-4745-b284-9cba8a51e936",
+		"name": "UAS backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Registrations",
+			"item": [
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"password\": \"hsbgssdfh\",\n        \"first_name\": \"Test user test\",\n        \"last_name\": \"user\",\n        \"email\": \"tsdf@wdsasd.com\",\n        \"middle_name\": \"only\",\n        \"date_of_birth\": \"2021-12-31\",\n        \"gender\": \"MALE\",\n        \"category\": \"General\",\n        \"nationality\": \"India\",\n        \"adhar_no\": \"45768549849\",\n        \"religion\": \"HINDU\",\n        \"blood_groups\": null,\n        \"father_name\": \"test_father_name\",\n        \"mother_name\": \"test_mother_name\",\n        \"phone_number\": \"46875648348\",\n        \"image\": null,\n        \"group_id\": 5\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/core/create-user/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"create-user",
+								""
+							]
+						},
+						"description": "This is the user registration endpoint for all types of user, where the *group_id* is fixed for student, Faculty, Staff and Administrator"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date_of_joining\": \"2021-05-11\",\n    \"date_of_leaving\": \"2021-12-14\",\n    \"work_phone_number\": \"7619048124\",\n    \"work_email_id\": \"testemployee@gmail.com\",\n    \"pan_number\": \"jhsfe23543\",\n    \"job_type\": \"Permanent\",\n    \"user\": 7,\n    \"designation\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/employee/employee-list/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"employee",
+								"employee-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Faculty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"highest_qualification\": \"Post Doctorate\",\n    \"specialization\": \"Cloud Computing\",\n    \"teach_experience\": 12,\n    \"employee\": 4,\n    \"branch\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/faculty/faculty-list/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"faculty",
+								"faculty-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Student Application",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jee_roll\": \"64987498797\",\r\n    \"jee_rank\": \"48998449\",\r\n    \"program\": 7,\r\n    \"academic_session\":\"2021\",\r\n    \"entrance_exam\": \"JEE-MAIN\",\r\n    \"is_Tfw\": false,\r\n    \"mode\": \"REGULAR\",\r\n    \"is_pwd\": false,\r\n    \"is_defence\": false,\r\n    \"is_green_card\": false,\r\n    \"parents_mobile\": \"544549854\",\r\n    \"parents_email\": \"test__studentnew@gmail.com\",\r\n    \"status_application\": \"Pending\",\r\n    \"user\":18,\r\n    \"department\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/student/student-list/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"student",
+								"student-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"registration\":54848984984,\r\n    \"user\":15,\r\n    \"application\":null,\r\n    \"verification_time\":null,\r\n    \"verified_by\":null,\r\n    \"department\":2,\r\n    \"program\":5,\r\n    \"entrance_exam\":\"JEE-MAIN\",\r\n    \"academic_session\":\"2021\",\r\n    \"is_Tfw\": false,\r\n    \"mode\":\"REGULAR\",\r\n    \"is_pwd\":false,\r\n    \"is_defence\":false,\r\n    \"is_green_card\":false,\r\n    \"parent_mobile\":\"55464634886\",\r\n    \"parent_email\":\"tf@hgh.com\",\r\n    \"jee_roll\":\"5878746548\",\r\n    \"jee_rank\":\"56454\",\r\n    \"gate_entry\":false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/student/student-final-list/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"student",
+								"student-final-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Staff",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\":7,\r\n    \"job_description\":\"test_description_new\",\r\n    \"current_position\":\"test_position_new\",\r\n    \"dept\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/staff/staff-list/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"staff",
+								"staff-list",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"TestUser33\",\r\n    \"email\":\"testuser33@gmail.com\",\r\n    \"password\":\"pbkdf2_sha256$260000$NjK1wYQugCyP0bSmfUyrVn$i+E+2g3az2nfou1gX4PaFohULQLKTXaMyt1IRBh2CUE=\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/rest-auth/login/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"rest-auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{dev_url}}/rest-auth/logout/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"rest-auth",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Reset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"testuser33@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/rest-auth/password/reset/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"rest-auth",
+								"password",
+								"reset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Reset Confirm",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "uid",
+								"value": "{{uid}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"new_password1\":\"dcbekgdglwebdnliudhceiunn_win2dwbdh\",\r\n    \"new_password2\":\"dcbekgdglwebdnliudhceiunn_win2dwbdh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/rest-auth/password/reset/confirm/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"rest-auth",
+								"password",
+								"reset",
+								"confirm",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Change",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"new_password1\":\"dcbekgdglwebdnliudhceiunn_win2dwbdh\",\r\n    \"new_password2\":\"dcbekgdglwebdnliudhceiunn_win2dwbdh\",\r\n    \"old_password\":\"pbkdf2_sha256$260000$NjK1wYQugCyP0bSmfUyrVn$i+E+2g3az2nfou1gX4PaFohULQLKTXaMyt1IRBh2CUE=\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/rest-auth/password/change/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"rest-auth",
+								"password",
+								"change",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/core/user-profile/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"user-profile",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List",
+			"item": [
+				{
+					"name": "All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_url}}/core/list-user/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"core",
+								"list-user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Designations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dev_url}}/employee/designation-list/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"employee",
+								"designation-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All  Departments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/core/department-list/?type=academic",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"department-list",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "academic"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Student",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "All Courses",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "All Education Level",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "All Programs",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "All Address List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/core/create-address/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"create-address",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Staff",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/staff/staff-list/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"staff",
+								"staff-list",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "Student Application",
+							"item": [
+								{
+									"name": "Application Status Update view",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": 4,\r\n    \"jee_roll\": \"49846546516\",\r\n    \"jee_rank\": \"46545\",\r\n    \"programme\": \"B.Tech.\",\r\n    \"entrance_exam\": \"JEE-MAIN\",\r\n    \"is_Tfw\": false,\r\n    \"mode\": \"REGULAR\",\r\n    \"is_pwd\": false,\r\n    \"is_defence\": false,\r\n    \"is_green_card\": false,\r\n    \"parents_mobile\": \"544549854\",\r\n    \"parents_email\": \"test__student@gmail.com\",\r\n    \"application_time\": \"2021-12-31T13:24:10.828327+05:30\",\r\n    \"status_application\": \"Accepted\",\r\n    \"slug\": \"49846546516-46545-Pending\",\r\n    \"user\": null,\r\n    \"department\": null,\r\n    \"course\": null\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{dev_url}}/core/application-update-view/4/",
+											"host": [
+												"{{dev_url}}"
+											],
+											"path": [
+												"core",
+												"application-update-view",
+												"4",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "All Application List",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{dev_url}}/core/student-application-list/?status=Pending",
+											"host": [
+												"{{dev_url}}"
+											],
+											"path": [
+												"core",
+												"student-application-list",
+												""
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "Pending",
+													"description": "Depending on the value of the status key the respective student application list is fetched.The available values for status key are:Pending,Accepted,Rejected."
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Employee",
+					"item": [
+						{
+							"name": "Staff",
+							"item": []
+						},
+						{
+							"name": "Faculty",
+							"item": [
+								{
+									"name": "Add Publications",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\":\"testpublication\",\r\n    \"description\":\"testdescription\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{dev_url}}/faculty/publication-create/",
+											"host": [
+												"{{dev_url}}"
+											],
+											"path": [
+												"faculty",
+												"publication-create",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Leave Application",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Experience",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"start_date\":\"2021-12-31\",\r\n    \"end_date\":\"2022-5-15\",\r\n    \"organisation_name\":\"test__organisation\",\r\n    \"designation\":\"testdesignation\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{dev_url}}/employee/experience-create/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"employee",
+										"experience-create",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Administrator",
+					"item": [
+						{
+							"name": "Add Education Level",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"test_education_level_new\",\r\n    \"description\":\"test_education_level_description_new\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/core/education-level-list/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"core",
+										"education-level-list",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Education Level",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"name\": \"test_new_level\",\r\n    \"description\": \"test_level_new_description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/core/education-level-detail/7/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"core",
+										"education-level-detail",
+										"7",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Education Level",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}/core/education-level-detail/8/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"core",
+										"education-level-detail",
+										"8",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Department",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test department\",\r\n    \"code\": \"4544\",\r\n    \"year_of_esht\": \"1956\",\r\n    \"is_academic\": true,\r\n    \"image\": null,\r\n    \"programme\": [],\r\n    \"courses\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/core/department-list/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"core",
+										"department-list",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Department Detail",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"description": "Also there is raw data sent check that tab too",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local_url}}/core/department-detail/5/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"core",
+										"department-detail",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Department",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}/core/department-detail/4/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"core",
+										"department-detail",
+										"4",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Program",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"full_name\":\"test_full_name\",\r\n    \"short_name\":\"test\",\r\n    \"year_of_esht\":\"1458\",\r\n    \"num_of_seats\":54,\r\n    \"is_ugc_accredeted\":true,\r\n    \"is_nb_accredeted\":true,\r\n    \"departments\":[2,3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/academics/program-list/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"academics",
+										"program-list",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Program",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"full_name\": \"test_updated_full_name\",\r\n    \"short_name\": \"test\",\r\n    \"year_of_esht\": \"1458\",\r\n    \"num_of_seats\": 54,\r\n    \"is_ugc_accredeted\": true,\r\n    \"is_nb_accredeted\": true,\r\n    \"departments\": [\r\n        3\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/academics/program-detail/13/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"academics",
+										"program-detail",
+										"13",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Program",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}/academics/program-detail/12/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"academics",
+										"program-detail",
+										"12",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Courses",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"course_code\":\"test__123_new\",\r\n    \"subject\":\"test_subject\",\r\n    \"credit\":3,\r\n    \"contact_hours\":30,\r\n    \"course_type\":\"THEORY\",\r\n    \"department\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/academics/courses-list/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"academics",
+										"courses-list",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Course Detail",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"course_code\": \"test_123_new_update\",\r\n    \"subject\": \"test_subject_update\",\r\n    \"credit\": 2,\r\n    \"contact_hours\": 33,\r\n    \"course_type\": \"THEORY\",\r\n    \"department\":3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/academics/courses-detail/3/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"academics",
+										"courses-detail",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Course Detail",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}/academics/courses-detail/3/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"academics",
+										"courses-detail",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Add Addresses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"street_address\":\"tftfhg\",\r\n    \"state\":\"dsfdsf\",\r\n    \"district\":\"dfwerf\",\r\n    \"city\":\"whjvjhvdwed\",\r\n    \"police_station\":\"ddewdsad\",\r\n    \"pin_code\":\"cdsfwdfs\",\r\n    \"address_type\":\"ddfwdfsf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/core/create-address/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"create-address",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Education Details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"test_level\",\r\n    \"description\":\"test_level_description\",\r\n    \"college\":\"test_college\",\r\n    \"board\":\"test_board\",\r\n    \"total_cgpa\":\"10\",\r\n    \"secured_cgpa\":\"9.6\",\r\n    \"year_of_passing\":\"2014\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dev_url}}/core/create-education-detail/",
+							"host": [
+								"{{dev_url}}"
+							],
+							"path": [
+								"core",
+								"create-education-detail",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Education Level Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/core/education-level-detail/9/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"education-level-detail",
+								"9",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/core/user-detail/86/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"user-detail",
+								"86",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Education Detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update Education Detail",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"education_level\":9,\r\n    \"college\":\"test_college\",\r\n    \"board\":\"test_board\",\r\n    \"total_cgpa\":\"10\",\r\n    \"secured_cgpa\":\"9.6\",\r\n    \"year_of_passing\":\"2014\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/core/education-detail-update/13/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"education-detail-update",
+								"13",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Program Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/academics/program-detail/13/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"academics",
+								"program-detail",
+								"13",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Address Detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address Detail",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"street_address\": \"kajsfbvid\",\r\n    \"state\": \"rsgrdf\",\r\n    \"district\": \"rgserf\",\r\n    \"city\": \"ardgeah\",\r\n    \"police_station\": \"aergser\",\r\n    \"pin_code\": \"argetgf\",\r\n    \"address_type\": \"Present\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/core/address-detail/23/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"address-detail",
+								"23",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address Detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile image",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/goura/Downloads/images.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local_url}}/core/user-detail/86/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"core",
+								"user-detail",
+								"86",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Course Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/academics/courses-detail/5/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"academics",
+								"courses-detail",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

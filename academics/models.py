@@ -41,7 +41,7 @@ class Program(models.Model):
         verbose_name_plural = "Programs"
 
 class Course(models.Model):
-    course_code = models.CharField(max_length = 50,null= True)
+    course_code = models.CharField(max_length = 50,null= True,unique = True)
     subject = models.CharField(max_length= 100,null =True)
     credit = models.IntegerField(null = True)
     contact_hours = models.IntegerField(null = True)
@@ -49,6 +49,8 @@ class Course(models.Model):
     department = models.ForeignKey(core_models.Department,related_name='course_department',on_delete=models.CASCADE,null = True)
     def __str__(self):
         return self.course_code
+    def save(self,*args,**kwargs):
+        super(Course,self).save(*args,**kwargs)
     class Meta:
         verbose_name_plural= "Courses"
 
