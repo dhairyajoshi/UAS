@@ -1,4 +1,8 @@
+from cgi import print_directory
+from cgitb import lookup
+from distutils import core
 from os import stat
+from shutil import register_unpack_format
 from django.shortcuts import render
 from multiprocessing import context
 import re
@@ -33,9 +37,31 @@ from . import serializers as academics_serializers
 from core import models as core_models
 # Create your views here.
 
-class CourseList(generics.ListAPIView):
+class CourseList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = academics_models.Course.objects.all()
     serializer_class = academics_serializers.CourseSerializer
+    def post(self,request,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context ={}
+            new_course = academics_models.Course()
+            new_course.course_code = request.data.get('course_code')
+            new_course.subject = request.data.get('subject')
+            new_course.credit = request.data.get('credit')
+            new_course.contact_hours = request.data.get('contact_hours')
+            new_course.course_type = request.data.get('course_type')
+            curr_dept = core_models.Department.objects.get(id = request.data.get('department'))
+            new_course.department = curr_dept
+            new_course.save()
+            curr_dept.courses.add(new_course)
+            context["New_course"] = academics_serializers.CourseSerializer(new_course).data
+            context["message"] = "Course created successfully"
+            return Response(context,status= HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+
 
 class ProgramList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -102,3 +128,47 @@ class ProgramDetail(generics.RetrieveUpdateDestroyAPIView):
             context = {}
             context["errors"] = "You are not administrator"
             return Response(context)
+
+class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = academics_models.Course.objects.all()
+    serializer_class = academics_serializers.CourseSerializer
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        if request.user.group_id.id ==5:
+            context = {}
+            instance = academics_models.Course.objects.get(id = id)
+            instance.course_code = request.data.get("course_code")
+            instance.subject = request.data.get("subject")
+            instance.credit = request.data.get("credit")
+            instance.contact_hours = request.data.get("contact_hours")
+            curr_dept = instance.department
+            instance.department = core_models.Department.objects.get(id = request.data.get("department"))
+            if curr_dept != instance.department:
+                dept_instance = core_models.Department.objects.get(id = curr_dept.id)
+                dept_instance.courses.remove(instance)
+                curr_dept = core_models.Department.objects.get(id = instance.department.id)
+                curr_dept.courses.add(instance)
+            instance.save()
+            serializer = academics_serializers.CourseSerializer(instance)
+            context["Current_course"] = serializer.data
+            context["message"] = "Course Details updated successfully"
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+    
+    def delete(self,request,id,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context = {}
+            instance = academics_models.Course.objects.get(id = id)
+            dept_instance = core_models.Department.objects.get(id = instance.department.id)
+            dept_instance.courses.remove(instance)
+            instance.delete()
+            context["message"] = "Course record deleted successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status = HTTP_400_BAD_REQUEST)         
