@@ -18,3 +18,15 @@ class ExperienceCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = employee_models.Experience
+
+
+class LeaveSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields= '__all__'
+        model= employee_models.Leave
+
+
+class LeaveTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields= '__all__'
+        model = employee_models.LeaveType
