@@ -72,6 +72,7 @@ class Promotion(models.Model):
 
 class Leave(models.Model):
     employee = models.ForeignKey(Employee,related_name='Emp_leave',on_delete=models.CASCADE,null=True)
+    leave_type = models.ForeignKey('LeaveType',related_name ='emp_leave_type', on_delete=models.CASCADE,null=True)
     start_date = models.DateField(null= True)
     end_date = models.DateField(null=True)
     is_granted = models.BooleanField(default=False)
@@ -80,17 +81,16 @@ class Leave(models.Model):
     leave_phone_number = models.CharField(max_length=12,null= True)
 
     def __str__(self):
-        return self.user.first_name + ' ' + self. user.last_name
+        return str(self.leave_type.name) + '_' +str(self.employee.user.first_name) + ' ' +str(self.employee.user.last_name)
     
     class Meta:
         verbose_name_plural ="Leaves"
 
 class LeaveType(models.Model):
-    leave = models.ForeignKey(Leave,related_name ='emp_leave_type', on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=50,null=True)
     
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.name
     class Meta:
         verbose_name_plural="LeaveTypes"
 
