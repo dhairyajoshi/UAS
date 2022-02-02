@@ -172,3 +172,24 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
             context = {}
             context["errors"] = "You are not an administrator"
             return Response(context,status = HTTP_400_BAD_REQUEST)         
+
+class SemesterRecordList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = academics_models.SemesterRecord.objects.all()
+    serializer_class = academics_serializers.SemesterRecordSerializer
+    def post(self,request,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context = {}
+            new_semester_record = academics_models.SemesterRecord()
+            new_semester_record.start_date = request.data.get('start_date')
+            new_semester_record.end_date = request.data.get('end_date')
+            new_semester_record.sem_type = request.data.get('sem_type')
+            new_semester_record.department = core_models.Department.objects.get(id = request.data.get('department'))
+            new_semester_record.save()
+            context["New Semester Record"] = academics_serializers.SemesterRecordSerializer(new_semester_record).data
+            context["message"] = "New semester record created successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status= HTTP_400_BAD_REQUEST)

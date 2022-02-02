@@ -11,3 +11,8 @@ class ProgramSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = academics_models.Program
+
+class SemesterRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = academics_models.SemesterRecord

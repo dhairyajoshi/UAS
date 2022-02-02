@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "020a575d-6b98-4745-b284-9cba8a51e936",
+		"_postman_id": "de43c572-a650-438e-8105-2b7b09372304",
 		"name": "UAS backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -443,7 +443,10 @@
 					"name": "All Student",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -451,7 +454,10 @@
 					"name": "All Courses",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -459,7 +465,10 @@
 					"name": "All Education Level",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -467,7 +476,10 @@
 					"name": "All Programs",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -676,6 +688,66 @@
 									"path": [
 										"employee",
 										"experience-create",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Leave",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "start_date",
+											"value": "2021-05-11",
+											"type": "default"
+										},
+										{
+											"key": "end_date",
+											"value": "2021-05-16",
+											"type": "default"
+										},
+										{
+											"key": "description",
+											"value": "sdkfsdfs",
+											"type": "default"
+										},
+										{
+											"key": "leave_address",
+											"value": "erere",
+											"type": "default"
+										},
+										{
+											"key": "leave_type",
+											"value": "7",
+											"type": "default"
+										},
+										{
+											"key": "leave_phone_number",
+											"value": "45645645",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dev_url}}/employee/leave-create/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"employee",
+										"leave-create",
 										""
 									]
 								}
@@ -1068,6 +1140,41 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Add Leave Type",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "sick leave",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dev_url}}/employee/leavetype-create/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"employee",
+										"leavetype-create",
+										""
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1200,7 +1307,10 @@
 					"name": "Get Education Detail",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -1269,7 +1379,10 @@
 					"name": "Address Detail",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -1312,7 +1425,10 @@
 					"name": "Delete Address Detail",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
