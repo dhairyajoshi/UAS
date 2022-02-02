@@ -71,7 +71,7 @@ class SemesterRecord(models.Model):
     department = models.ForeignKey(core_models.Department,on_delete=models.CASCADE,null = True)
 
     def __str__(self):
-        return self.sem_course.course.subject + "_" +self.start_date
+        return str(self.start_date) +"_"+ str(self.end_date) +'-'+ str(self.department.name)
     
     class Meta:
         verbose_name_plural ="SemesterRecords"

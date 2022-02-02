@@ -1,4 +1,5 @@
 from multiprocessing import context
+from os import stat
 import re
 from django.db.models import query
 from django.shortcuts import render
@@ -93,22 +94,27 @@ class LeaveCreate(generics.ListCreateAPIView):
     serializer_class= employee_serializers.LeaveSerializer
 
     def post(self,request,*args,**kwargs):
-        context ={}
-        new_leave = employee_models.Leave()
-        new_leave.start_date = request.data.get('start_date')
-        new_leave.end_date = request.data.get("end_date")
-        new_leave.description = request.data.get("description")
-        new_leave.leave_address = request.data.get("leave_address")
-        new_leave.leave_phone_number = request.data.get("leave_phone_number")
-        leave_type_id= request.data.get("leave_type")
-        new_leave.leave_type= employee_models.LeaveType.objects.get(id=leave_type_id)
-        curr_user = request.user.id
-        curr_employee = employee_models.Employee.objects.get(id =curr_user)
-        new_leave.employee = curr_employee
-        new_leave.save()
-        
-        context["new_leave"] = employee_serializers.LeaveSerializer(new_leave).data
-        context["message"] = "New leave created successfully"
-        return Response(context,status=HTTP_200_OK)
+        if request.user.group_id.id == 2 or request.user.group_id.id == 4:
+            context ={}
+            new_leave = employee_models.Leave()
+            new_leave.start_date = request.data.get('start_date')
+            new_leave.end_date = request.data.get("end_date")
+            new_leave.description = request.data.get("description")
+            new_leave.leave_address = request.data.get("leave_address")
+            new_leave.leave_phone_number = request.data.get("leave_phone_number")
+            leave_type_id= request.data.get("leave_type")
+            new_leave.leave_type= employee_models.LeaveType.objects.get(id=leave_type_id)
+            curr_user = request.user.id
+            curr_employee = employee_models.Employee.objects.get(user =curr_user)
+            new_leave.employee = curr_employee
+            new_leave.save()
+            curr_employee.leaves.add(new_leave)
+            context["new_leave"] = employee_serializers.LeaveSerializer(new_leave).data
+            context["message"] = "New leave created successfully"
+            return Response(context,status=HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not authorized."
+            return Response(context,status = HTTP_400_BAD_REQUEST)
 
 
