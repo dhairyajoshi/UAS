@@ -8,4 +8,6 @@ urlpatterns = [
     path('courses-detail/<int:id>/',academics_views.CourseDetail.as_view(),name = "course-detail"),
     path('program-list/',academics_views.ProgramList.as_view(),name='program-list'),
     path('program-detail/<int:id>/',academics_views.ProgramDetail.as_view(),name = "program-detail"),
+    path('semester-record-list/',academics_views.SemesterRecordList.as_view(),name = "semester-record-list"),
+    path('semester-record-detail/<int:id>/',academics_views.SemesterRecordDetail.as_view(),name = "semester-record"),
 ]
