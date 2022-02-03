@@ -35,6 +35,8 @@ from django.utils import timezone
 from . import models as academics_models
 from . import serializers as academics_serializers
 from core import models as core_models
+
+import academics
 # Create your views here.
 
 class CourseList(generics.ListCreateAPIView):
@@ -172,3 +174,67 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
             context = {}
             context["errors"] = "You are not an administrator"
             return Response(context,status = HTTP_400_BAD_REQUEST)         
+
+class SemesterRecordList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = academics_models.SemesterRecord.objects.all()
+    serializer_class = academics_serializers.SemesterRecordSerializer
+    def get_queryset(self):
+        queryset = academics_models.SemesterRecord.objects.all()
+        type = self.request.query_params.get('sem_type')
+        if type is not None:
+            if type == 'Odd':
+                queryset = academics_models.SemesterRecord.objects.filter(sem_type ="ODD")
+            elif type == "Even":
+                queryset =academics_models.SemesterRecord.objects.filter(sem_type = "EVEN")
+        return queryset
+    def post(self,request,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context = {}
+            new_semester_record = academics_models.SemesterRecord()
+            new_semester_record.start_date = request.data.get('start_date')
+            new_semester_record.end_date = request.data.get('end_date')
+            new_semester_record.sem_type = request.data.get('sem_type')
+            new_semester_record.department = core_models.Department.objects.get(id = request.data.get('department'))
+            new_semester_record.save()
+            context["New Semester Record"] = academics_serializers.SemesterRecordSerializer(new_semester_record).data
+            context["message"] = "New semester record created successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status= HTTP_400_BAD_REQUEST)
+
+class SemesterRecordDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = academics_models.SemesterRecord.objects.all()
+    serializer_class = academics_serializers.SemesterRecordSerializer
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context ={}
+            instance = academics_models.SemesterRecord.objects.get(id = id)
+            instance.start_data = request.data.get("start_date")
+            instance.end_date = request.data.get("end_gate")
+            instance.sem_type = request.data.get("sem_type")
+            instance.department = core_models.Department.objects.get(id = request.data.get("department"))
+            instance.save()
+            serializer = academics_serializers.SemesterRecordSerializer(instance)
+            context["Updated semester record"] = serializer.data
+            context["message"] = "Semester Record Updated Successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not an adinistrator"
+            return Response(context,status = HTTP_400_BAD_REQUEST)
+    def delete(self,request,id,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context = {}
+            instance = academics_models.SemesterRecord.objects.get(id = id)
+            instance.delete()
+            context["message"] = "Semester Record Deleted Successfully"
+            return Response(context,status= HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status = HTTP_400_BAD_REQUEST)
