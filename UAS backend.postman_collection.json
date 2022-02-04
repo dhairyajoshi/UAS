@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "372b7e57-9b2e-4ac9-89f3-141c5d376fb9",
+		"_postman_id": "de43c572-a650-438e-8105-2b7b09372304",
 		"name": "UAS backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -526,32 +526,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "All Semester Record",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{local_url}}/academics/semester-record-list/?sem_type=Odd",
-							"host": [
-								"{{local_url}}"
-							],
-							"path": [
-								"academics",
-								"semester-record-list",
-								""
-							],
-							"query": [
-								{
-									"key": "sem_type",
-									"value": "Odd",
-									"description": "The value can be either Odd or Even to filter out the respective semester records and if empty all data is fetched."
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -676,6 +650,17 @@
 							]
 						},
 						{
+							"name": "Leave Application",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Add Experience",
 							"request": {
 								"method": "POST",
@@ -703,40 +688,6 @@
 									"path": [
 										"employee",
 										"experience-create",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add Leave",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{token}}",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"start_date\":\"2021-05-11\",\r\n    \"end_date\":\"2021-05-16\",\r\n    \"leave_address\":\"sertr\",\r\n    \"leave_type\":7,\r\n    \"leaave_phone_number\":\"184984556498\",\r\n    \"leave_description\":\"dfevev\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{local_url}}/employee/leave-create/",
-									"host": [
-										"{{local_url}}"
-									],
-									"path": [
-										"employee",
-										"leave-create",
 										""
 									]
 								}
@@ -1202,18 +1153,19 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"test_leave_type\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "sick leave",
+											"type": "default"
 										}
-									}
+									]
 								},
 								"url": {
-									"raw": "{{local_url}}/employee/leavetype-create/",
+									"raw": "{{dev_url}}/employee/leavetype-create/",
 									"host": [
-										"{{local_url}}"
+										"{{dev_url}}"
 									],
 									"path": [
 										"employee",
@@ -1225,94 +1177,34 @@
 							"response": []
 						},
 						{
-							"name": "SemesterRecord Creation",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{token_admin}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"start_date\":\"2021-12-31\",\r\n    \"end_date\":\"2022-3-31\",\r\n    \"sem_type\":\"EVEN\",\r\n    \"department\":\"2\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{local_url}}/academics/semester-record-list/",
-									"host": [
-										"{{local_url}}"
-									],
-									"path": [
-										"academics",
-										"semester-record-list",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update Semester Record",
+							"name": "Verify Employee",
 							"request": {
 								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "{{token_admin}}",
-										"type": "text"
+										"value": "{{token}}",
+										"type": "default"
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"start_date\": \"2021-12-31\",\r\n    \"end_date\": \"2022-03-31\",\r\n    \"sem_type\": \"ODD\",\r\n    \"department\": 5,\r\n    \"student\": [],\r\n    \"sem_course\": []\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "emp_id",
+											"value": "153",
+											"type": "default"
 										}
-									}
+									]
 								},
 								"url": {
-									"raw": "{{local_url}}/academics/semester-record-detail/1/",
+									"raw": "{{dev_url}}/employee/employee-verify/",
 									"host": [
-										"{{local_url}}"
+										"{{dev_url}}"
 									],
 									"path": [
-										"academics",
-										"semester-record-detail",
-										"1",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Semester Record",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{token_admin}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{local_url}}/academics/semester-record-detail/1/",
-									"host": [
-										"{{local_url}}"
-									],
-									"path": [
-										"academics",
-										"semester-record-detail",
-										"1",
+										"employee",
+										"employee-verify",
 										""
 									]
 								}
@@ -1625,26 +1517,6 @@
 								"academics",
 								"courses-detail",
 								"5",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Semester Record Detail",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{local_url}}/academics/semester-record-detail/2/",
-							"host": [
-								"{{local_url}}"
-							],
-							"path": [
-								"academics",
-								"semester-record-detail",
-								"2",
 								""
 							]
 						}

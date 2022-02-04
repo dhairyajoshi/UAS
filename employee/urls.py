@@ -9,4 +9,5 @@ urlpatterns = [
     path('experience-create/',employee_views.ExperienceCreate.as_view(),name = "Experience-creation"),
     path('leavetype-create/',employee_views.LeaveTypeCreate.as_view(),name = "LeaveType-creation"),
     path('leave-create/',employee_views.LeaveCreate.as_view(),name = "Leave-creation"),
+    path('employee-verify/',employee_views.VerifyEmployee.as_view(),name = "Employee-verification"),
 ]

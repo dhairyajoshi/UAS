@@ -35,6 +35,8 @@ class Employee(models.Model):
     job_type = models.CharField(choices=JOB_TYPE_CHOICE, max_length=50,null= True)
     promotions = models.ManyToManyField('Promotion',related_name = 'employee_promotion')
     leaves = models.ManyToManyField('Leave',related_name = 'employee_leave')
+    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='employee_verifier', on_delete=models.SET_NULL, null=True,blank=True)
+
     
     
     slug = models.SlugField(unique=True,blank=True)

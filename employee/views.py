@@ -1,8 +1,9 @@
 from multiprocessing import context
 from os import stat
 import re
+from urllib import request
 from django.db.models import query
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework import generics, serializers
 from rest_framework import response
 from rest_framework import status
@@ -116,5 +117,26 @@ class LeaveCreate(generics.ListCreateAPIView):
             context ={}
             context["errors"] = "You are not authorized."
             return Response(context,status = HTTP_400_BAD_REQUEST)
+
+class VerifyEmployee(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class= employee_serializers.EmployeeSerializer
+
+
+    def put(self,request, *args,**kwargs):
+        if request.user.group_id.id ==5:
+            context = {}
+            emp_id= request.data.get('emp_id')
+            curr_emp= employee_models.Employee.objects.get(user=emp_id)
+            curr_emp.verified_by=request.user
+            curr_emp.save()
+            context["message"]="Employee verified successfully"
+            return Response(context,status=HTTP_200_OK)
+            
+        else:
+            context={}
+            context["errors"] = "You are not an administrator"
+            return Response(context)
+
 
 
