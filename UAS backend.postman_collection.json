@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "372b7e57-9b2e-4ac9-89f3-141c5d376fb9",
+		"_postman_id": "3e95375a-b103-47db-9282-284d606581d4",
 		"name": "UAS backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1313,6 +1313,41 @@
 										"academics",
 										"semester-record-detail",
 										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Employee",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "emp_id",
+											"value": "153",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dev_url}}/employee/employee-verify/",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"employee",
+										"employee-verify",
 										""
 									]
 								}
