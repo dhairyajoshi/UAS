@@ -18,3 +18,8 @@ class ExperienceCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = employee_models.Experience
+
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = employee_models.role

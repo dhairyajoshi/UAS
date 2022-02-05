@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "372b7e57-9b2e-4ac9-89f3-141c5d376fb9",
+		"_postman_id": "708baf95-508c-4e2f-b76e-32ccecea4192",
 		"name": "UAS backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1258,6 +1258,101 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Add Role",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_admin}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"employee\":16,\r\n    \"name\":\"test_role\",\r\n    \"start_date\":\"2022-02-05\",\r\n    \"end_date\":\"2022-02-20\",\r\n    \"description\":\"test_description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/employee/role-list/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"employee",
+										"role-list",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update role details",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_admin}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test_updated_role\",\r\n    \"start_date\": \"2022-02-05\",\r\n    \"end_date\": \"2022-02-10\",\r\n    \"description\": \"test_description\",\r\n    \"employee\": 15\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/employee/role-detail/1/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"employee",
+										"role-detail",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Role",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_admin}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}/employee/role-detail/2/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"employee",
+										"role-detail",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1585,6 +1680,45 @@
 								"academics",
 								"semester-record-detail",
 								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Role List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/employee/role-list/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"employee",
+								"role-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/employee/role-detail/1/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"employee",
+								"role-detail",
+								"1",
 								""
 							]
 						}

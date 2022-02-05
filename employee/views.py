@@ -65,3 +65,61 @@ class ExperienceCreate(APIView):
         context["new_experience"] = employee_serializers.ExperienceCreateSerializer(new_experience).data
         context["message"] = "New experience created successfully"
         return Response(context,status=HTTP_200_OK)
+
+class Rolelist(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = employee_models.role.objects.all()
+    serializer_class = employee_serializers.RoleSerializer
+    def post(self,request,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context = {}
+            new_role = employee_models.role()
+            new_role.employee = employee_models.Employee.objects.get(id = request.data.get("employee"))
+            new_role.name = request.data.get("name")
+            new_role.start_date = request.data.get("start_date")
+            new_role.end_date = request.data.get("end_date")
+            new_role.description = request.data.get("description")
+            new_role.save()
+            serializer = employee_serializers.RoleSerializer(new_role)
+            context["New_role"] = serializer.data
+            context["message"] = "New role created successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+
+class RoleDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = employee_models.role.objects.all()
+    serializer_class = employee_serializers.RoleSerializer
+    lookup_field = "id"
+    def put(self,request,id,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context = {}
+            curr_role = employee_models.role.objects.get(id =id)
+            curr_role.employee = employee_models.Employee.objects.get(id = request.data.get("employee"))
+            curr_role.name = request.data.get("name")
+            curr_role.start_date = request.data.get("start_date")
+            curr_role.end_date = request.data.get("end_date")
+            curr_role.description = request.data.get("description")
+            curr_role.save()
+            serializer = employee_serializers.RoleSerializer(curr_role)
+            context["Updated_role"] = serializer.data
+            context["message"] = "Role Updated successfully"
+            return Response(context,status = HTTP_200_OK)
+        else:
+            context ={}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+    def delete(self,request,id,*args,**kwargs):
+        if request.user.group_id.id == 5:
+            context = {}
+            curr_role = employee_models.role.objects.get(id =id)
+            curr_role.delete()
+            context["message"] = "Role deleted successfully"
+            return Response(context,status= HTTP_200_OK)
+        else:
+            context = {}
+            context["errors"] = "You are not an administrator"
+            return Response(context,status=HTTP_400_BAD_REQUEST)
