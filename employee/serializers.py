@@ -6,7 +6,7 @@ from . import models as employee_models
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         # fields = '__all__'
-        exclude = ('experiences', 'promotions', 'leaves', 'slug')
+        exclude = ('experiences', 'promotions', 'slug')
         model = employee_models.Employee
 
 class DesignationSerializer(serializers.ModelSerializer):
@@ -20,10 +20,10 @@ class ExperienceCreateSerializer(serializers.ModelSerializer):
         model = employee_models.Experience
 
 
-class LeaveSerializer(serializers.ModelSerializer):
+class LeaveApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         fields= '__all__'
-        model= employee_models.Leave
+        model= employee_models.LeaveApplication
 
 
 class LeaveTypeSerializer(serializers.ModelSerializer):

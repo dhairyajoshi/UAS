@@ -91,13 +91,13 @@ class LeaveTypeCreate(generics.ListCreateAPIView):
 
 class LeaveCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
-    queryset= employee_models.Leave.objects.all()
-    serializer_class= employee_serializers.LeaveSerializer
+    queryset= employee_models.LeaveApplication.objects.all()
+    serializer_class= employee_serializers.LeaveApplicationSerializer
 
     def post(self,request,*args,**kwargs):
         if request.user.group_id.id == 2 or request.user.group_id.id == 4:
             context ={}
-            new_leave = employee_models.Leave()
+            new_leave = employee_models.LeaveApplication()
             new_leave.start_date = request.data.get('start_date')
             new_leave.end_date = request.data.get("end_date")
             new_leave.description = request.data.get("description")
@@ -110,8 +110,8 @@ class LeaveCreate(generics.ListCreateAPIView):
             new_leave.employee = curr_employee
             new_leave.save()
             curr_employee.leaves.add(new_leave)
-            context["new_leave"] = employee_serializers.LeaveSerializer(new_leave).data
-            context["message"] = "New leave created successfully"
+            context["new_leave"] = employee_serializers.LeaveApplicationSerializer(new_leave).data
+            context["message"] = "New leave application created successfully"
             return Response(context,status=HTTP_200_OK)
         else:
             context ={}

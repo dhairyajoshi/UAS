@@ -34,10 +34,8 @@ class Employee(models.Model):
     pan_number = models.CharField(max_length= 15,null=True)
     job_type = models.CharField(choices=JOB_TYPE_CHOICE, max_length=50,null= True)
     promotions = models.ManyToManyField('Promotion',related_name = 'employee_promotion')
-    leaves = models.ManyToManyField('Leave',related_name = 'employee_leave')
-    verified_by = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='employee_verifier', on_delete=models.SET_NULL, null=True,blank=True)
-
-    
+    leaves_application = models.ManyToManyField('LeaveApplication',related_name = 'employee_leave')
+    leave_records = models.ManyToManyField('LeaveRecord',related_name="Employee_leave_record")
     
     slug = models.SlugField(unique=True,blank=True)
 
@@ -72,11 +70,13 @@ class Promotion(models.Model):
     class Meta:
         verbose_name_plural = "Promotions"
 
-class Leave(models.Model):
+class LeaveApplication(models.Model):
     employee = models.ForeignKey(Employee,related_name='Emp_leave',on_delete=models.CASCADE,null=True)
     leave_type = models.ForeignKey('LeaveType',related_name ='emp_leave_type', on_delete=models.CASCADE,null=True)
     start_date = models.DateField(null= True)
     end_date = models.DateField(null=True)
+    is_halfday = models.BooleanField(default = False)
+    approver = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null = True)
     is_granted = models.BooleanField(default=False)
     description = models.CharField(max_length=100,null=True)
     leave_address = models.CharField(max_length=50,null=True)
@@ -88,6 +88,15 @@ class Leave(models.Model):
     class Meta:
         verbose_name_plural ="Leaves"
 
+class LeaveRecord(models.Model):
+    employee = models.ForeignKey(Employee,related_name = 'Leave_Record_Employee_Details',on_delete = models.CASCADE,null =True)
+    leave_type = models.ForeignKey('LeaveType',related_name='Leave_Record_Type',on_delete=models.CASCADE,null = True)
+    leave_days = models.IntegerField(default=0)
+    leave_applications = models.ManyToManyField(LeaveApplication,related_name='Leave_Record_Applications')
+    def __str__(self):
+        return str(self.employee.user.first_name) + str(self.leave_type.name) + '_'+str(self.leave_days)
+    class Meta:
+        verbose_name_plural = "LeaveRecords"
 class LeaveType(models.Model):
     name = models.CharField(max_length=50,null=True)
     
