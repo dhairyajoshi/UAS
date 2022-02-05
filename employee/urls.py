@@ -10,4 +10,6 @@ urlpatterns = [
     path('leavetype-create/',employee_views.LeaveTypeCreate.as_view(),name = "LeaveType-creation"),
     path('leave-create/',employee_views.LeaveCreate.as_view(),name = "Leave-creation"),
     path('employee-verify/',employee_views.VerifyEmployee.as_view(),name = "Employee-verification"),
+    path('role-list/',employee_views.Rolelist.as_view(),name = 'role-list'),
+    path('role-detail/<int:id>/',employee_views.RoleDetail.as_view(),name = "role-detail")
 ]

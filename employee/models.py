@@ -135,7 +135,7 @@ class role(models.Model):
     description = models.CharField(max_length=100,null =True)
 
     def __str__(self):
-        return self.user.first_name+ "_" + self.name
+        return self.employee.user.first_name+ "_" + self.name
     
     class Meta:
         verbose_name_plural = "Roles"

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3e95375a-b103-47db-9282-284d606581d4",
+		"_postman_id": "708baf95-508c-4e2f-b76e-32ccecea4192",
 		"name": "UAS backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -742,66 +742,6 @@
 								}
 							},
 							"response": []
-						},
-						{
-							"name": "Add Leave",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{token}}",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "start_date",
-											"value": "2021-05-11",
-											"type": "default"
-										},
-										{
-											"key": "end_date",
-											"value": "2021-05-16",
-											"type": "default"
-										},
-										{
-											"key": "description",
-											"value": "sdkfsdfs",
-											"type": "default"
-										},
-										{
-											"key": "leave_address",
-											"value": "erere",
-											"type": "default"
-										},
-										{
-											"key": "leave_type",
-											"value": "7",
-											"type": "default"
-										},
-										{
-											"key": "leave_phone_number",
-											"value": "45645645",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{dev_url}}/employee/leave-create/",
-									"host": [
-										"{{dev_url}}"
-									],
-									"path": [
-										"employee",
-										"leave-create",
-										""
-									]
-								}
-							},
-							"response": []
 						}
 					]
 				},
@@ -1320,34 +1260,33 @@
 							"response": []
 						},
 						{
-							"name": "Verify Employee",
+							"name": "Add Role",
 							"request": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "{{token}}",
-										"type": "default"
+										"value": "{{token_admin}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "emp_id",
-											"value": "116",
-											"type": "default"
+									"mode": "raw",
+									"raw": "{\r\n    \"employee\":16,\r\n    \"name\":\"test_role\",\r\n    \"start_date\":\"2022-02-05\",\r\n    \"end_date\":\"2022-02-20\",\r\n    \"description\":\"test_description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{dev_url}}/employee/employee-verify/",
+									"raw": "{{local_url}}/employee/role-list/",
 									"host": [
-										"{{dev_url}}"
+										"{{local_url}}"
 									],
 									"path": [
 										"employee",
-										"employee-verify",
+										"role-list",
 										""
 									]
 								}
@@ -1355,41 +1294,61 @@
 							"response": []
 						},
 						{
-							"name": "Verify Employees",
+							"name": "Update role details",
 							"request": {
 								"method": "PUT",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "{{token}}",
-										"type": "default"
+										"value": "{{token_admin}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "emp_id",
-											"value": "116, 117",
-											"type": "default"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test_updated_role\",\r\n    \"start_date\": \"2022-02-05\",\r\n    \"end_date\": \"2022-02-10\",\r\n    \"description\": \"test_description\",\r\n    \"employee\": 15\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{dev_url}}/employee/employee-verify/?emp_id=116, 117",
+									"raw": "{{local_url}}/employee/role-detail/1/",
 									"host": [
-										"{{dev_url}}"
+										"{{local_url}}"
 									],
 									"path": [
 										"employee",
-										"employee-verify",
+										"role-detail",
+										"1",
 										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Role",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_admin}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}/employee/role-detail/2/",
+									"host": [
+										"{{local_url}}"
 									],
-									"query": [
-										{
-											"key": "emp_id",
-											"value": "116, 117"
-										}
+									"path": [
+										"employee",
+										"role-detail",
+										"2",
+										""
 									]
 								}
 							},
@@ -1721,6 +1680,45 @@
 								"academics",
 								"semester-record-detail",
 								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Role List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/employee/role-list/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"employee",
+								"role-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/employee/role-detail/1/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"employee",
+								"role-detail",
+								"1",
 								""
 							]
 						}

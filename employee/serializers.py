@@ -30,3 +30,7 @@ class LeaveTypeSerializer(serializers.ModelSerializer):
     class Meta:
         fields= '__all__'
         model = employee_models.LeaveType
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = employee_models.role
