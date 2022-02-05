@@ -1335,7 +1335,7 @@
 									"formdata": [
 										{
 											"key": "emp_id",
-											"value": "153",
+											"value": "116",
 											"type": "default"
 										}
 									]
@@ -1349,6 +1349,47 @@
 										"employee",
 										"employee-verify",
 										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Employees",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "emp_id",
+											"value": "116, 117",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dev_url}}/employee/employee-verify/?emp_id=116, 117",
+									"host": [
+										"{{dev_url}}"
+									],
+									"path": [
+										"employee",
+										"employee-verify",
+										""
+									],
+									"query": [
+										{
+											"key": "emp_id",
+											"value": "116, 117"
+										}
 									]
 								}
 							},
