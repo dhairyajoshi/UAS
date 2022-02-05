@@ -1,5 +1,6 @@
 from distutils.command.upload import upload
 from enum import unique
+from pyexpat import model
 from random import random
 from autoslug import AutoSlugField
 from django.template.defaultfilters import slugify
@@ -70,6 +71,7 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=15,blank=True, null=True)
     image = models.ImageField(upload_to=userFile, default='student_default.jpg',null = True,blank = True)
     slug = AutoSlugField(unique = True,populate_from = 'email')
+    is_active = models.BooleanField(default=False)
     def __str__(self):
         return self.username
     

@@ -126,11 +126,13 @@ class VerifyEmployee(generics.RetrieveUpdateAPIView):
     def put(self,request, *args,**kwargs):
         if request.user.group_id.id ==5:
             context = {}
-            emp_id= request.data.get('emp_id')
-            curr_emp= employee_models.Employee.objects.get(user=emp_id)
-            curr_emp.verified_by=request.user
-            curr_emp.save()
-            context["message"]="Employee verified successfully"
+            emp_ids= map(int,request.data.get('emp_id').split(','))
+
+            for emp_id in emp_ids:
+                curr_emp= employee_models.Employee.objects.get(user=emp_id)
+                curr_emp.verified_by=request.user
+                curr_emp.save()
+            context["message"]="Employee(s) verified successfully"
             return Response(context,status=HTTP_200_OK)
             
         else:
