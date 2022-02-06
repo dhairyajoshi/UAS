@@ -100,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"jee_roll\": \"64987498797\",\r\n    \"jee_rank\": \"48998449\",\r\n    \"program\": 7,\r\n    \"academic_session\":\"2021\",\r\n    \"entrance_exam\": \"JEE-MAIN\",\r\n    \"is_Tfw\": false,\r\n    \"mode\": \"REGULAR\",\r\n    \"is_pwd\": false,\r\n    \"is_defence\": false,\r\n    \"is_green_card\": false,\r\n    \"parents_mobile\": \"544549854\",\r\n    \"parents_email\": \"test__studentnew@gmail.com\",\r\n    \"status_application\": \"Pending\",\r\n    \"user\":18,\r\n    \"department\": 5\r\n}",
+							"raw": "{\r\n    \"jee_roll\": \"475416546\",\r\n    \"jee_rank\": \"84854\",\r\n    \"program\": 7,\r\n    \"academic_session\":\"2021\",\r\n    \"entrance_exam\": \"JEE-MAIN\",\r\n    \"is_Tfw\": false,\r\n    \"mode\": \"REGULAR\",\r\n    \"is_pwd\": false,\r\n    \"is_defence\": false,\r\n    \"is_green_card\": false,\r\n    \"parents_mobile\": \"544549854\",\r\n    \"parents_email\": \"test__studentnew@gmail.com\",\r\n    \"status_application\": \"Pending\",\r\n    \"user\":117,\r\n    \"department\": 5\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -605,9 +605,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{dev_url}}/core/student-application-list/?status=Pending",
+											"raw": "{{local_url}}/core/student-application-list/",
 											"host": [
-												"{{dev_url}}"
+												"{{local_url}}"
 											],
 											"path": [
 												"core",
@@ -618,8 +618,43 @@
 												{
 													"key": "status",
 													"value": "Pending",
-													"description": "Depending on the value of the status key the respective student application list is fetched.The available values for status key are:Pending,Accepted,Rejected."
+													"description": "Depending on the value of the status key the respective student application list is fetched.The available values for status key are:Pending,Accepted,Rejected.",
+													"disabled": true
 												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "List StudentApplication Update",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_admin}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"ids\":[17,18],\r\n    \"status\":\"Accepted\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{local_url}}/core/application-status-update/",
+											"host": [
+												"{{local_url}}"
+											],
+											"path": [
+												"core",
+												"application-status-update",
+												""
 											]
 										}
 									},
