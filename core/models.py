@@ -83,8 +83,8 @@ class Department(models.Model):
     code = models.CharField(max_length=10,null = True)
     year_of_esht = models.CharField(max_length = 4,null =True)
     is_academic = models.BooleanField(default= False)
-    programme = models.ManyToManyField(to = 'academics.Program',related_name='branch_programme', blank=True,null = True)
-    courses = models.ManyToManyField(to = 'academics.Course',related_name = 'Dept_courses', blank=True,null = True)
+    programme = models.ManyToManyField(to = 'academics.Program',related_name='branch_programme', blank=True)
+    courses = models.ManyToManyField(to = 'academics.Course',related_name = 'Dept_courses', blank=True)
     image = models.ImageField(upload_to = departmentFile, default = 'department_default.jpg',null = True,blank = True)
     def __str__(self):
         return self.name
