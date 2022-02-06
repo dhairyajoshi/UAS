@@ -309,18 +309,21 @@ class UpdateStatusView(RetrieveUpdateAPIView):
 
 class ApplicationStatusUpdate(APIView):
     permission_classes = [IsAuthenticated]
-    def post(self, request, *args, **kwargs):
+    def put(self, request, *args, **kwargs):
         ids = request.data.get('ids', None)
         status = request.data.get('status', None)
-        if not request.user.is_staff:
-            return Response({"message": "You are not a staff!"}, status=HTTP_400_BAD_REQUEST)
+        if not request.user.group_id.id == 5:
+            return Response({"message": "You are not a administrator"}, status=HTTP_400_BAD_REQUEST)
         
         for id in ids:
             if id is None:
                 continue
             curr_application = student_models.Student_Application.objects.get(id=id)
             curr_application.status_application = status
+            curr_application.verified_by = request.user
             curr_application.save()
+            if curr_application.status_application == "Accepted":
+                ApplicationCreateStudent.create(request = curr_application)
         return Response({"message": f'The status of applications were changed to {status}!'}, status=HTTP_200_OK)
 
 
