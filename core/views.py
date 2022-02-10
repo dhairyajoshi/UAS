@@ -395,7 +395,8 @@ class CustomLoginView(LoginView):
             "user_id": self.request.user.id,
             "user_group_id": self.request.user.group_id.id,
             "user_group": str(self.request.user.group_id.name),
-            "redirect_url": str(self.request.user.group_id.site_url)
+            "redirect_url": str(self.request.user.group_id.site_url),
+            "is_superuser": str(self.request.user.is_superuser),
         }
         orginal_response.data.update(user_data)
         return orginal_response
