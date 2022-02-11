@@ -57,7 +57,7 @@ class DepartmentList(generics.ListCreateAPIView):
                 queryset = core_models.Department.objects.filter(is_academic=False)
         return queryset
     def post(self,request,*args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser ==True:
             context = {}
             serializer = core_serializers.DepartmentSerializer(data = request.data)
             if serializer.is_valid():
@@ -77,7 +77,7 @@ class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = core_serializers.DepartmentSerializer
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context ={}
             instance = core_models.Department.objects.get(id = id)
             data = request.data
@@ -100,7 +100,7 @@ class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
             context["errors"] = "You are not an administrator"
             return Response(context,status=HTTP_400_BAD_REQUEST)
     def delete(self,request,id,*args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser == True:
             context={}
             instance = core_models.Department.objects.get(id=id)
             instance.delete()
@@ -312,7 +312,7 @@ class ApplicationStatusUpdate(APIView):
     def put(self, request, *args, **kwargs):
         ids = request.data.get('ids', None)
         status = request.data.get('status', None)
-        if not request.user.group_id.id == 5:
+        if not request.user.is_superuser == True:
             return Response({"message": "You are not a administrator"}, status=HTTP_400_BAD_REQUEST)
         
         for id in ids:
@@ -406,7 +406,7 @@ class EducationLevelView(generics.ListCreateAPIView):
     serializer_class = core_serializers.EducationLevelSerializer
     def post(self,request,*args,**kwargs):
         context = {}
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             new_education_level = core_models.EducationLevel()
             new_education_level.name = request.data.get("name")
             new_education_level.description = request.data.get("description")
@@ -425,7 +425,7 @@ class EducationLevelDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = core_serializers.EducationLevelSerializer
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             instance = core_models.EducationLevel.objects.get(id=id)
             data = request.data
             instance.name = data["name"]
@@ -439,7 +439,7 @@ class EducationLevelDetailView(generics.RetrieveUpdateDestroyAPIView):
             return Response(context)
     
     def delete(self,request,id,*args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser ==True:
             context={}
             instance = core_models.EducationLevel.objects.get(id=id)
             instance.delete()
