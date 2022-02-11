@@ -44,7 +44,7 @@ class CourseList(generics.ListCreateAPIView):
     queryset = academics_models.Course.objects.all()
     serializer_class = academics_serializers.CourseSerializer
     def post(self,request,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context ={}
             new_course = academics_models.Course()
             new_course.course_code = request.data.get('course_code')
@@ -70,7 +70,7 @@ class ProgramList(generics.ListCreateAPIView):
     queryset = academics_models.Program.objects.all()
     serializer_class = academics_serializers.ProgramSerializer
     def post(self,request,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context = {}
             new_program = academics_models.Program()
             new_program.full_name = request.data.get("full_name")
@@ -99,7 +99,7 @@ class ProgramDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = academics_serializers.ProgramSerializer
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser ==True:
             instance = academics_models.Program.objects.get(id = id)
             instance.full_name = request.data.get("full_name")
             instance.short_name = request.data.get("short_name")
@@ -120,7 +120,7 @@ class ProgramDetail(generics.RetrieveUpdateDestroyAPIView):
             context['errors'] = "You are not an administrator"
             return Response(context)
     def delete(self,request,id,*args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser ==True:
             context={}
             instance = academics_models.Program.objects.get(id=id)
             instance.delete()
@@ -137,7 +137,7 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = academics_serializers.CourseSerializer
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser ==True:
             context = {}
             instance = academics_models.Course.objects.get(id = id)
             instance.course_code = request.data.get("course_code")
@@ -162,7 +162,7 @@ class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
             return Response(context,status=HTTP_400_BAD_REQUEST)
     
     def delete(self,request,id,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context = {}
             instance = academics_models.Course.objects.get(id = id)
             dept_instance = core_models.Department.objects.get(id = instance.department.id)
@@ -189,7 +189,7 @@ class SemesterRecordList(generics.ListCreateAPIView):
                 queryset =academics_models.SemesterRecord.objects.filter(sem_type = "EVEN")
         return queryset
     def post(self,request,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context = {}
             new_semester_record = academics_models.SemesterRecord()
             new_semester_record.start_date = request.data.get('start_date')
@@ -211,7 +211,7 @@ class SemesterRecordDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = academics_serializers.SemesterRecordSerializer
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context ={}
             instance = academics_models.SemesterRecord.objects.get(id = id)
             instance.start_data = request.data.get("start_date")
@@ -228,7 +228,7 @@ class SemesterRecordDetail(generics.RetrieveUpdateDestroyAPIView):
             context["errors"] = "You are not an adinistrator"
             return Response(context,status = HTTP_400_BAD_REQUEST)
     def delete(self,request,id,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context = {}
             instance = academics_models.SemesterRecord.objects.get(id = id)
             instance.delete()
