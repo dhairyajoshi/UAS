@@ -75,7 +75,7 @@ class LeaveTypeCreate(generics.ListCreateAPIView):
     serializer_class= employee_serializers.LeaveTypeSerializer
 
     def post(self,request,*args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser == True:
             context = {}
             serializer = employee_serializers.LeaveTypeSerializer(data = request.data)
             if serializer.is_valid():
@@ -124,7 +124,7 @@ class VerifyEmployee(generics.RetrieveUpdateAPIView):
 
 
     def put(self,request, *args,**kwargs):
-        if request.user.group_id.id ==5:
+        if request.user.is_superuser ==True:
             context = {}
             emp_ids= map(int,request.data.get('emp_id').split(','))
 
@@ -147,7 +147,7 @@ class Rolelist(generics.ListCreateAPIView):
     queryset = employee_models.role.objects.all()
     serializer_class = employee_serializers.RoleSerializer
     def post(self,request,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context = {}
             new_role = employee_models.role()
             new_role.employee = employee_models.Employee.objects.get(id = request.data.get("employee"))
@@ -171,7 +171,7 @@ class RoleDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = employee_serializers.RoleSerializer
     lookup_field = "id"
     def put(self,request,id,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.is_superuser == True:
             context = {}
             curr_role = employee_models.role.objects.get(id =id)
             curr_role.employee = employee_models.Employee.objects.get(id = request.data.get("employee"))
@@ -189,7 +189,7 @@ class RoleDetail(generics.RetrieveUpdateDestroyAPIView):
             context["errors"] = "You are not an administrator"
             return Response(context,status=HTTP_400_BAD_REQUEST)
     def delete(self,request,id,*args,**kwargs):
-        if request.user.group_id.id == 5:
+        if request.user.is_superuser == True:
             context = {}
             curr_role = employee_models.role.objects.get(id =id)
             curr_role.delete()
