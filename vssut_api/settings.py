@@ -197,7 +197,7 @@ SESSION_COOKIE_SAMESITE = 'None'
 
 # django Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.zoho.in'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = get_secret('EMAIL_HOST_USER')
