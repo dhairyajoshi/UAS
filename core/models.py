@@ -54,6 +54,7 @@ def userFile(instance,filename):
 
 def departmentFile(instance,filename):
     return '/'.join(['department',str(instance.id),filename])
+
 class User(AbstractUser):
     middle_name = models.CharField(max_length=50,null=True,blank=True)
     group_id = models.ForeignKey('UserGroup', on_delete=models.SET_NULL, null=True, blank=True)
@@ -115,7 +116,10 @@ class EducationDetail(models.Model):
     year_of_passing = models.CharField(max_length = 5, null = True, blank = True)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        if self.user:
+            return self.user.first_name + " " + self.user.last_name
+        else:
+            return str(self.id)
     
     def save(self,*args,**kwargs):
         super(EducationDetail,self).save(*args,**kwargs)
